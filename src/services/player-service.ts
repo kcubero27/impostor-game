@@ -9,6 +9,8 @@ export interface IPlayerService {
   updatePlayerName: (players: Player[], id: PlayerId, name: string) => Player[]
   removePlayer: (players: Player[], id: PlayerId, minPlayers: number) => Player[]
   canRemovePlayer: (playersCount: number, minPlayers: number) => boolean
+  getDuplicateNames: (players: Player[]) => Set<string>
+  getPlayersWithDuplicateNames: (players: Player[]) => Set<PlayerId>
 }
 
 /**
@@ -38,6 +40,47 @@ class PlayerService implements IPlayerService {
 
   canRemovePlayer(playersCount: number, minPlayers: number): boolean {
     return playersCount > minPlayers
+  }
+
+  /**
+   * Returns a set of duplicate names (non-empty names that appear more than once).
+   * Empty names are ignored in duplicate detection.
+   */
+  getDuplicateNames(players: Player[]): Set<string> {
+    const nameCount = new Map<string, number>()
+    const duplicates = new Set<string>()
+
+    // Count occurrences of each non-empty name (case-insensitive)
+    for (const player of players) {
+      const normalizedName = player.name.trim().toLowerCase()
+      if (normalizedName === '') continue
+
+      const count = nameCount.get(normalizedName) ?? 0
+      nameCount.set(normalizedName, count + 1)
+
+      if (count + 1 > 1) {
+        duplicates.add(normalizedName)
+      }
+    }
+
+    return duplicates
+  }
+
+  /**
+   * Returns a set of player IDs that have duplicate names.
+   */
+  getPlayersWithDuplicateNames(players: Player[]): Set<PlayerId> {
+    const duplicateNames = this.getDuplicateNames(players)
+    const playerIdsWithDuplicates = new Set<PlayerId>()
+
+    for (const player of players) {
+      const normalizedName = player.name.trim().toLowerCase()
+      if (duplicateNames.has(normalizedName)) {
+        playerIdsWithDuplicates.add(player.id)
+      }
+    }
+
+    return playerIdsWithDuplicates
   }
 }
 

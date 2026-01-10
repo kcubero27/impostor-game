@@ -1,15 +1,17 @@
-export interface Player {
-  readonly id: string
-  name: string
-}
+// Player types
+export type { Player, PlayerId } from './player.types'
+export { createPlayer } from './player.types'
 
-let playerIdCounter = 0
+// Game types
+export type { PlayerRole, GamePlayer, GameState } from './game.types'
+export { PLAYER_ROLES } from './game.types'
 
-export function createPlayer(name: string = ''): Player {
-  return {
-    id: `player-${++playerIdCounter}-${Date.now()}`,
-    name,
-  }
-}
+// Word and Category types
+export type { Difficulty, Category, Word } from './word.types'
 
-export type PlayerId = Player['id']
+// Language types
+export type { Language } from './language.types'
+
+// Game Config types
+export type { GameConfig } from './game-config.types'
+export { DEFAULT_GAME_CONFIG } from './game-config.types'

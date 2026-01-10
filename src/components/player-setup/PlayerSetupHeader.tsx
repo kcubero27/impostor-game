@@ -1,19 +1,17 @@
 import { memo } from 'react'
 import { Sparkles } from 'lucide-react'
+import { useTranslation } from '@/i18n'
 
 export interface PlayerSetupHeaderProps {
-  readonly title?: string
-  readonly subtitle?: string
   readonly icon?: React.ReactNode
   readonly className?: string
 }
 
 function PlayerSetupHeaderComponent({
-  title = 'Impostor Game',
-  subtitle = 'Set up your game and find the impostor!',
   icon,
   className,
 }: PlayerSetupHeaderProps) {
+  const { t } = useTranslation()
   const defaultIcon = <Sparkles className="w-8 h-8 text-purple-600" aria-hidden="true" />
   const displayIcon = icon ?? defaultIcon
 
@@ -27,8 +25,8 @@ function PlayerSetupHeaderComponent({
       </div>
 
       {/* Title */}
-      <h1 className="text-3xl font-bold text-center mb-2">{title}</h1>
-      <p className="text-center text-muted-foreground mb-8">{subtitle}</p>
+      <h1 className="text-3xl font-bold text-center mb-2">{t('ui.game_title')}</h1>
+      <p className="text-center text-muted-foreground mb-8">{t('ui.game_subtitle')}</p>
     </div>
   )
 }

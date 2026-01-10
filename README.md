@@ -1,73 +1,119 @@
-# React + TypeScript + Vite
+# 🎭 Impostor Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fun multiplayer social deduction game built with React, TypeScript, and Vite. Players try to identify the impostor among them based on word associations!
 
-Currently, two official plugins are available:
+## 🎮 Game Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+One player is secretly assigned as the **Impostor**. All other players see the same word, but the impostor only sees a hint. Players must discuss and figure out who doesn't know the actual word!
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🌍 **Multilingual Support**: Full English and Spanish translations
+- 📚 **300 Words**: Comprehensive word database across 12 categories
+- 🎯 **Difficulty Levels**: Words categorized by difficulty (1-3)
+- 👥 **Flexible Player Count**: Play with 3+ players
+- 🎨 **Beautiful UI**: Modern, responsive design with Tailwind CSS
+- 🔒 **Private Role Reveal**: Each player sees their role individually
+- 🔄 **Replayable**: Quick restart with "Play Again" feature
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Installation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# Install dependencies
+pnpm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# Start development server
+pnpm dev
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Build for production
+pnpm build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### How to Play
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Setup**: Add 3 or more players with names
+2. **Start Game**: Click "Start Game" to begin
+3. **Role Reveal**: Each player privately views their role:
+   - **Normal Players**: See the word (e.g., "Elephant")
+   - **Impostor**: Only sees a hint (e.g., "Large animal with a trunk")
+4. **Discussion**: Players discuss and try to identify the impostor
+5. **Vote**: Decide who the impostor is!
+6. **Play Again**: Start a new round with the same or different players
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📂 Project Structure
+
 ```
+src/
+├── components/      # Reusable UI components
+├── pages/          # Main game screens
+├── services/       # Game logic and business rules
+├── hooks/          # Custom React hooks
+├── types/          # TypeScript type definitions
+├── data/           # Word and category databases
+├── i18n/           # Internationalization
+└── constants/      # App constants
+```
+
+## 🌐 Languages
+
+- 🇬🇧 English (EN)
+- 🇪🇸 Spanish (ES)
+
+Switch languages anytime using the language toggle in the top-right corner!
+
+## 📋 Categories
+
+Words are organized across 12 categories (300 total):
+- 🐾 Animals (40 words)
+- 🍕 Food (40 words)
+- ⚽ Sports (30 words)
+- 💼 Professions (30 words)
+- 🎯 Objects (30 words)
+- 🏛️ Places (30 words)
+- 💻 Technology (25 words)
+- 🚗 Transportation (20 words)
+- 🎬 Entertainment (20 words)
+- 🌲 Nature (5 words)
+- 👕 Clothing (15 words)
+- 🏠 Household (15 words)
+
+## 🛠️ Tech Stack
+
+- **React 19** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool
+- **Tailwind CSS** - Styling
+- **react-i18next** - Internationalization (i18n)
+- **Lucide React** - Icons
+- **Radix UI** - Accessible components
+
+## 📖 Documentation
+
+- **Features**: See [FEATURES.md](./FEATURES.md)
+- **i18next Migration**: See [I18NEXT_MIGRATION.md](./I18NEXT_MIGRATION.md)
+
+## 🎯 Game Strategy Tips
+
+**For Normal Players:**
+- Subtly reference the word without saying it directly
+- Ask questions that only someone who knows the word would understand
+- Watch for players who seem confused or vague
+
+**For the Impostor:**
+- Listen carefully to others before speaking
+- Make generic statements that could apply to many things
+- Blend in without being too specific or too vague
+
+## 📄 License
+
+MIT
+
+## 🤝 Contributing
+
+Contributions welcome! Feel free to open issues or submit pull requests.
+
+---
+
+Built with ❤️ using React + TypeScript + Vite

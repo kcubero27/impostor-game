@@ -1,25 +1,27 @@
 import { memo } from 'react'
 import { Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/i18n'
 
 export interface AddPlayerButtonProps {
   readonly onClick: () => void
-  readonly label?: string
   readonly className?: string
   readonly disabled?: boolean
 }
 
 function AddPlayerButtonComponent({
   onClick,
-  label = 'Add new player',
   className,
   disabled = false,
 }: AddPlayerButtonProps) {
+  const { t } = useTranslation()
+  const label = t('ui.add_player')
+
   return (
     <Button
       onClick={onClick}
       disabled={disabled}
-      className={`w-full bg-purple-300 hover:bg-purple-400 text-white rounded-lg py-2 shadow-sm flex items-center justify-center gap-2 ${
+      className={`w-full bg-purple-300 hover:bg-purple-400 text-white shadow-sm ${
         className ?? ''
       }`}
       aria-label={label}

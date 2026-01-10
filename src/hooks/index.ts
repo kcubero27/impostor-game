@@ -1,1 +1,1 @@
-export { usePlayers, type UsePlayersReturn, type UsePlayersOptions } from './usePlayers'
+export { usePlayers, type UsePlayersReturn, type UsePlayersOptions } from './use-players'
