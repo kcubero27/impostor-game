@@ -1,4 +1,4 @@
-import { type Player, type GamePlayer, type GameState, type Word, PLAYER_ROLES } from '@/types'
+import { type Player, type GamePlayer, type GameState, DEFAULT_GAME_CONFIG, type Word, PLAYER_ROLES } from '@/types'
 import { WORDS } from '@/data/words'
 import { wordMemoryService } from './word-memory-service'
 
@@ -88,6 +88,7 @@ class GameService implements IGameService {
       word,
       currentPlayerIndex: 0,
       isComplete: false,
+      config: { ...DEFAULT_GAME_CONFIG }
     }
   }
 
