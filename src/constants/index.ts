@@ -1,0 +1,4 @@
+export const PLAYER_CONSTANTS = {
+  MIN_PLAYERS: 2,
+  INITIAL_PLAYERS_COUNT: 2,
+} as const
