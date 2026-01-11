@@ -171,7 +171,7 @@ export const PlayersSetup = ({
                       placeholder={t("ui.player_name_placeholder", {
                         number: index + 1,
                       })}
-                      className="flex-1 min-w-0 border-0 shadow-none focus-visible:ring-0 bg-transparent h-auto"
+                      className="flex-1 min-w-0 border-0 shadow-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 bg-transparent h-auto"
                       aria-invalid={showValidation}
                     />
                   </div>

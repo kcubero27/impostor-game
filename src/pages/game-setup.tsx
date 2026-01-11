@@ -1,6 +1,9 @@
 import { SetupCard } from "@/components/setup-card";
 import { Button } from "@/components/ui/button";
-import { Select } from "@/components/ui/select";
+import {
+  NativeSelect,
+  NativeSelectOption,
+} from "@/components/ui/native-select";
 import { Switch } from "@/components/ui/switch";
 import {
   ChevronRight,
@@ -131,19 +134,17 @@ export const GameSetup = ({
               : t("ui.add_players_first")
           }
           right={
-            <div className="w-20">
-              <Select
-                value={currentImpostorCount.toString()}
-                onChange={(e) => handleImpostorCountChange(e.target.value)}
-                disabled={readyPlayersCount === 0}
-              >
-                {validImpostorOptions.map((count) => (
-                  <option key={count} value={count.toString()}>
-                    {count}
-                  </option>
-                ))}
-              </Select>
-            </div>
+            <NativeSelect
+              value={currentImpostorCount.toString()}
+              onChange={(e) => handleImpostorCountChange(e.target.value)}
+              disabled={readyPlayersCount === 0}
+            >
+              {validImpostorOptions.map((count) => (
+                <NativeSelectOption key={count} value={count.toString()}>
+                  {count}
+                </NativeSelectOption>
+              ))}
+            </NativeSelect>
           }
           className="mt-2"
         />
@@ -167,22 +168,28 @@ export const GameSetup = ({
           iconBg="bg-indigo-500"
           title={t("ui.difficulty")}
           right={
-            <div className="w-32">
-              <Select
-                value={difficulty === null ? "all" : difficulty.toString()}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  onDifficultyChange(
-                    value === "all" ? null : parseInt(value, 10)
-                  );
-                }}
-              >
-                <option value="all">{t("ui.all_difficulties")}</option>
-                <option value="1">{t("ui.difficulty_low")}</option>
-                <option value="2">{t("ui.difficulty_medium")}</option>
-                <option value="3">{t("ui.difficulty_high")}</option>
-              </Select>
-            </div>
+            <NativeSelect
+              value={difficulty === null ? "all" : difficulty.toString()}
+              onChange={(e) => {
+                const value = e.target.value;
+                onDifficultyChange(
+                  value === "all" ? null : parseInt(value, 10)
+                );
+              }}
+            >
+              <NativeSelectOption value="all">
+                {t("ui.all_difficulties")}
+              </NativeSelectOption>
+              <NativeSelectOption value="1">
+                {t("ui.difficulty_low")}
+              </NativeSelectOption>
+              <NativeSelectOption value="2">
+                {t("ui.difficulty_medium")}
+              </NativeSelectOption>
+              <NativeSelectOption value="3">
+                {t("ui.difficulty_high")}
+              </NativeSelectOption>
+            </NativeSelect>
           }
           className="mt-2"
         />
