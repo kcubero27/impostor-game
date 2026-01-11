@@ -1,6 +1,6 @@
 /**
  * PlayerName Value Object
- * 
+ *
  * Encapsulates player name validation logic.
  * Immutable value object that validates on creation.
  */
@@ -8,7 +8,9 @@ export class PlayerName {
   private static readonly MIN_LENGTH = 1;
   private static readonly MAX_LENGTH = 50;
 
-  private constructor(private readonly value: string) {
+  private readonly value: string;
+
+  private constructor(value: string) {
     if (!value || value.trim().length === 0) {
       throw new Error("Player name cannot be empty");
     }
@@ -16,13 +18,13 @@ export class PlayerName {
     const trimmed = value.trim();
     if (trimmed.length < PlayerName.MIN_LENGTH) {
       throw new Error(
-        `Player name must be at least ${PlayerName.MIN_LENGTH} character`,
+        `Player name must be at least ${PlayerName.MIN_LENGTH} character`
       );
     }
 
     if (trimmed.length > PlayerName.MAX_LENGTH) {
       throw new Error(
-        `Player name cannot exceed ${PlayerName.MAX_LENGTH} characters`,
+        `Player name cannot exceed ${PlayerName.MAX_LENGTH} characters`
       );
     }
 

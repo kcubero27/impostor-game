@@ -23,16 +23,20 @@ export const PlayersSetup = ({
   const { t } = useTranslation();
   const [newPlayerId, setNewPlayerId] = useState<string | null>(null);
   const [touchedInputs, setTouchedInputs] = useState<Set<string>>(new Set());
-  const [rawInputValues, setRawInputValues] = useState<{ [key: string]: string }>({});
+  const [rawInputValues, setRawInputValues] = useState<{
+    [key: string]: string;
+  }>({});
   const inputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({});
 
   const addPlayer = () => {
     // Get default name for the new player based on current count
     const nextIndex = players.length;
-    const defaultName = t("ui.player_name_placeholder", { number: nextIndex + 1 })
-      .replace(/^(Nombre del |Name of )/i, "");
-    const capitalizedName = defaultName.charAt(0).toUpperCase() + defaultName.slice(1);
-    
+    const defaultName = t("ui.player_name_placeholder", {
+      number: nextIndex + 1,
+    }).replace(/^(Nombre del |Name of )/i, "");
+    const capitalizedName =
+      defaultName.charAt(0).toUpperCase() + defaultName.slice(1);
+
     const newPlayer = playerManagementService.createPlayer(capitalizedName);
     const updatedPlayers = [...players, newPlayer];
     onPlayersChange(updatedPlayers);
@@ -45,6 +49,7 @@ export const PlayersSetup = ({
     onPlayersChange(updatedPlayers);
     // Clean up local state for removed player
     setRawInputValues((prev) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { [id]: _, ...rest } = prev;
       return rest;
     });
@@ -63,7 +68,7 @@ export const PlayersSetup = ({
     const updatedPlayers = playerManagementService.updatePlayerName(
       players,
       id,
-      name,
+      name
     );
     onPlayersChange(updatedPlayers);
     // Mark input as touched when user types
@@ -75,20 +80,21 @@ export const PlayersSetup = ({
   const playerDtos = PlayerAdapter.toDtoArray(players);
   const playersCount = players.length;
   const readyPlayersCount = PlayerCollection.getReadyPlayersCount(players);
-  const allPlayersHaveNames = PlayerCollection.allPlayersHaveValidNames(players);
+  const allPlayersHaveNames =
+    PlayerCollection.allPlayersHaveValidNames(players);
   const allNamesAreUnique = PlayerCollection.allNamesAreUnique(players);
   const isReady = allPlayersHaveNames && allNamesAreUnique;
 
   const hasDuplicateName = (playerId: string, playerName: string): boolean => {
     const trimmedName = playerName.trim();
     if (!trimmedName) return false;
-    
+
     const normalizedName = trimmedName.toLowerCase();
     return players.some(
       (p) =>
         p.getId() !== playerId &&
         p.hasValidName() &&
-        p.getName().toLowerCase() === normalizedName,
+        p.getName().toLowerCase() === normalizedName
     );
   };
 
@@ -152,10 +158,14 @@ export const PlayersSetup = ({
                         inputRefs.current[player.id] = el;
                       }}
                       value={displayValue}
-                      onChange={(e) => updatePlayerName(player.id, e.target.value)}
+                      onChange={(e) =>
+                        updatePlayerName(player.id, e.target.value)
+                      }
                       onBlur={() => {
                         if (!touchedInputs.has(player.id)) {
-                          setTouchedInputs((prev) => new Set(prev).add(player.id));
+                          setTouchedInputs((prev) =>
+                            new Set(prev).add(player.id)
+                          );
                         }
                       }}
                       placeholder={t("ui.player_name_placeholder", {

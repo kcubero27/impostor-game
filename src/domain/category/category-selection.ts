@@ -1,6 +1,6 @@
 /**
  * CategorySelection Domain Service
- * 
+ *
  * Manages business rules for category selection.
  */
 export class CategorySelection {
@@ -24,7 +24,7 @@ export class CategorySelection {
    */
   static isCategorySelected(
     categoryId: string,
-    selectedCategoryIds: string[],
+    selectedCategoryIds: string[]
   ): boolean {
     return selectedCategoryIds.includes(categoryId);
   }
@@ -34,7 +34,7 @@ export class CategorySelection {
    */
   static toggleCategory(
     categoryId: string,
-    selectedCategoryIds: string[],
+    selectedCategoryIds: string[]
   ): string[] {
     if (CategorySelection.isCategorySelected(categoryId, selectedCategoryIds)) {
       return selectedCategoryIds.filter((id) => id !== categoryId);

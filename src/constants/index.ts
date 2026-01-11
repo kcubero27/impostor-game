@@ -15,7 +15,7 @@ export const PLAYER_CONSTANTS = {
 
 /**
  * Impostor Game Constants
- * 
+ *
  * Rules for impostor assignment based on player count.
  * These are re-exported from the domain layer to maintain backward compatibility.
  */

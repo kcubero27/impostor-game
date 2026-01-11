@@ -10,7 +10,7 @@ export type PlayerDto = {
 
 /**
  * PlayerAdapter
- * 
+ *
  * Converts between Domain entities and DTOs.
  * Adapter layer responsibility.
  */

@@ -2,7 +2,7 @@ import type { IIdGenerator } from "@/domain/shared/id-generator.interface";
 
 /**
  * IdGeneratorAdapter
- * 
+ *
  * Infrastructure implementation of ID generation.
  */
 export class IdGeneratorAdapter implements IIdGenerator {

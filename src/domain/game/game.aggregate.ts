@@ -3,27 +3,37 @@ import { Word } from "./word.entity";
 
 /**
  * Game Aggregate Root
- * 
+ *
  * Represents a game session and enforces game invariants.
  * This is the aggregate root that manages GamePlayers and Word.
- * 
+ *
  * Invariants:
  * - Game must have at least 2 players
  * - Game must have exactly the specified number of impostors
  * - All players must have valid roles
  */
 export class Game {
+  private readonly _players: readonly GamePlayer[];
+  private readonly _word: Word;
+  private _currentPlayerIndex: number;
+  private _isComplete: boolean;
+
   private constructor(
-    private readonly _players: readonly GamePlayer[],
-    private readonly _word: Word,
-    private _currentPlayerIndex: number,
-    private _isComplete: boolean,
-  ) {}
+    players: readonly GamePlayer[],
+    word: Word,
+    currentPlayerIndex: number,
+    isComplete: boolean
+  ) {
+    this._players = players;
+    this._word = word;
+    this._currentPlayerIndex = currentPlayerIndex;
+    this._isComplete = isComplete;
+  }
 
   /**
    * Factory method to start a new game
    * Enforces all game invariants
-   * 
+   *
    * @param players - Array of game players with assigned roles
    * @param word - The word for this game
    * @param expectedImpostorCount - Expected number of impostors (for validation)
@@ -33,7 +43,7 @@ export class Game {
   static start(
     players: GamePlayer[],
     word: Word,
-    expectedImpostorCount: number,
+    expectedImpostorCount: number
   ): Game {
     // Invariant: Minimum players
     if (players.length < 2) {
@@ -44,13 +54,13 @@ export class Game {
     const impostorCount = players.filter((p) => p.isImpostor()).length;
     if (impostorCount !== expectedImpostorCount) {
       throw new Error(
-        `Game must have exactly ${expectedImpostorCount} impostor(s), but found ${impostorCount}`,
+        `Game must have exactly ${expectedImpostorCount} impostor(s), but found ${impostorCount}`
       );
     }
 
     // Invariant: All players must have valid roles
     const hasInvalidRoles = players.some(
-      (p) => !p.isImpostor() && !p.isNormal(),
+      (p) => !p.isImpostor() && !p.isNormal()
     );
     if (hasInvalidRoles) {
       throw new Error("All players must have valid roles");
@@ -110,14 +120,14 @@ export class Game {
       updatedPlayers,
       this._word,
       this._currentPlayerIndex,
-      this._isComplete,
+      this._isComplete
     );
   }
 
   /**
    * Marks a specific player as having seen their role
    * Returns a new Game instance (immutability)
-   * 
+   *
    * @param playerId - ID of the player to mark as having seen their role
    */
   markPlayerAsSeenRole(playerId: string): Game {
@@ -132,7 +142,7 @@ export class Game {
       updatedPlayers,
       this._word,
       this._currentPlayerIndex,
-      this._isComplete,
+      this._isComplete
     );
   }
 
@@ -150,11 +160,6 @@ export class Game {
    * Returns a new Game instance (immutability)
    */
   complete(): Game {
-    return new Game(
-      this._players,
-      this._word,
-      this._currentPlayerIndex,
-      true,
-    );
+    return new Game(this._players, this._word, this._currentPlayerIndex, true);
   }
 }

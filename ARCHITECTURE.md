@@ -169,7 +169,7 @@ class GameService {
 class WordSelectionService {
   constructor(
     private readonly wordRepository: IWordRepository, // Abstraction
-    private readonly wordMemory: IWordMemory, // Abstraction
+    private readonly wordMemory: IWordMemory // Abstraction
   ) {}
 }
 ```

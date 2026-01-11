@@ -4,7 +4,7 @@ import { useTranslation } from "@/i18n";
 
 export const HomePage = ({ onInitGame }: { onInitGame: () => void }) => {
   const { t } = useTranslation();
-  
+
   return (
     <>
       <div className="flex flex-col items-center justify-center flex-1 gap-4">

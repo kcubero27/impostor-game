@@ -9,15 +9,20 @@ import { Layout } from "@/components/layout";
 import { useState, useEffect } from "react";
 import { Player } from "@/domain/player/player.entity";
 import { Game } from "@/domain/game/game.aggregate";
-import { playerManagementService, gameManagementService } from "@/application/services";
+import {
+  playerManagementService,
+  gameManagementService,
+} from "@/application/services";
 import { IMPOSTOR_CONSTANTS } from "@/constants";
 import { useTranslation, i18n } from "@/i18n";
 
 // Helper function to get default player name
 const getDefaultPlayerName = (index: number): string => {
-  const translation = i18n.t("ui.player_name_placeholder", { number: index + 1 });
+  const translation = i18n.t("ui.player_name_placeholder", {
+    number: index + 1,
+  });
   // Remove "Nombre del " or "Name of " prefix if present
-  let name = translation.replace(/^(Nombre del |Name of )/i, "");
+  const name = translation.replace(/^(Nombre del |Name of )/i, "");
   // Capitalize first letter
   return name.charAt(0).toUpperCase() + name.slice(1);
 };
@@ -35,16 +40,16 @@ type Screen = (typeof SCREEN)[keyof typeof SCREEN];
 
 function App() {
   const { t } = useTranslation();
-  
+
   // Update document title when language changes
   useEffect(() => {
     const updateTitle = () => {
       document.title = t("ui.app_title");
     };
-    
+
     updateTitle();
     i18n.on("languageChanged", updateTitle);
-    
+
     return () => {
       i18n.off("languageChanged", updateTitle);
     };
@@ -61,7 +66,7 @@ function App() {
   });
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [impostorCount, setImpostorCount] = useState<number>(
-    IMPOSTOR_CONSTANTS.MIN_IMPOSTORS,
+    IMPOSTOR_CONSTANTS.MIN_IMPOSTORS
   );
   const [hintsEnabled, setHintsEnabled] = useState<boolean>(true);
   const [difficulty, setDifficulty] = useState<number | null>(null); // null = all difficulties
@@ -98,7 +103,7 @@ function App() {
       readyPlayers,
       impostorCount,
       selectedCategories,
-      difficulty,
+      difficulty
     );
     setGame(newGame);
     setScreen(SCREEN.GAME);
@@ -120,7 +125,7 @@ function App() {
       readyPlayers,
       impostorCount,
       selectedCategories,
-      difficulty,
+      difficulty
     );
     setGame(newGame);
     setScreen(SCREEN.GAME);
@@ -190,10 +195,7 @@ function App() {
         />
       )}
       {screen === SCREEN.PLAYERS_SETUP && (
-        <PlayersSetup
-          players={players}
-          onPlayersChange={setPlayers}
-        />
+        <PlayersSetup players={players} onPlayersChange={setPlayers} />
       )}
       {screen === SCREEN.CATEGORIES_SETUP && (
         <CategoriesSetup
@@ -207,7 +209,6 @@ function App() {
           hintsEnabled={hintsEnabled}
           onGameChange={setGame}
           onStartGame={handleStartGameFromDisplay}
-          onBackToSetup={handleBackToSetupFromGameDisplay}
         />
       )}
       {screen === SCREEN.GAME_START && game && (

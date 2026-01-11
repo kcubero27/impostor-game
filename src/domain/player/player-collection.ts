@@ -2,7 +2,7 @@ import { Player } from "./player.entity";
 
 /**
  * PlayerCollection Domain Service
- * 
+ *
  * Manages business rules for player collections.
  * Enforces invariants like minimum players, unique names, etc.
  */
@@ -57,7 +57,7 @@ export class PlayerCollection {
 
     if (!PlayerCollection.hasMinimumPlayers(players)) {
       errors.push(
-        `At least ${PlayerCollection.MIN_PLAYERS} players are required`,
+        `At least ${PlayerCollection.MIN_PLAYERS} players are required`
       );
     }
 

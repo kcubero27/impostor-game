@@ -2,7 +2,7 @@ import type { IWordMemory } from "@/domain/game/word-memory.interface";
 
 /**
  * WordMemoryAdapter
- * 
+ *
  * Infrastructure implementation using localStorage for persistence.
  * Tracks which words have been used across game sessions.
  */
@@ -54,7 +54,7 @@ export class WordMemoryAdapter implements IWordMemory {
         const wordIds = Array.from(usedWords);
         localStorage.setItem(
           WordMemoryAdapter.STORAGE_KEY,
-          JSON.stringify(wordIds),
+          JSON.stringify(wordIds)
         );
       } catch {
         // Silently fail if localStorage is not available

@@ -1,0 +1,1287 @@
+{
+  "category": {
+    "animals": "Animals",
+    "food": "Menjar",
+    "sports": "Esports",
+    "professions": "Professions",
+    "objects": "Objectes",
+    "places": "Llocs",
+    "technology": "Tecnologia",
+    "nature": "Natura",
+    "transportation": "Transport",
+    "entertainment": "Entreteniment",
+    "clothing": "Roba",
+    "household": "Llar"
+  },
+  "words": {
+    "actor": {
+      "word": "Actor",
+      "hint": "Actuar"
+    },
+    "airplane": {
+      "word": "Avió",
+      "hint": "Ales"
+    },
+    "airport": {
+      "word": "Aeroport",
+      "hint": "Enlairament"
+    },
+    "aquarium": {
+      "word": "Aquari",
+      "hint": "Peixos"
+    },
+    "archery": {
+      "word": "Tir amb arc",
+      "hint": "Fletxa"
+    },
+    "architect": {
+      "word": "Arquitecte",
+      "hint": "Plànols"
+    },
+    "astronaut": {
+      "word": "Astronauta",
+      "hint": "Orbital"
+    },
+    "backpack": {
+      "word": "Motxilla",
+      "hint": "Esquena"
+    },
+    "bacon": {
+      "word": "Cansalada",
+      "hint": "Crocant"
+    },
+    "badminton": {
+      "word": "Bàdminton",
+      "hint": "Ploma"
+    },
+    "bakery": {
+      "word": "Fleca",
+      "hint": "Pa"
+    },
+    "ball": {
+      "word": "Pilota",
+      "hint": "Rodó"
+    },
+    "balloon": {
+      "word": "Globus",
+      "hint": "Aire"
+    },
+    "bank": {
+      "word": "Banc",
+      "hint": "Diners"
+    },
+    "baseball": {
+      "word": "Beisbol",
+      "hint": "Bat"
+    },
+    "basketball": {
+      "word": "Bàsquet",
+      "hint": "Cistella"
+    },
+    "battery": {
+      "word": "Bateria",
+      "hint": "Corrent"
+    },
+    "beach": {
+      "word": "Platja",
+      "hint": "Sorra"
+    },
+    "bear": {
+      "word": "Ós",
+      "hint": "Hibernació"
+    },
+    "bed": {
+      "word": "Llit",
+      "hint": "Dormir"
+    },
+    "belt": {
+      "word": "Cinturó",
+      "hint": "Fivella"
+    },
+    "bicycle": {
+      "word": "Bicicleta",
+      "hint": "Rodes"
+    },
+    "binoculars": {
+      "word": "Prismàtics",
+      "hint": "Zoom"
+    },
+    "blanket": {
+      "word": "Manta",
+      "hint": "Càlid"
+    },
+    "board_game": {
+      "word": "Joc de taula",
+      "hint": "Taulell"
+    },
+    "boat": {
+      "word": "Barca",
+      "hint": "Navegar"
+    },
+    "book": {
+      "word": "Llibre",
+      "hint": "Pàgines"
+    },
+    "boxing": {
+      "word": "Boxa",
+      "hint": "Guants"
+    },
+    "bread": {
+      "word": "Pa",
+      "hint": "Llevat"
+    },
+    "brownie": {
+      "word": "Brownie",
+      "hint": "Xocolata"
+    },
+    "burrito": {
+      "word": "Burrito",
+      "hint": "Enrotllat"
+    },
+    "bus": {
+      "word": "Autobús",
+      "hint": "Passatgers"
+    },
+    "butterfly": {
+      "word": "Papallona",
+      "hint": "Metamorfosi"
+    },
+    "cable_car": {
+      "word": "Telefèric",
+      "hint": "Cable"
+    },
+    "cafe": {
+      "word": "Cafeteria",
+      "hint": "Cafè"
+    },
+    "cake": {
+      "word": "Pastís",
+      "hint": "Aniversari"
+    },
+    "calculator": {
+      "word": "Calculadora",
+      "hint": "Nombres"
+    },
+    "camel": {
+      "word": "Camell",
+      "hint": "Desert"
+    },
+    "camera": {
+      "word": "Càmera",
+      "hint": "Enfocament"
+    },
+    "candle": {
+      "word": "Espelma",
+      "hint": "Cera"
+    },
+    "car": {
+      "word": "Cotxe",
+      "hint": "Motor"
+    },
+    "cards": {
+      "word": "Cartes",
+      "hint": "Baralla"
+    },
+    "carpenter": {
+      "word": "Fuster",
+      "hint": "Fusta"
+    },
+    "carpet": {
+      "word": "Catifa",
+      "hint": "Terra"
+    },
+    "castle": {
+      "word": "Castell",
+      "hint": "Fortalesa"
+    },
+    "chair": {
+      "word": "Cadira",
+      "hint": "Seure"
+    },
+    "chameleon": {
+      "word": "Camaleó",
+      "hint": "Camuflatge"
+    },
+    "charger": {
+      "word": "Carregador",
+      "hint": "Energia"
+    },
+    "cheesecake": {
+      "word": "Pastís de formatge",
+      "hint": "Cremós"
+    },
+    "cheetah": {
+      "word": "Guepard",
+      "hint": "Ràpid"
+    },
+    "chef": {
+      "word": "Xef",
+      "hint": "Davantal"
+    },
+    "chess": {
+      "word": "Escacs",
+      "hint": "Estratègia"
+    },
+    "chicken": {
+      "word": "Pollastre",
+      "hint": "Granja"
+    },
+    "chocolate": {
+      "word": "Xocolata",
+      "hint": "Cacau"
+    },
+    "church": {
+      "word": "Església",
+      "hint": "Temple"
+    },
+    "circus": {
+      "word": "Circ",
+      "hint": "Pallasso"
+    },
+    "clock": {
+      "word": "Rellotge",
+      "hint": "Temps"
+    },
+    "coat": {
+      "word": "Abric",
+      "hint": "Hivern"
+    },
+    "compass": {
+      "word": "Brúixola",
+      "hint": "Nord"
+    },
+    "computer": {
+      "word": "Ordinador",
+      "hint": "Processador"
+    },
+    "concert": {
+      "word": "Concert",
+      "hint": "Escenari"
+    },
+    "cookie": {
+      "word": "Galeta",
+      "hint": "Xocolata"
+    },
+    "cricket": {
+      "word": "Criquet",
+      "hint": "Wicket"
+    },
+    "crocodile": {
+      "word": "Cocodril",
+      "hint": "Pantà"
+    },
+    "croissant": {
+      "word": "Croissant",
+      "hint": "Mantega"
+    },
+    "curry": {
+      "word": "Curri",
+      "hint": "Espècies"
+    },
+    "curtain": {
+      "word": "Cortina",
+      "hint": "Finestra"
+    },
+    "cycling": {
+      "word": "Ciclisme",
+      "hint": "Pedals"
+    },
+    "deer": {
+      "word": "Cérvol",
+      "hint": "Banyes"
+    },
+    "dentist": {
+      "word": "Dentista",
+      "hint": "Dents"
+    },
+    "detective": {
+      "word": "Detectiu",
+      "hint": "Pistes"
+    },
+    "dice": {
+      "word": "Daus",
+      "hint": "Atzar"
+    },
+    "diving": {
+      "word": "Salts",
+      "hint": "Trampolí"
+    },
+    "doctor": {
+      "word": "Metge",
+      "hint": "Estetoscopi"
+    },
+    "doll": {
+      "word": "Nina",
+      "hint": "Nens"
+    },
+    "dolphin": {
+      "word": "Dofí",
+      "hint": "Aquàtic"
+    },
+    "donut": {
+      "word": "Dònut",
+      "hint": "Glacé"
+    },
+    "dress": {
+      "word": "Vestit",
+      "hint": "Elegant"
+    },
+    "drill": {
+      "word": "Trepant",
+      "hint": "Foradar"
+    },
+    "drone": {
+      "word": "Drone",
+      "hint": "Volador"
+    },
+    "eagle": {
+      "word": "Àguila",
+      "hint": "Majestuós"
+    },
+    "eggs": {
+      "word": "Ous",
+      "hint": "Rovell"
+    },
+    "electrician": {
+      "word": "Electricista",
+      "hint": "Cables"
+    },
+    "elephant": {
+      "word": "Elefant",
+      "hint": "Trompa"
+    },
+    "enchilada": {
+      "word": "Enchilada",
+      "hint": "Salsa"
+    },
+    "engineer": {
+      "word": "Enginyer",
+      "hint": "Disseny"
+    },
+    "eraser": {
+      "word": "Goma d'esborrar",
+      "hint": "Goma"
+    },
+    "factory": {
+      "word": "Fàbrica",
+      "hint": "Producció"
+    },
+    "farm": {
+      "word": "Granja",
+      "hint": "Cultiu"
+    },
+    "farmer": {
+      "word": "Pagès",
+      "hint": "Cultiu"
+    },
+    "fencing": {
+      "word": "Esgrima",
+      "hint": "Espasa"
+    },
+    "ferry": {
+      "word": "Ferri",
+      "hint": "Creuar"
+    },
+    "fire_station": {
+      "word": "Parc de bombers",
+      "hint": "Incendi"
+    },
+    "firefighter": {
+      "word": "Bomber",
+      "hint": "Mànega"
+    },
+    "fireworks": {
+      "word": "Focs artificials",
+      "hint": "Explosió"
+    },
+    "flamingo": {
+      "word": "Flamenc",
+      "hint": "Rosa"
+    },
+    "flashlight": {
+      "word": "Llanterna",
+      "hint": "Llum"
+    },
+    "flower": {
+      "word": "Flor",
+      "hint": "Pètals"
+    },
+    "football": {
+      "word": "Futbol americà",
+      "hint": "Touchdown"
+    },
+    "forest": {
+      "word": "Bosc",
+      "hint": "Arbres"
+    },
+    "fox": {
+      "word": "Guineu",
+      "hint": "Astut"
+    },
+    "frisbee": {
+      "word": "Frisbee",
+      "hint": "Disc"
+    },
+    "gardener": {
+      "word": "Jardiner",
+      "hint": "Plantes"
+    },
+    "giraffe": {
+      "word": "Girafa",
+      "hint": "Taques"
+    },
+    "globe": {
+      "word": "Globus terraqüi",
+      "hint": "Continents"
+    },
+    "gloves": {
+      "word": "Guants",
+      "hint": "Mans"
+    },
+    "golf": {
+      "word": "Golf",
+      "hint": "Forat"
+    },
+    "gorilla": {
+      "word": "Goril·la",
+      "hint": "Fort"
+    },
+    "guitar": {
+      "word": "Guitarra",
+      "hint": "Cordes"
+    },
+    "gymnastics": {
+      "word": "Gimnàstica",
+      "hint": "Flexibilitat"
+    },
+    "hamburger": {
+      "word": "Hamburguesa",
+      "hint": "Grilleta"
+    },
+    "hammer": {
+      "word": "Martell",
+      "hint": "Clau"
+    },
+    "hard_drive": {
+      "word": "Disc dur",
+      "hint": "Emmagatzematge"
+    },
+    "hat": {
+      "word": "Barret",
+      "hint": "Cap"
+    },
+    "hawk": {
+      "word": "Falcó",
+      "hint": "Caçador"
+    },
+    "headphones": {
+      "word": "Auriculars",
+      "hint": "Àudio"
+    },
+    "helicopter": {
+      "word": "Helicòpter",
+      "hint": "Rotor"
+    },
+    "hippo": {
+      "word": "Hipopòtam",
+      "hint": "Riu"
+    },
+    "hockey": {
+      "word": "Hoquei",
+      "hint": "Disc"
+    },
+    "hose": {
+      "word": "Mànega",
+      "hint": "Regar"
+    },
+    "hospital": {
+      "word": "Hospital",
+      "hint": "Urgències"
+    },
+    "hotdog": {
+      "word": "Frankfurt",
+      "hint": "Salsitxa"
+    },
+    "hotel": {
+      "word": "Hotel",
+      "hint": "Habitació"
+    },
+    "ice_cream": {
+      "word": "Gelat",
+      "hint": "Congelat"
+    },
+    "jacket": {
+      "word": "Jaqueta",
+      "hint": "Abric"
+    },
+    "jellyfish": {
+      "word": "Medusa",
+      "hint": "Gelatinós"
+    },
+    "journalist": {
+      "word": "Periodista",
+      "hint": "Notícies"
+    },
+    "judge": {
+      "word": "Jutge",
+      "hint": "Veredicte"
+    },
+    "judo": {
+      "word": "Judo",
+      "hint": "Kimono"
+    },
+    "kangaroo": {
+      "word": "Cangur",
+      "hint": "Marsupial"
+    },
+    "karate": {
+      "word": "Karate",
+      "hint": "Cinturó"
+    },
+    "keyboard": {
+      "word": "Teclat",
+      "hint": "Tecles"
+    },
+    "kite": {
+      "word": "Estel",
+      "hint": "Vent"
+    },
+    "koala": {
+      "word": "Coala",
+      "hint": "Eucaliptus"
+    },
+    "ladder": {
+      "word": "Escala",
+      "hint": "Alçada"
+    },
+    "lake": {
+      "word": "Llac",
+      "hint": "Tranquil"
+    },
+    "lamp": {
+      "word": "Làmpada",
+      "hint": "Bombeta"
+    },
+    "laptop": {
+      "word": "Portàtil",
+      "hint": "Portàtil"
+    },
+    "lasagna": {
+      "word": "Lasanya",
+      "hint": "Capes"
+    },
+    "lawyer": {
+      "word": "Advocat",
+      "hint": "Justícia"
+    },
+    "leopard": {
+      "word": "Lleopard",
+      "hint": "Àgil"
+    },
+    "library": {
+      "word": "Biblioteca",
+      "hint": "Silenci"
+    },
+    "lion": {
+      "word": "Lleó",
+      "hint": "Melen"
+    },
+    "magic_show": {
+      "word": "Espectacle de màgia",
+      "hint": "Il·lusió"
+    },
+    "mall": {
+      "word": "Centre comercial",
+      "hint": "Compres"
+    },
+    "map": {
+      "word": "Mapa",
+      "hint": "Coordenades"
+    },
+    "marathon": {
+      "word": "Marató",
+      "hint": "Resistència"
+    },
+    "mechanic": {
+      "word": "Mecànic",
+      "hint": "Motor"
+    },
+    "metro": {
+      "word": "Metro",
+      "hint": "Subterrani"
+    },
+    "microphone": {
+      "word": "Micròfon",
+      "hint": "Amplificar"
+    },
+    "mirror": {
+      "word": "Mirall",
+      "hint": "Reflex"
+    },
+    "modem": {
+      "word": "Mòdem",
+      "hint": "Connexió"
+    },
+    "monitor": {
+      "word": "Monitor",
+      "hint": "Pantalla"
+    },
+    "monkey": {
+      "word": "Mico",
+      "hint": "Plàtans"
+    },
+    "moose": {
+      "word": "Ant",
+      "hint": "Bosc"
+    },
+    "mosque": {
+      "word": "Mesquita",
+      "hint": "Oració"
+    },
+    "motorcycle": {
+      "word": "Motocicleta",
+      "hint": "Velocitat"
+    },
+    "mountain": {
+      "word": "Muntanya",
+      "hint": "Cim"
+    },
+    "mouse": {
+      "word": "Ratolí",
+      "hint": "Clic"
+    },
+    "movie": {
+      "word": "Pel·lícula",
+      "hint": "Cinema"
+    },
+    "muffin": {
+      "word": "Muffin",
+      "hint": "Esmorz"
+    },
+    "museum": {
+      "word": "Museu",
+      "hint": "Exposició"
+    },
+    "musician": {
+      "word": "Músic",
+      "hint": "Melodia"
+    },
+    "nachos": {
+      "word": "Nachos",
+      "hint": "Formatge"
+    },
+    "noodles": {
+      "word": "Fideus",
+      "hint": "Asiàtic"
+    },
+    "notebook": {
+      "word": "Llibreta",
+      "hint": "Apunts"
+    },
+    "nurse": {
+      "word": "Infermera",
+      "hint": "Cura"
+    },
+    "octopus": {
+      "word": "Pop",
+      "hint": "Tentacles"
+    },
+    "office": {
+      "word": "Oficina",
+      "hint": "Escriptori"
+    },
+    "omelette": {
+      "word": "Truita",
+      "hint": "Batut"
+    },
+    "owl": {
+      "word": "Mussol",
+      "hint": "Nocturn"
+    },
+    "paella": {
+      "word": "Paella",
+      "hint": "Safrà"
+    },
+    "painter": {
+      "word": "Pintor",
+      "hint": "Pinzell"
+    },
+    "pancakes": {
+      "word": "Creps",
+      "hint": "Xarop"
+    },
+    "pants": {
+      "word": "Pantalons",
+      "hint": "Cames"
+    },
+    "parade": {
+      "word": "Desfilada",
+      "hint": "Marxa"
+    },
+    "park": {
+      "word": "Parc",
+      "hint": "Verd"
+    },
+    "parrot": {
+      "word": "Lloro",
+      "hint": "Tropical"
+    },
+    "pasta": {
+      "word": "Pasta",
+      "hint": "Blat"
+    },
+    "peacock": {
+      "word": "Pavo real",
+      "hint": "Ventall"
+    },
+    "pen": {
+      "word": "Boli",
+      "hint": "Tinta"
+    },
+    "pencil": {
+      "word": "Llapis",
+      "hint": "Grafit"
+    },
+    "penguin": {
+      "word": "Pingüí",
+      "hint": "Antàrtida"
+    },
+    "pharmacist": {
+      "word": "Farmacèutic",
+      "hint": "Medicaments"
+    },
+    "photographer": {
+      "word": "Fotògraf",
+      "hint": "Lent"
+    },
+    "picture_frame": {
+      "word": "Marc de fotos",
+      "hint": "Record"
+    },
+    "pie": {
+      "word": "Pastís",
+      "hint": "Forn"
+    },
+    "pillow": {
+      "word": "Coixí",
+      "hint": "Suau"
+    },
+    "pilot": {
+      "word": "Pilot",
+      "hint": "Cabina"
+    },
+    "pizza": {
+      "word": "Pizza",
+      "hint": "Forn"
+    },
+    "playground": {
+      "word": "Pati de jocs",
+      "hint": "Gronxador"
+    },
+    "plumber": {
+      "word": "Lampista",
+      "hint": "Tub"
+    },
+    "police": {
+      "word": "Policia",
+      "hint": "Ordre"
+    },
+    "police_station": {
+      "word": "Comissaria",
+      "hint": "Ordre"
+    },
+    "popcorn": {
+      "word": "Crispetes",
+      "hint": "Blat de moro"
+    },
+    "post_office": {
+      "word": "Oficina de correus",
+      "hint": "Cartes"
+    },
+    "printer": {
+      "word": "Impressora",
+      "hint": "Paper"
+    },
+    "projector": {
+      "word": "Projector",
+      "hint": "Presentació"
+    },
+    "pudding": {
+      "word": "Púding",
+      "hint": "Cremós"
+    },
+    "puzzle": {
+      "word": "Puzzle",
+      "hint": "Peces"
+    },
+    "quesadilla": {
+      "word": "Quesadilla",
+      "hint": "Doblegar"
+    },
+    "rabbit": {
+      "word": "Conill",
+      "hint": "Orelles"
+    },
+    "radio": {
+      "word": "Ràdio",
+      "hint": "Freqüència"
+    },
+    "rake": {
+      "word": "Rasclet",
+      "hint": "Fulles"
+    },
+    "ramen": {
+      "word": "Ramen",
+      "hint": "Brou"
+    },
+    "ravioli": {
+      "word": "Ravioli",
+      "hint": "Farcit"
+    },
+    "refrigerator": {
+      "word": "Nevera",
+      "hint": "Fred"
+    },
+    "remote": {
+      "word": "Comandament",
+      "hint": "Botons"
+    },
+    "restaurant": {
+      "word": "Restaurant",
+      "hint": "Menú"
+    },
+    "rhino": {
+      "word": "Rinoceront",
+      "hint": "Banya"
+    },
+    "river": {
+      "word": "Riu",
+      "hint": "Corrent"
+    },
+    "robot": {
+      "word": "Robot",
+      "hint": "Mecànic"
+    },
+    "rocket": {
+      "word": "Coet",
+      "hint": "Espai"
+    },
+    "rope": {
+      "word": "Corda",
+      "hint": "Nusos"
+    },
+    "router": {
+      "word": "Router",
+      "hint": "Internet"
+    },
+    "rowing": {
+      "word": "Rem",
+      "hint": "Barca"
+    },
+    "rugby": {
+      "word": "Rugby",
+      "hint": "Oval"
+    },
+    "ruler": {
+      "word": "Regle",
+      "hint": "Mesurar"
+    },
+    "running": {
+      "word": "Córrer",
+      "hint": "Marató"
+    },
+    "sailing": {
+      "word": "Vela",
+      "hint": "Vela"
+    },
+    "salad": {
+      "word": "Amanida",
+      "hint": "Enciam"
+    },
+    "sandwich": {
+      "word": "Entrepà",
+      "hint": "Capes"
+    },
+    "saw": {
+      "word": "Serra",
+      "hint": "Tallar"
+    },
+    "scanner": {
+      "word": "Escàner",
+      "hint": "Digitalitzar"
+    },
+    "scarf": {
+      "word": "Bufanda",
+      "hint": "Coll"
+    },
+    "school": {
+      "word": "Escola",
+      "hint": "Classes"
+    },
+    "scientist": {
+      "word": "Científic",
+      "hint": "Laboratori"
+    },
+    "scissors": {
+      "word": "Tisores",
+      "hint": "Tallar"
+    },
+    "scooter": {
+      "word": "Scooter",
+      "hint": "Elèctric"
+    },
+    "screwdriver": {
+      "word": "Tornavís",
+      "hint": "Cargol"
+    },
+    "sculptor": {
+      "word": "Escultor",
+      "hint": "Modelar"
+    },
+    "seal": {
+      "word": "Foca",
+      "hint": "Gel"
+    },
+    "shark": {
+      "word": "Tauró",
+      "hint": "Aleta"
+    },
+    "ship": {
+      "word": "Vaixell",
+      "hint": "Port"
+    },
+    "shirt": {
+      "word": "Camisa",
+      "hint": "Botons"
+    },
+    "shovel": {
+      "word": "Pala",
+      "hint": "Cavar"
+    },
+    "skateboarding": {
+      "word": "Skateboarding",
+      "hint": "Trucs"
+    },
+    "skiing": {
+      "word": "Esquí",
+      "hint": "Neu"
+    },
+    "skirt": {
+      "word": "Faldilla",
+      "hint": "Femení"
+    },
+    "smartphone": {
+      "word": "Telèfon intel·ligent",
+      "hint": "Pantalla"
+    },
+    "sneakers": {
+      "word": "Sabatilles",
+      "hint": "Esportives"
+    },
+    "snowboarding": {
+      "word": "Snowboarding",
+      "hint": "Muntanya"
+    },
+    "soccer": {
+      "word": "Futbol",
+      "hint": "Porteria"
+    },
+    "socks": {
+      "word": "Mitjons",
+      "hint": "Peus"
+    },
+    "sofa": {
+      "word": "Sofà",
+      "hint": "Descans"
+    },
+    "soup": {
+      "word": "Sopa",
+      "hint": "Calent"
+    },
+    "spaghetti": {
+      "word": "Espaguetis",
+      "hint": "Llarg"
+    },
+    "speaker": {
+      "word": "Altaveu",
+      "hint": "So"
+    },
+    "sprinting": {
+      "word": "Velocitat",
+      "hint": "Explosiu"
+    },
+    "squirrel": {
+      "word": "Esquirol",
+      "hint": "Gland"
+    },
+    "stadium": {
+      "word": "Estadi",
+      "hint": "Grad"
+    },
+    "steak": {
+      "word": "Bistec",
+      "hint": "Sucós"
+    },
+    "submarine": {
+      "word": "Submarí",
+      "hint": "Profund"
+    },
+    "sunglasses": {
+      "word": "Ulleres de sol",
+      "hint": "Protecció"
+    },
+    "supermarket": {
+      "word": "Supermercat",
+      "hint": "Carretó"
+    },
+    "surfing": {
+      "word": "Surf",
+      "hint": "Ones"
+    },
+    "surgeon": {
+      "word": "Cirurgià",
+      "hint": "Bisturí"
+    },
+    "sushi": {
+      "word": "Sushi",
+      "hint": "Wasabi"
+    },
+    "swan": {
+      "word": "Cigne",
+      "hint": "Elegant"
+    },
+    "sweater": {
+      "word": "Jersei",
+      "hint": "Llana"
+    },
+    "swimming": {
+      "word": "Natació",
+      "hint": "Piscina"
+    },
+    "table": {
+      "word": "Taula",
+      "hint": "Superfície"
+    },
+    "tablet": {
+      "word": "Tauleta",
+      "hint": "Tàctil"
+    },
+    "tacos": {
+      "word": "Tacos",
+      "hint": "Tortilla"
+    },
+    "taxi": {
+      "word": "Taxi",
+      "hint": "Tarifa"
+    },
+    "teacher": {
+      "word": "Professor",
+      "hint": "Pissarra"
+    },
+    "telescope": {
+      "word": "Telescopi",
+      "hint": "Astronomia"
+    },
+    "television": {
+      "word": "Televisió",
+      "hint": "Canals"
+    },
+    "temple": {
+      "word": "Temple",
+      "hint": "Sagrat"
+    },
+    "tennis": {
+      "word": "Tennis",
+      "hint": "Raqueta"
+    },
+    "theater": {
+      "word": "Teatre",
+      "hint": "Drama"
+    },
+    "tie": {
+      "word": "Corbata",
+      "hint": "Formal"
+    },
+    "tiger": {
+      "word": "Tigre",
+      "hint": "Felí"
+    },
+    "toucan": {
+      "word": "Tucà",
+      "hint": "Bec"
+    },
+    "toy": {
+      "word": "Joguet",
+      "hint": "Jugar"
+    },
+    "train": {
+      "word": "Tren",
+      "hint": "Rails"
+    },
+    "tram": {
+      "word": "Tramvia",
+      "hint": "Urbà"
+    },
+    "tree": {
+      "word": "Arbre",
+      "hint": "Fulles"
+    },
+    "truck": {
+      "word": "Camió",
+      "hint": "Càrrega"
+    },
+    "umbrella": {
+      "word": "Paraigua",
+      "hint": "Pluja"
+    },
+    "university": {
+      "word": "Universitat",
+      "hint": "Títol"
+    },
+    "usb": {
+      "word": "Memòria USB",
+      "hint": "Port"
+    },
+    "vacuum": {
+      "word": "Aspiradora",
+      "hint": "Succió"
+    },
+    "van": {
+      "word": "Furgoneta",
+      "hint": "Transport"
+    },
+    "vase": {
+      "word": "Gerro",
+      "hint": "Flors"
+    },
+    "veterinarian": {
+      "word": "Veterinari",
+      "hint": "Mascotes"
+    },
+    "video_game": {
+      "word": "Videojoc",
+      "hint": "Consola"
+    },
+    "volleyball": {
+      "word": "Voleibol",
+      "hint": "Xarxa"
+    },
+    "waffle": {
+      "word": "Waffle",
+      "hint": "Quadres"
+    },
+    "watch": {
+      "word": "Rellotge",
+      "hint": "Agulles"
+    },
+    "webcam": {
+      "word": "Webcam",
+      "hint": "Vídeo"
+    },
+    "whale": {
+      "word": "Balena",
+      "hint": "Oceà"
+    },
+    "wolf": {
+      "word": "Llop",
+      "hint": "Udol"
+    },
+    "wrench": {
+      "word": "Clau anglesa",
+      "hint": "Apretar"
+    },
+    "wrestling": {
+      "word": "Lluita lliure",
+      "hint": "Força"
+    },
+    "yacht": {
+      "word": "Iot",
+      "hint": "Luxe"
+    },
+    "yo_yo": {
+      "word": "Jo-jo",
+      "hint": "Corda"
+    },
+    "zebra": {
+      "word": "Zebra",
+      "hint": "Ratlles"
+    },
+    "zoo": {
+      "word": "Zoo",
+      "hint": "Animals"
+    }
+  },
+  "ui": {
+    "game_title": "Joc de l'Impostor",
+    "game_subtitle": "Configura el teu joc i troba l'impostor!",
+    "start_game": "Començar Joc",
+    "players": "Jugadors",
+    "player_singular": "jugador",
+    "player_plural": "Jugadors",
+    "add_player": "Afegir jugador",
+    "player_name_placeholder": "Nom del jugador {{number}}",
+    "remove_player": "Eliminar jugador {{number}}",
+    "your_role": "El Teu Rol",
+    "you_are_impostor": "Ets l'Impostor!",
+    "you_are_normal": "Ets un Jugador Normal",
+    "the_word_is": "La paraula és:",
+    "impostor_hint": "La pista és:",
+    "next_player": "Següent Jugador",
+    "all_ready": "Tots Llestos!",
+    "play_again": "Tornar a Jugar",
+    "close": "Tancar",
+    "pass_to": "Passar a:",
+    "ready": "Llest!",
+    "all_players_need_names": "Tots els jugadors han de tenir un nom abans de començar",
+    "select_language": "Seleccionar idioma",
+    "words_used": "{{used}} de {{total}} paraules usades",
+    "reset_word_history": "Reiniciar historial de paraules",
+    "word_history_reset": "L'historial de paraules ha estat reiniciat!",
+    "game_config": "Configuració del Joc",
+    "game_config_subtitle": "Personalitza la teva experiència de joc",
+    "show_hint": "Mostrar pista a l'impostor",
+    "show_hint_description": "L'impostor veurà una pista relacionada amb la paraula",
+    "no_hint_message": "Intenta endevinar la paraula sense pistes",
+    "categories": "Categoríes",
+    "select_all": "Seleccionar totes",
+    "deselect_all": "Deseleccionar totes",
+    "all_categories_selected": "Totes les categories actives per defecte",
+    "back": "Enrere",
+    "save": "Desar",
+    "cancel": "Cancel·lar",
+    "edit": "Editar",
+    "player_needs_name": "1 jugador necessita un nom",
+    "players_need_names": "jugadors necessiten noms",
+    "duplicate_names": "Hi ha noms duplicats",
+    "minimum_players_required": "Mínim 3 jugadors",
+    "choose_your_card": "Tria La Teva Targeta",
+    "select_card_to_reveal": "Selecciona qualsevol targeta per revelar el rol d'aquest jugador",
+    "players_revealed": "{{revealed}} de {{total}} jugadors revelats",
+    "tap_to_reveal": "Toca per revelar",
+    "ready_to_reveal": "Llest per revelar el teu rol?",
+    "flip_card": "Voltejar Targeta",
+    "starts_game": "comença el joc",
+    "app_title": "Impostor",
+    "find_impostor": "Trobar l'Impostor",
+    "game_setup": "Configuració del Joc",
+    "impostors": "Impostors",
+    "hints": "Pistes",
+    "enabled": "Habilitat",
+    "disabled": "Deshabilitat",
+    "selected": "seleccionada",
+    "selected_plural": "seleccionades",
+    "all_categories": "Totes les categories",
+    "add_players_first": "Afegir jugadors primer",
+    "of": "de",
+    "ready_status": "llest",
+    "ready_status_plural": "llestos",
+    "restart_game": "Reiniciar Joc",
+    "change_settings": "Canviar Configuració",
+    "copyright": "© 2026 Karen Cubero",
+    "difficulty": "Dificultat",
+    "all_difficulties": "Totes",
+    "difficulty_low": "Baixa",
+    "difficulty_medium": "Mitjana",
+    "difficulty_high": "Alta"
+  }
+}

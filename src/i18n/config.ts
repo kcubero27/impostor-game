@@ -1,6 +1,6 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
-import { es } from "./locales";
+import { es, ca, en } from "./locales";
 
 // Initialize i18next
 i18next
@@ -10,8 +10,14 @@ i18next
       es: {
         translation: es,
       },
+      ca: {
+        translation: ca,
+      },
+      en: {
+        translation: en,
+      },
     },
-    lng: "es", // Default and only language
+    lng: "es", // Default language
     fallbackLng: "es",
     interpolation: {
       escapeValue: false, // React already escapes values

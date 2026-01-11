@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 export function TypographyH1({ children }: { children: ReactNode }) {
   return (
@@ -13,9 +14,8 @@ export function TypographyH2({ children }: { children: ReactNode }) {
     <h2 className="scroll-m-20 border-b text-3xl font-semibold tracking-tight first:mt-0 [&+*]:mt-2">
       {children}
     </h2>
-  )
+  );
 }
-
 
 export function TypographyH3({ children }: { children: ReactNode }) {
   return (
@@ -34,9 +34,7 @@ export function TypographyH4({ children }: { children: ReactNode }) {
 }
 
 export function TypographyP({ children }: { children: ReactNode }) {
-  return (
-    <p className="leading-7 [&:not(:first-child)]:mt-6">{children}</p>
-  );
+  return <p className="leading-7 [&:not(:first-child)]:mt-6">{children}</p>;
 }
 
 export function TypographyBlockquote({ children }: { children: ReactNode }) {
@@ -45,11 +43,7 @@ export function TypographyBlockquote({ children }: { children: ReactNode }) {
   );
 }
 
-export function TypographyTable({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export function TypographyTable({ children }: { children: ReactNode }) {
   return (
     <div className="my-6 w-full overflow-y-auto">
       <table className="w-full">{children}</table>
@@ -58,16 +52,10 @@ export function TypographyTable({
 }
 
 export function TypographyList({ children }: { children: ReactNode }) {
-  return (
-    <ul className="my-6 ml-6 list-disc [&>li]:mt-2">{children}</ul>
-  );
+  return <ul className="my-6 ml-6 list-disc [&>li]:mt-2">{children}</ul>;
 }
 
-export function TypographyInlineCode({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export function TypographyInlineCode({ children }: { children: ReactNode }) {
   return (
     <code className="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
       {children}
@@ -76,9 +64,7 @@ export function TypographyInlineCode({
 }
 
 export function TypographyLead({ children }: { children: ReactNode }) {
-  return (
-    <p className="text-muted-foreground text-xl">{children}</p>
-  );
+  return <p className="text-muted-foreground text-xl">{children}</p>;
 }
 
 export function TypographyLarge({ children }: { children: ReactNode }) {
@@ -89,6 +75,14 @@ export function TypographySmall({ children }: { children: ReactNode }) {
   return <small className="text-sm leading-none font-medium">{children}</small>;
 }
 
-export function TypographyMuted({ children }: { children: ReactNode }) {
-  return <p className="text-muted-foreground text-sm">{children}</p>;
+export function TypographyMuted({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <p className={cn("text-muted-foreground text-sm", className)}>{children}</p>
+  );
 }

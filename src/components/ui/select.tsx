@@ -2,7 +2,7 @@ import * as React from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {}
+export type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement>;
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   ({ className, children, ...props }, ref) => {
@@ -15,7 +15,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             "disabled:cursor-not-allowed disabled:opacity-50",
             "appearance-none bg-white cursor-pointer pr-8",
             "[&>option]:bg-white [&>option]:text-black",
-            className,
+            className
           )}
           ref={ref}
           {...props}
@@ -28,7 +28,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         />
       </div>
     );
-  },
+  }
 );
 Select.displayName = "Select";
 

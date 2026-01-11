@@ -27,7 +27,7 @@ export function ThemeProvider({
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<ThemeProvider>(
-    () => (localStorage.getItem(storageKey) as ThemeProvider) || defaultTheme,
+    () => (localStorage.getItem(storageKey) as ThemeProvider) || defaultTheme
   );
 
   useEffect(() => {
@@ -63,6 +63,7 @@ export function ThemeProvider({
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext);
 

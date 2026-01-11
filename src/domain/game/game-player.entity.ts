@@ -2,23 +2,31 @@ import { Player } from "@/domain/player/player.entity";
 
 /**
  * Player Role
- * 
+ *
  * Represents the role a player has in the game.
  */
 export type PlayerRole = "impostor" | "normal";
 
 /**
  * GamePlayer Entity
- * 
+ *
  * Represents a player in the context of a game.
  * Extends the base Player with game-specific properties like role.
  */
 export class GamePlayer {
+  private readonly _player: Player;
+  private readonly _role: PlayerRole;
+  private _hasSeenRole: boolean;
+
   private constructor(
-    private readonly _player: Player,
-    private readonly _role: PlayerRole,
-    private _hasSeenRole: boolean = false,
-  ) {}
+    player: Player,
+    role: PlayerRole,
+    hasSeenRole: boolean = false
+  ) {
+    this._player = player;
+    this._role = role;
+    this._hasSeenRole = hasSeenRole;
+  }
 
   /**
    * Factory method to create a normal player

@@ -22,7 +22,7 @@ export const CategoriesSetup = ({
   const toggleCategory = (categoryId: string) => {
     const updated = categoryManagementService.toggleCategory(
       categoryId,
-      selectedCategories,
+      selectedCategories
     );
     onCategoriesChange(updated);
   };
@@ -37,13 +37,11 @@ export const CategoriesSetup = ({
     onCategoriesChange(updated);
   };
 
-  const allSelected =
-    selectedCategories.length === availableCategoryIds.length;
+  const allSelected = selectedCategories.length === availableCategoryIds.length;
   const totalCount = availableCategoryIds.length;
   // When no categories are selected, show all as selected (e.g., 12/12)
-  const selectedCount = selectedCategories.length === 0 
-    ? totalCount 
-    : selectedCategories.length;
+  const selectedCount =
+    selectedCategories.length === 0 ? totalCount : selectedCategories.length;
 
   return (
     <div className="container mx-auto flex flex-col h-full">
@@ -70,12 +68,15 @@ export const CategoriesSetup = ({
         {CATEGORIES.map((category, index) => {
           const isSelected = categoryManagementService.isCategorySelected(
             category.id,
-            selectedCategories,
+            selectedCategories
           );
           return (
-            <Card key={category.id} className={`gap-0 py-0 ${index > 0 ? "mt-2" : ""}`}>
+            <Card
+              key={category.id}
+              className={`gap-0 py-0 ${index > 0 ? "mt-2" : ""}`}
+            >
               <CardContent className="p-0">
-                <div 
+                <div
                   className="flex items-center justify-between gap-2.5 py-2 px-4 cursor-pointer"
                   onClick={() => toggleCategory(category.id)}
                 >

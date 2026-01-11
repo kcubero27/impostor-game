@@ -167,7 +167,7 @@ class RoleAssignmentService {
 class WordSelectionService {
   constructor(
     private readonly wordRepository: IWordRepository,
-    private readonly wordMemory: IWordMemory,
+    private readonly wordMemory: IWordMemory
   ) {}
 
   selectWord(): Word {
@@ -179,7 +179,7 @@ class WordSelectionService {
 class GameManagementService {
   constructor(
     private readonly roleAssignmentService: RoleAssignmentService,
-    private readonly wordSelectionService: WordSelectionService,
+    private readonly wordSelectionService: WordSelectionService
   ) {}
 
   startGame(players: Player[]): Game {
@@ -217,7 +217,7 @@ interface IWordMemory {
 class WordSelectionService {
   constructor(
     private readonly wordRepository: IWordRepository, // Abstraction!
-    private readonly wordMemory: IWordMemory, // Abstraction!
+    private readonly wordMemory: IWordMemory // Abstraction!
   ) {}
 }
 
@@ -386,7 +386,7 @@ class RoleAssignmentService {
 class WordSelectionService {
   constructor(
     private readonly wordRepository: IWordRepository,
-    private readonly wordMemory: IWordMemory,
+    private readonly wordMemory: IWordMemory
   ) {}
 
   selectWord(): Word {
@@ -412,7 +412,7 @@ class Game {
 class GameManagementService {
   constructor(
     private readonly roleAssignmentService: RoleAssignmentService,
-    private readonly wordSelectionService: WordSelectionService,
+    private readonly wordSelectionService: WordSelectionService
   ) {}
 
   startGame(players: Player[]): Game {

@@ -27,7 +27,7 @@ export function SetupCard({
       className={cn(
         "rounded-xl p-0",
         onClick && "cursor-pointer transition-colors",
-        className,
+        className
       )}
       onClick={onClick}
     >
@@ -37,14 +37,18 @@ export function SetupCard({
             <div
               className={cn(
                 "flex h-8 w-8 items-center justify-center rounded-lg text-white",
-                iconBg,
+                iconBg
               )}
             >
               {icon}
             </div>
             <div>
               <div className="text-sm font-medium">{title}</div>
-              {subtitle && <TypographyMuted className="text-xs">{subtitle}</TypographyMuted>}
+              {subtitle && (
+                <TypographyMuted className="text-xs">
+                  {subtitle}
+                </TypographyMuted>
+              )}
             </div>
           </div>
           {right}

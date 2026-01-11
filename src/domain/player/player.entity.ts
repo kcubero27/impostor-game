@@ -2,15 +2,17 @@ import { PlayerName } from "./player-name.value-object";
 
 /**
  * Player Entity
- * 
+ *
  * Represents a player with unique identity.
  * Has behavior for managing player name.
  */
 export class Player {
-  private constructor(
-    private readonly id: string,
-    private _name: PlayerName | null,
-  ) {
+  private readonly id: string;
+  private _name: PlayerName | null;
+
+  private constructor(id: string, name: PlayerName | null) {
+    this.id = id;
+    this._name = name;
     if (!id || id.trim().length === 0) {
       throw new Error("Player ID cannot be empty");
     }
@@ -20,9 +22,7 @@ export class Player {
    * Factory method to create a Player
    */
   static create(id: string, name: string = ""): Player {
-    const playerName = name.trim().length > 0 
-      ? PlayerName.create(name) 
-      : null;
+    const playerName = name.trim().length > 0 ? PlayerName.create(name) : null;
     return new Player(id, playerName);
   }
 

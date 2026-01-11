@@ -2,17 +2,14 @@ import { CategorySelection } from "@/domain/category/category-selection";
 
 /**
  * CategoryManagementService
- * 
+ *
  * Application service that orchestrates category selection use cases.
  */
 export class CategoryManagementService {
   /**
    * Toggles a category selection
    */
-  toggleCategory(
-    categoryId: string,
-    selectedCategoryIds: string[],
-  ): string[] {
+  toggleCategory(categoryId: string, selectedCategoryIds: string[]): string[] {
     return CategorySelection.toggleCategory(categoryId, selectedCategoryIds);
   }
 
@@ -42,8 +39,11 @@ export class CategoryManagementService {
    */
   isCategorySelected(
     categoryId: string,
-    selectedCategoryIds: string[],
+    selectedCategoryIds: string[]
   ): boolean {
-    return CategorySelection.isCategorySelected(categoryId, selectedCategoryIds);
+    return CategorySelection.isCategorySelected(
+      categoryId,
+      selectedCategoryIds
+    );
   }
 }

@@ -5,7 +5,7 @@ import { type Word as WordData } from "@/data/types";
 
 /**
  * WordRepository
- * 
+ *
  * Infrastructure implementation of word data access.
  * Converts data layer Word types to domain Word entities.
  */
@@ -19,8 +19,8 @@ export class WordRepository implements IWordRepository {
         wordData.wordKey,
         wordData.hintKey,
         wordData.categoryIds,
-        wordData.difficulty,
-      ),
+        wordData.difficulty
+      )
     );
   }
 
@@ -34,7 +34,7 @@ export class WordRepository implements IWordRepository {
 
   getWordsByCategories(
     selectedCategoryIds: string[],
-    usedWordIds: Set<string>,
+    usedWordIds: Set<string>
   ): Word[] {
     // If no categories selected, return all available words
     if (selectedCategoryIds.length === 0) {
@@ -44,21 +44,21 @@ export class WordRepository implements IWordRepository {
     return this.words.filter(
       (word) =>
         !usedWordIds.has(word.getId()) &&
-        word.belongsToAnyCategory(selectedCategoryIds),
+        word.belongsToAnyCategory(selectedCategoryIds)
     );
   }
 
   getWordsByCategoriesAndDifficulty(
     selectedCategoryIds: string[],
     usedWordIds: Set<string>,
-    difficulty: number | null,
+    difficulty: number | null
   ): Word[] {
     // If no categories selected, return all available words
     if (selectedCategoryIds.length === 0) {
       return this.words.filter(
         (word) =>
           !usedWordIds.has(word.getId()) &&
-          (difficulty === null || word.getDifficulty() === difficulty),
+          (difficulty === null || word.getDifficulty() === difficulty)
       );
     }
 
@@ -66,7 +66,7 @@ export class WordRepository implements IWordRepository {
       (word) =>
         !usedWordIds.has(word.getId()) &&
         word.belongsToAnyCategory(selectedCategoryIds) &&
-        (difficulty === null || word.getDifficulty() === difficulty),
+        (difficulty === null || word.getDifficulty() === difficulty)
     );
   }
 }

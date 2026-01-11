@@ -66,7 +66,9 @@ export const GameDisplay = ({
       <div className="flex items-center justify-center h-full">
         <div className="mx-auto max-w-sm space-y-6 w-full">
           <div className="space-y-2 text-center">
-            <h2 className="text-2xl font-bold text-foreground">{selectedPlayer.getName()}</h2>
+            <h2 className="text-2xl font-bold text-foreground">
+              {selectedPlayer.getName()}
+            </h2>
           </div>
 
           <div className="relative">
@@ -83,7 +85,9 @@ export const GameDisplay = ({
                       <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-muted">
                         <EyeOff className="h-8 w-8 text-muted-foreground" />
                       </div>
-                      <p className="text-sm text-muted-foreground">{t("ui.ready_to_reveal")}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {t("ui.ready_to_reveal")}
+                      </p>
                     </div>
                   </div>
                 ) : (
@@ -96,11 +100,17 @@ export const GameDisplay = ({
                           </h3>
                           {hintsEnabled ? (
                             <div className="space-y-2">
-                              <p className="text-sm text-muted-foreground">{t("ui.impostor_hint")}</p>
-                              <p className="text-lg font-semibold text-card-foreground">{hintText}</p>
+                              <p className="text-sm text-muted-foreground">
+                                {t("ui.impostor_hint")}
+                              </p>
+                              <p className="text-lg font-semibold text-card-foreground">
+                                {hintText}
+                              </p>
                             </div>
                           ) : (
-                            <p className="text-sm text-muted-foreground">{t("ui.no_hint_message")}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {t("ui.no_hint_message")}
+                            </p>
                           )}
                         </>
                       ) : (
@@ -109,8 +119,12 @@ export const GameDisplay = ({
                             {t("ui.you_are_normal")}
                           </h3>
                           <div className="space-y-2">
-                            <p className="text-sm text-muted-foreground">{t("ui.the_word_is")}</p>
-                            <p className="text-lg font-semibold text-card-foreground">{wordText}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {t("ui.the_word_is")}
+                            </p>
+                            <p className="text-lg font-semibold text-card-foreground">
+                              {wordText}
+                            </p>
                           </div>
                         </>
                       )}
@@ -123,18 +137,12 @@ export const GameDisplay = ({
 
           <div className="mb-4 space-y-3">
             {!isFlipped ? (
-              <Button
-                className="w-full"
-                onClick={handleFlipCard}
-              >
+              <Button className="w-full" onClick={handleFlipCard}>
                 <RotateCcw className="mr-2 h-5 w-5" />
                 {t("ui.flip_card")}
               </Button>
             ) : (
-              <Button
-                className="w-full"
-                onClick={handleCloseReveal}
-              >
+              <Button className="w-full" onClick={handleCloseReveal}>
                 {t("ui.close")}
               </Button>
             )}
@@ -171,14 +179,15 @@ export const GameDisplay = ({
                 key={player.getId()}
                 className={cn(
                   "aspect-square transition-all duration-300",
-                  !isRevealed &&
-                    "hover:scale-105 cursor-pointer",
+                  !isRevealed && "hover:scale-105 cursor-pointer",
                   isRevealed && "bg-muted opacity-75 cursor-not-allowed"
                 )}
                 onClick={() => !isRevealed && handleCardClick(player.getId())}
               >
                 <CardContent className="flex flex-col justify-center items-center space-y-2 p-4 h-full text-center">
-                  <p className="text-lg font-semibold text-card-foreground">{player.getName()}</p>
+                  <p className="text-lg font-semibold text-card-foreground">
+                    {player.getName()}
+                  </p>
                   <p className="text-xs text-muted-foreground">
                     {isRevealed ? t("ui.ready") : t("ui.tap_to_reveal")}
                   </p>
@@ -190,11 +199,7 @@ export const GameDisplay = ({
 
         {allCardsRevealed && onStartGame && (
           <div className="mt-auto">
-            <Button
-              className="w-full"
-              onClick={onStartGame}
-              size="lg"
-            >
+            <Button className="w-full" onClick={onStartGame} size="lg">
               {t("ui.start_game")}
             </Button>
           </div>

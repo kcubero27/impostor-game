@@ -4,7 +4,7 @@ import type { IIdGenerator } from "@/domain/shared/id-generator.interface";
 
 /**
  * PlayerManagementService
- * 
+ *
  * Application service that orchestrates player management use cases.
  * Depends on domain entities and services.
  */
@@ -37,9 +37,7 @@ export class PlayerManagementService {
    */
   removePlayer(players: Player[], playerId: string): Player[] {
     if (!PlayerCollection.canRemovePlayer(players)) {
-      throw new Error(
-        "Cannot remove player. Minimum 3 players required.",
-      );
+      throw new Error("Cannot remove player. Minimum 3 players required.");
     }
     return players.filter((p) => p.getId() !== playerId);
   }
@@ -50,7 +48,7 @@ export class PlayerManagementService {
   updatePlayerName(
     players: Player[],
     playerId: string,
-    newName: string,
+    newName: string
   ): Player[] {
     return players.map((player) => {
       if (player.getId() === playerId) {

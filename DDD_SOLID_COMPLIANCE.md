@@ -28,13 +28,18 @@ class PlayerName {
 
 // ✅ Aggregate Root Enforcing Invariants
 class Game {
-  static start(players: GamePlayer[], word: Word, expectedImpostorCount: number): Game;
+  static start(
+    players: GamePlayer[],
+    word: Word,
+    expectedImpostorCount: number
+  ): Game;
   markCurrentPlayerAsSeenRole(): Game;
   moveToNextPlayer(): Game;
 }
 ```
 
 **Location:**
+
 - `src/domain/player/player.entity.ts` - Rich Player entity
 - `src/domain/player/player-name.value-object.ts` - Value object
 - `src/domain/game/game.aggregate.ts` - Aggregate root
@@ -70,6 +75,7 @@ class Game {
 ```
 
 **Verification:**
+
 - ✅ Domain layer has **ZERO** imports from infrastructure
 - ✅ Domain layer has **ZERO** imports from data layer
 - ✅ Infrastructure depends on domain interfaces
@@ -78,29 +84,35 @@ class Game {
 ### ✅ 3. Domain Patterns Implemented
 
 #### **Entities** (Objects with Identity)
+
 - `Player` - Has unique ID, manages name
 - `GamePlayer` - Player in game context with role
 - `Word` - Game word with metadata
 
 #### **Value Objects** (Immutable, Self-Validating)
+
 - `PlayerName` - Encapsulates name validation (1-50 chars)
 
 #### **Aggregates** (Consistency Boundaries)
+
 - `Game` - Aggregate root managing GamePlayers and Word
   - Enforces invariants: min 2 players, exact impostor count
   - Controls access to child entities
 
 #### **Domain Services** (Business Logic Not in Entities)
+
 - `RoleAssignmentService` - Assigns roles to players
 - `WordSelectionService` - Selects words with memory logic
 - `PlayerCollection` - Manages player collection rules
 - `CategorySelection` - Manages category selection rules
 
 #### **Repositories** (Abstract Data Access)
+
 - `IWordRepository` - Interface in domain layer
 - `WordRepository` - Implementation in infrastructure layer
 
 #### **Interfaces in Domain Layer** (Dependency Inversion)
+
 - `IWordRepository` - `src/domain/game/word-repository.interface.ts`
 - `IWordMemory` - `src/domain/game/word-memory.interface.ts`
 - `IIdGenerator` - `src/domain/shared/id-generator.interface.ts`
@@ -113,19 +125,20 @@ class Game {
 
 **Each class has ONE reason to change:**
 
-| Class | Responsibility |
-|-------|---------------|
-| `Player` | Player identity and name management |
-| `PlayerName` | Name validation |
-| `PlayerCollection` | Player collection business rules |
-| `RoleAssignmentService` | Role assignment logic only |
-| `WordSelectionService` | Word selection logic only |
-| `PlayerManagementService` | Player use case orchestration |
-| `GameManagementService` | Game use case orchestration |
-| `WordRepository` | Word data access only |
-| `WordMemoryAdapter` | Word memory/persistence only |
+| Class                     | Responsibility                      |
+| ------------------------- | ----------------------------------- |
+| `Player`                  | Player identity and name management |
+| `PlayerName`              | Name validation                     |
+| `PlayerCollection`        | Player collection business rules    |
+| `RoleAssignmentService`   | Role assignment logic only          |
+| `WordSelectionService`    | Word selection logic only           |
+| `PlayerManagementService` | Player use case orchestration       |
+| `GameManagementService`   | Game use case orchestration         |
+| `WordRepository`          | Word data access only               |
+| `WordMemoryAdapter`       | Word memory/persistence only        |
 
 **Verification:**
+
 - ✅ No class does multiple unrelated things
 - ✅ Each service has a single, well-defined purpose
 
@@ -138,17 +151,18 @@ class Game {
 class WordSelectionService {
   constructor(
     private readonly wordRepository: IWordRepository, // Interface!
-    private readonly wordMemory: IWordMemory, // Interface!
+    private readonly wordMemory: IWordMemory // Interface!
   ) {}
 }
 
 // ✅ Can add new implementations without changing service
-class DatabaseWordRepository implements IWordRepository { }
-class ApiWordRepository implements IWordRepository { }
-class CachedWordRepository implements IWordRepository { }
+class DatabaseWordRepository implements IWordRepository {}
+class ApiWordRepository implements IWordRepository {}
+class CachedWordRepository implements IWordRepository {}
 ```
 
 **Verification:**
+
 - ✅ Services depend on interfaces, not concrete classes
 - ✅ New implementations can be added without modifying existing code
 - ✅ Infrastructure can be swapped without touching domain/application layers
@@ -170,6 +184,7 @@ const service3 = new WordSelectionService(repo3, wordMemory);
 ```
 
 **Verification:**
+
 - ✅ All interface implementations honor the contract
 - ✅ Implementations are interchangeable
 
@@ -198,6 +213,7 @@ interface IIdGenerator {
 ```
 
 **Verification:**
+
 - ✅ Interfaces are small and focused
 - ✅ No "fat" interfaces with many unrelated methods
 - ✅ Clients only depend on what they need
@@ -211,16 +227,17 @@ interface IIdGenerator {
 class WordSelectionService {
   constructor(
     private readonly wordRepository: IWordRepository, // Abstraction!
-    private readonly wordMemory: IWordMemory, // Abstraction!
+    private readonly wordMemory: IWordMemory // Abstraction!
   ) {}
 }
 
 // ✅ Low-level module implements abstraction
-class WordRepository implements IWordRepository { }
-class WordMemoryAdapter implements IWordMemory { }
+class WordRepository implements IWordRepository {}
+class WordMemoryAdapter implements IWordMemory {}
 ```
 
 **Verification:**
+
 - ✅ Domain services depend on interfaces (in domain layer)
 - ✅ Infrastructure implements domain interfaces
 - ✅ Application services receive dependencies via constructor injection
@@ -272,6 +289,7 @@ src/
 ## 🔍 Dependency Flow Verification
 
 ### ✅ Domain Layer Dependencies
+
 ```bash
 # Check: Domain should NOT import from infrastructure/data/adapters
 $ grep -r "import.*@/(infrastructure|data|adapters)" src/domain/
@@ -279,11 +297,13 @@ $ grep -r "import.*@/(infrastructure|data|adapters)" src/domain/
 ```
 
 **Domain layer imports:**
+
 - ✅ Only from other domain modules
 - ✅ Only domain interfaces (defined in domain layer)
 - ✅ No infrastructure dependencies
 
 ### ✅ Infrastructure Layer Dependencies
+
 ```bash
 # Check: Infrastructure should import from domain
 $ grep -r "import.*@/domain" src/infrastructure/
@@ -291,11 +311,13 @@ $ grep -r "import.*@/domain" src/infrastructure/
 ```
 
 **Infrastructure layer imports:**
+
 - ✅ Domain entities (for return types)
 - ✅ Domain interfaces (to implement)
 - ✅ No application layer dependencies
 
 ### ✅ Application Layer Dependencies
+
 ```bash
 # Check: Application should import from domain
 $ grep -r "import.*@/domain" src/application/
@@ -303,6 +325,7 @@ $ grep -r "import.*@/domain" src/application/
 ```
 
 **Application layer imports:**
+
 - ✅ Domain entities
 - ✅ Domain services
 - ✅ Domain interfaces
@@ -335,13 +358,13 @@ $ grep -r "import.*@/domain" src/application/
 
 ## 📊 Architecture Metrics
 
-| Metric | Status |
-|--------|--------|
-| Domain layer independence | ✅ 100% (no external dependencies) |
-| Interface segregation | ✅ 100% (small, focused interfaces) |
-| Dependency inversion | ✅ 100% (all dependencies on abstractions) |
-| Single responsibility | ✅ 100% (each class has one purpose) |
-| Open/closed compliance | ✅ 100% (extensible via interfaces) |
+| Metric                    | Status                                     |
+| ------------------------- | ------------------------------------------ |
+| Domain layer independence | ✅ 100% (no external dependencies)         |
+| Interface segregation     | ✅ 100% (small, focused interfaces)        |
+| Dependency inversion      | ✅ 100% (all dependencies on abstractions) |
+| Single responsibility     | ✅ 100% (each class has one purpose)       |
+| Open/closed compliance    | ✅ 100% (extensible via interfaces)        |
 
 ---
 

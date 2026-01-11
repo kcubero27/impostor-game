@@ -109,7 +109,7 @@ interface IWordRepository {
 class WordSelectionService {
   constructor(
     private readonly wordRepository: IWordRepository, // Abstraction
-    private readonly wordMemory: IWordMemory,
+    private readonly wordMemory: IWordMemory
   ) {}
 }
 
@@ -189,7 +189,7 @@ class GameService {
 class WordSelectionService {
   constructor(
     private readonly wordRepository: IWordRepository,
-    private readonly wordMemory: IWordMemory,
+    private readonly wordMemory: IWordMemory
   ) {}
 }
 
@@ -306,7 +306,7 @@ class DatabaseWordRepository implements IWordRepository {
 // Wire it up (one line change)
 const wordSelectionService = new WordSelectionService(
   new DatabaseWordRepository(), // ← Changed here
-  wordMemoryAdapter,
+  wordMemoryAdapter
 );
 
 // Everything else works unchanged!
@@ -474,7 +474,7 @@ export class Game {
 export class GameManagementService {
   constructor(
     private readonly roleAssignmentService: RoleAssignmentService,
-    private readonly wordSelectionService: WordSelectionService,
+    private readonly wordSelectionService: WordSelectionService
   ) {}
 
   startGame(players: Player[]): Game {
@@ -497,7 +497,7 @@ export class WordRepository implements IWordRepository {
 
   constructor() {
     this.words = WORDS_DATA.map((w) =>
-      Word.create(w.id, w.wordKey, w.hintKey, w.categoryIds, w.difficulty),
+      Word.create(w.id, w.wordKey, w.hintKey, w.categoryIds, w.difficulty)
     );
   }
 

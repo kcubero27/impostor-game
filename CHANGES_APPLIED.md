@@ -383,7 +383,7 @@ class DatabaseWordRepository implements IWordRepository {
 // Just wire it up
 const service = new WordSelectionService(
   new DatabaseWordRepository(), // ← New implementation
-  wordMemoryAdapter,
+  wordMemoryAdapter
 );
 ```
 

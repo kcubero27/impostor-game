@@ -9,7 +9,7 @@ import { WordMemoryAdapter } from "@/infrastructure/persistence/word-memory.adap
 
 /**
  * Service Configuration
- * 
+ *
  * Dependency Injection container for application services.
  * Wires all dependencies following Dependency Inversion Principle.
  */
@@ -23,17 +23,15 @@ const wordMemory = new WordMemoryAdapter();
 const roleAssignmentService = new RoleAssignmentService();
 const wordSelectionService = new WordSelectionService(
   wordRepository,
-  wordMemory,
+  wordMemory
 );
 
 // Application services
-export const playerManagementService = new PlayerManagementService(
-  idGenerator,
-);
+export const playerManagementService = new PlayerManagementService(idGenerator);
 
 export const categoryManagementService = new CategoryManagementService();
 
 export const gameManagementService = new GameManagementService(
   roleAssignmentService,
-  wordSelectionService,
+  wordSelectionService
 );

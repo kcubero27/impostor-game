@@ -205,7 +205,7 @@ interface IWordMemory {
 class WordSelectionService {
   constructor(
     private readonly wordRepository: IWordRepository, // ← Interface
-    private readonly wordMemory: IWordMemory, // ← Interface
+    private readonly wordMemory: IWordMemory // ← Interface
   ) {}
 }
 
@@ -375,7 +375,7 @@ expect(player.hasValidName()).toBe(true);
 // Easy to change from localStorage to API
 const service = new WordSelectionService(
   new ApiWordRepository(), // ← Changed
-  new ApiWordMemory(), // ← Changed
+  new ApiWordMemory() // ← Changed
 );
 // Everything else works unchanged!
 ```

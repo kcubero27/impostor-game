@@ -1,6 +1,7 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Button } from "@/components/ui/button";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { ChevronLeft } from "lucide-react";
 import type { ReactNode } from "react";
 import { useTranslation } from "@/i18n";
@@ -13,7 +14,7 @@ type LayoutProps = {
 
 export const Layout = ({ children, title, onBack }: LayoutProps) => {
   const { t } = useTranslation();
-  
+
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="h-dvh w-full flex flex-col">
@@ -34,13 +35,15 @@ export const Layout = ({ children, title, onBack }: LayoutProps) => {
                 </h1>
               )}
               {!title && <div className="flex-1" />}
-              <div className="flex-shrink-0">
+              <div className="flex-shrink-0 flex items-center gap-2">
+                <LanguageSwitcher />
                 <ModeToggle />
               </div>
             </div>
           )}
           {!title && !onBack && (
-            <div className="flex justify-end">
+            <div className="flex justify-end items-center gap-2">
+              <LanguageSwitcher />
               <ModeToggle />
             </div>
           )}

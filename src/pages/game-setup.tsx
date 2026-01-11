@@ -45,12 +45,10 @@ export const GameSetup = ({
   onDifficultyChange,
   onStartGame,
 }: GameSetupProps) => {
-  const readyPlayersCount = playerManagementService.getReadyPlayersCount(
-    players,
-  );
-  const selectedCategoriesCount = categoryManagementService.getSelectedCount(
-    selectedCategories,
-  );
+  const readyPlayersCount =
+    playerManagementService.getReadyPlayersCount(players);
+  const selectedCategoriesCount =
+    categoryManagementService.getSelectedCount(selectedCategories);
 
   // Calculate valid impostor options based on player count
   const maxImpostors = useMemo(() => {
@@ -67,14 +65,13 @@ export const GameSetup = ({
 
   // Ensure current impostor count is valid
   const currentImpostorCount = useMemo(() => {
-    if (IMPOSTOR_CONSTANTS.isValidImpostorCount(impostorCount, readyPlayersCount)) {
+    if (
+      IMPOSTOR_CONSTANTS.isValidImpostorCount(impostorCount, readyPlayersCount)
+    ) {
       return impostorCount;
     }
     // If invalid, default to the minimum
-    const validCount = Math.min(
-      IMPOSTOR_CONSTANTS.MIN_IMPOSTORS,
-      maxImpostors,
-    );
+    const validCount = Math.min(IMPOSTOR_CONSTANTS.MIN_IMPOSTORS, maxImpostors);
     if (validCount !== impostorCount) {
       onImpostorCountChange(validCount);
     }
@@ -83,9 +80,7 @@ export const GameSetup = ({
 
   const handleImpostorCountChange = (value: string) => {
     const newCount = parseInt(value, 10);
-    if (
-      IMPOSTOR_CONSTANTS.isValidImpostorCount(newCount, readyPlayersCount)
-    ) {
+    if (IMPOSTOR_CONSTANTS.isValidImpostorCount(newCount, readyPlayersCount)) {
       onImpostorCountChange(newCount);
     }
   };
@@ -103,7 +98,11 @@ export const GameSetup = ({
           icon={<Users className="h-4 w-4 text-white" />}
           iconBg="bg-blue-500"
           title={t("ui.players")}
-          subtitle={`${readyPlayersCount} ${readyPlayersCount === 1 ? t("ui.ready_status") : t("ui.ready_status_plural")}`}
+          subtitle={
+            readyPlayersCount > 0
+              ? `${readyPlayersCount} ${readyPlayersCount === 1 ? t("ui.player_singular") : t("ui.player_plural")}`
+              : t("ui.add_players_first")
+          }
           right={<ChevronRight className="h-4 w-4 text-muted-foreground" />}
           onClick={onOpenPlayers}
         />
@@ -154,7 +153,12 @@ export const GameSetup = ({
           iconBg="bg-green-500"
           title={t("ui.hints")}
           subtitle={hintsEnabled ? t("ui.enabled") : t("ui.disabled")}
-          right={<Switch checked={hintsEnabled} onCheckedChange={onHintsEnabledChange} />}
+          right={
+            <Switch
+              checked={hintsEnabled}
+              onCheckedChange={onHintsEnabledChange}
+            />
+          }
           className="mt-2"
         />
 
@@ -168,7 +172,9 @@ export const GameSetup = ({
                 value={difficulty === null ? "all" : difficulty.toString()}
                 onChange={(e) => {
                   const value = e.target.value;
-                  onDifficultyChange(value === "all" ? null : parseInt(value, 10));
+                  onDifficultyChange(
+                    value === "all" ? null : parseInt(value, 10)
+                  );
                 }}
               >
                 <option value="all">{t("ui.all_difficulties")}</option>
@@ -182,14 +188,10 @@ export const GameSetup = ({
         />
       </div>
 
-        <Button 
-          className="w-full" 
-          onClick={onStartGame}
-          disabled={!canStartGame}
-        >
-          <Play className="h-6 w-6" />
-          {t("ui.start_game")}
-        </Button>
+      <Button className="w-full" onClick={onStartGame} disabled={!canStartGame}>
+        <Play className="h-6 w-6" />
+        {t("ui.start_game")}
+      </Button>
     </div>
   );
 };

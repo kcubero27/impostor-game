@@ -14,7 +14,8 @@ This codebase **fully complies** with **Domain-Driven Design (DDD)** principles 
 
 **Problem**: `RoleAssignmentService` (domain service) was importing `IMPOSTOR_CONSTANTS` from `@/constants`, which violated DDD's rule that the domain layer should have zero external dependencies.
 
-**Solution**: 
+**Solution**:
+
 - ✅ Created `src/domain/game/game-rules.ts` with pure domain constants
 - ✅ Updated `RoleAssignmentService` to use domain constants
 - ✅ Updated `constants/index.ts` to re-export from domain (maintains backward compatibility)
@@ -45,13 +46,18 @@ class PlayerName {
 
 // ✅ Aggregate Root Enforcing Invariants
 class Game {
-  static start(players: GamePlayer[], word: Word, expectedImpostorCount: number): Game;
+  static start(
+    players: GamePlayer[],
+    word: Word,
+    expectedImpostorCount: number
+  ): Game;
   markCurrentPlayerAsSeenRole(): Game;
   moveToNextPlayer(): Game;
 }
 ```
 
 **Location:**
+
 - `src/domain/player/player.entity.ts` - Rich Player entity
 - `src/domain/player/player-name.value-object.ts` - Value object
 - `src/domain/game/game.aggregate.ts` - Aggregate root
@@ -88,6 +94,7 @@ class Game {
 ```
 
 **Verification:**
+
 - ✅ Domain layer has **ZERO** imports from infrastructure
 - ✅ Domain layer has **ZERO** imports from data layer
 - ✅ Domain layer has **ZERO** imports from constants (now uses domain constants)
@@ -97,34 +104,41 @@ class Game {
 ### 3. Domain Patterns Implemented
 
 #### **Entities** (Objects with Identity)
+
 - `Player` - Has unique ID, manages name
 - `GamePlayer` - Player in game context with role
 - `Word` - Game word with metadata
 
 #### **Value Objects** (Immutable, Self-Validating)
+
 - `PlayerName` - Encapsulates name validation (1-50 chars)
 
 #### **Aggregates** (Consistency Boundaries)
+
 - `Game` - Aggregate root managing GamePlayers and Word
   - Enforces invariants: min 2 players, exact impostor count
   - Controls access to child entities
 
 #### **Domain Services** (Business Logic Not in Entities)
+
 - `RoleAssignmentService` - Assigns roles to players
 - `WordSelectionService` - Selects words with memory logic
 - `PlayerCollection` - Manages player collection rules
 - `CategorySelection` - Manages category selection rules
 
 #### **Repositories** (Abstract Data Access)
+
 - `IWordRepository` - Interface in domain layer
 - `WordRepository` - Implementation in infrastructure layer
 
 #### **Interfaces in Domain Layer** (Dependency Inversion)
+
 - `IWordRepository` - `src/domain/game/word-repository.interface.ts`
 - `IWordMemory` - `src/domain/game/word-memory.interface.ts`
 - `IIdGenerator` - `src/domain/shared/id-generator.interface.ts`
 
 #### **Domain Constants** (Business Rules)
+
 - `game-rules.ts` - Pure domain constants (MIN_PLAYERS, MIN_IMPOSTORS, etc.)
 
 ---
@@ -135,19 +149,20 @@ class Game {
 
 **Each class has ONE reason to change:**
 
-| Class | Responsibility |
-|-------|---------------|
-| `Player` | Player identity and name management |
-| `PlayerName` | Name validation |
-| `PlayerCollection` | Player collection business rules |
-| `RoleAssignmentService` | Role assignment logic only |
-| `WordSelectionService` | Word selection logic only |
-| `PlayerManagementService` | Player use case orchestration |
-| `GameManagementService` | Game use case orchestration |
-| `WordRepository` | Word data access only |
-| `WordMemoryAdapter` | Word memory/persistence only |
+| Class                     | Responsibility                      |
+| ------------------------- | ----------------------------------- |
+| `Player`                  | Player identity and name management |
+| `PlayerName`              | Name validation                     |
+| `PlayerCollection`        | Player collection business rules    |
+| `RoleAssignmentService`   | Role assignment logic only          |
+| `WordSelectionService`    | Word selection logic only           |
+| `PlayerManagementService` | Player use case orchestration       |
+| `GameManagementService`   | Game use case orchestration         |
+| `WordRepository`          | Word data access only               |
+| `WordMemoryAdapter`       | Word memory/persistence only        |
 
 **Verification:**
+
 - ✅ No class does multiple unrelated things
 - ✅ Each service has a single, well-defined purpose
 
@@ -160,17 +175,18 @@ class Game {
 class WordSelectionService {
   constructor(
     private readonly wordRepository: IWordRepository, // Interface!
-    private readonly wordMemory: IWordMemory, // Interface!
+    private readonly wordMemory: IWordMemory // Interface!
   ) {}
 }
 
 // ✅ Can add new implementations without changing service
-class DatabaseWordRepository implements IWordRepository { }
-class ApiWordRepository implements IWordRepository { }
-class CachedWordRepository implements IWordRepository { }
+class DatabaseWordRepository implements IWordRepository {}
+class ApiWordRepository implements IWordRepository {}
+class CachedWordRepository implements IWordRepository {}
 ```
 
 **Verification:**
+
 - ✅ Services depend on interfaces, not concrete classes
 - ✅ New implementations can be added without modifying existing code
 - ✅ Infrastructure can be swapped without touching domain/application layers
@@ -192,6 +208,7 @@ const service3 = new WordSelectionService(repo3, wordMemory);
 ```
 
 **Verification:**
+
 - ✅ All interface implementations honor the contract
 - ✅ Implementations are interchangeable
 
@@ -220,6 +237,7 @@ interface IIdGenerator {
 ```
 
 **Verification:**
+
 - ✅ Interfaces are small and focused
 - ✅ No "fat" interfaces with many unrelated methods
 - ✅ Clients only depend on what they need
@@ -233,16 +251,17 @@ interface IIdGenerator {
 class WordSelectionService {
   constructor(
     private readonly wordRepository: IWordRepository, // Abstraction!
-    private readonly wordMemory: IWordMemory, // Abstraction!
+    private readonly wordMemory: IWordMemory // Abstraction!
   ) {}
 }
 
 // ✅ Low-level module implements abstraction
-class WordRepository implements IWordRepository { }
-class WordMemoryAdapter implements IWordMemory { }
+class WordRepository implements IWordRepository {}
+class WordMemoryAdapter implements IWordMemory {}
 ```
 
 **Verification:**
+
 - ✅ Domain services depend on interfaces (in domain layer)
 - ✅ Infrastructure implements domain interfaces
 - ✅ Application services receive dependencies via constructor injection
@@ -297,6 +316,7 @@ src/
 ### ✅ Domain Layer Dependencies
 
 **Domain layer imports:**
+
 - ✅ Only from other domain modules
 - ✅ Only domain interfaces (defined in domain layer)
 - ✅ Only domain constants (defined in domain layer)
@@ -307,6 +327,7 @@ src/
 ### ✅ Infrastructure Layer Dependencies
 
 **Infrastructure layer imports:**
+
 - ✅ Domain entities (for return types)
 - ✅ Domain interfaces (to implement)
 - ✅ No application layer dependencies
@@ -314,6 +335,7 @@ src/
 ### ✅ Application Layer Dependencies
 
 **Application layer imports:**
+
 - ✅ Domain entities
 - ✅ Domain services
 - ✅ Domain interfaces
@@ -347,39 +369,44 @@ src/
 
 ## 📊 Architecture Metrics
 
-| Metric | Status |
-|--------|--------|
-| Domain layer independence | ✅ 100% (no external dependencies) |
-| Interface segregation | ✅ 100% (small, focused interfaces) |
-| Dependency inversion | ✅ 100% (all dependencies on abstractions) |
-| Single responsibility | ✅ 100% (each class has one purpose) |
-| Open/closed compliance | ✅ 100% (extensible via interfaces) |
+| Metric                    | Status                                     |
+| ------------------------- | ------------------------------------------ |
+| Domain layer independence | ✅ 100% (no external dependencies)         |
+| Interface segregation     | ✅ 100% (small, focused interfaces)        |
+| Dependency inversion      | ✅ 100% (all dependencies on abstractions) |
+| Single responsibility     | ✅ 100% (each class has one purpose)       |
+| Open/closed compliance    | ✅ 100% (extensible via interfaces)        |
 
 ---
 
 ## 🎯 Best Practices Followed
 
 ### 1. **Immutability**
+
 - ✅ Aggregate methods return new instances (e.g., `Game.markCurrentPlayerAsSeenRole()`)
 - ✅ Value objects are immutable
 - ✅ Domain entities use private setters
 
 ### 2. **Error Handling**
+
 - ✅ Domain methods throw descriptive errors
 - ✅ Invariants are enforced at aggregate boundaries
 - ✅ Validation happens in value objects
 
 ### 3. **Naming Conventions**
+
 - ✅ Domain entities use domain language (Player, Game, Word)
 - ✅ Services follow naming patterns (XxxService, XxxRepository)
 - ✅ Interfaces prefixed with `I` (IWordRepository)
 
 ### 4. **Documentation**
+
 - ✅ All domain classes have JSDoc comments
 - ✅ Business rules are documented
 - ✅ Architecture is documented in ARCHITECTURE.md
 
 ### 5. **Testing Readiness**
+
 - ✅ Domain layer has no external dependencies (easy to test)
 - ✅ Services depend on interfaces (easy to mock)
 - ✅ Pure functions where possible
@@ -410,6 +437,7 @@ src/
 While the current architecture is excellent, here are some optional enhancements:
 
 1. **Domain Events**: Emit events for important state changes
+
    ```typescript
    class Game {
      private events: DomainEvent[] = [];
@@ -421,6 +449,7 @@ While the current architecture is excellent, here are some optional enhancements
    ```
 
 2. **Specification Pattern**: For complex filtering
+
    ```typescript
    class DifficultWordSpecification implements ISpecification<Word> {
      isSatisfiedBy(word: Word): boolean {

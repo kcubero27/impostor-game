@@ -1,0 +1,1287 @@
+{
+  "category": {
+    "animals": "Animals",
+    "food": "Food",
+    "sports": "Sports",
+    "professions": "Professions",
+    "objects": "Objects",
+    "places": "Places",
+    "technology": "Technology",
+    "nature": "Nature",
+    "transportation": "Transportation",
+    "entertainment": "Entertainment",
+    "clothing": "Clothing",
+    "household": "Household"
+  },
+  "words": {
+    "actor": {
+      "word": "Actor",
+      "hint": "Acting"
+    },
+    "airplane": {
+      "word": "Airplane",
+      "hint": "Wings"
+    },
+    "airport": {
+      "word": "Airport",
+      "hint": "Takeoff"
+    },
+    "aquarium": {
+      "word": "Aquarium",
+      "hint": "Fish"
+    },
+    "archery": {
+      "word": "Archery",
+      "hint": "Arrow"
+    },
+    "architect": {
+      "word": "Architect",
+      "hint": "Blueprints"
+    },
+    "astronaut": {
+      "word": "Astronaut",
+      "hint": "Orbital"
+    },
+    "backpack": {
+      "word": "Backpack",
+      "hint": "Back"
+    },
+    "bacon": {
+      "word": "Bacon",
+      "hint": "Crispy"
+    },
+    "badminton": {
+      "word": "Badminton",
+      "hint": "Shuttlecock"
+    },
+    "bakery": {
+      "word": "Bakery",
+      "hint": "Bread"
+    },
+    "ball": {
+      "word": "Ball",
+      "hint": "Round"
+    },
+    "balloon": {
+      "word": "Balloon",
+      "hint": "Air"
+    },
+    "bank": {
+      "word": "Bank",
+      "hint": "Money"
+    },
+    "baseball": {
+      "word": "Baseball",
+      "hint": "Bat"
+    },
+    "basketball": {
+      "word": "Basketball",
+      "hint": "Basket"
+    },
+    "battery": {
+      "word": "Battery",
+      "hint": "Current"
+    },
+    "beach": {
+      "word": "Beach",
+      "hint": "Sand"
+    },
+    "bear": {
+      "word": "Bear",
+      "hint": "Hibernation"
+    },
+    "bed": {
+      "word": "Bed",
+      "hint": "Sleep"
+    },
+    "belt": {
+      "word": "Belt",
+      "hint": "Buckle"
+    },
+    "bicycle": {
+      "word": "Bicycle",
+      "hint": "Wheels"
+    },
+    "binoculars": {
+      "word": "Binoculars",
+      "hint": "Zoom"
+    },
+    "blanket": {
+      "word": "Blanket",
+      "hint": "Warm"
+    },
+    "board_game": {
+      "word": "Board Game",
+      "hint": "Board"
+    },
+    "boat": {
+      "word": "Boat",
+      "hint": "Sail"
+    },
+    "book": {
+      "word": "Book",
+      "hint": "Pages"
+    },
+    "boxing": {
+      "word": "Boxing",
+      "hint": "Gloves"
+    },
+    "bread": {
+      "word": "Bread",
+      "hint": "Yeast"
+    },
+    "brownie": {
+      "word": "Brownie",
+      "hint": "Chocolate"
+    },
+    "burrito": {
+      "word": "Burrito",
+      "hint": "Wrapped"
+    },
+    "bus": {
+      "word": "Bus",
+      "hint": "Passengers"
+    },
+    "butterfly": {
+      "word": "Butterfly",
+      "hint": "Metamorphosis"
+    },
+    "cable_car": {
+      "word": "Cable Car",
+      "hint": "Cable"
+    },
+    "cafe": {
+      "word": "Cafe",
+      "hint": "Coffee"
+    },
+    "cake": {
+      "word": "Cake",
+      "hint": "Birthday"
+    },
+    "calculator": {
+      "word": "Calculator",
+      "hint": "Numbers"
+    },
+    "camel": {
+      "word": "Camel",
+      "hint": "Desert"
+    },
+    "camera": {
+      "word": "Camera",
+      "hint": "Focus"
+    },
+    "candle": {
+      "word": "Candle",
+      "hint": "Wax"
+    },
+    "car": {
+      "word": "Car",
+      "hint": "Engine"
+    },
+    "cards": {
+      "word": "Cards",
+      "hint": "Deck"
+    },
+    "carpenter": {
+      "word": "Carpenter",
+      "hint": "Wood"
+    },
+    "carpet": {
+      "word": "Carpet",
+      "hint": "Floor"
+    },
+    "castle": {
+      "word": "Castle",
+      "hint": "Fortress"
+    },
+    "chair": {
+      "word": "Chair",
+      "hint": "Sit"
+    },
+    "chameleon": {
+      "word": "Chameleon",
+      "hint": "Camouflage"
+    },
+    "charger": {
+      "word": "Charger",
+      "hint": "Energy"
+    },
+    "cheesecake": {
+      "word": "Cheesecake",
+      "hint": "Creamy"
+    },
+    "cheetah": {
+      "word": "Cheetah",
+      "hint": "Fast"
+    },
+    "chef": {
+      "word": "Chef",
+      "hint": "Apron"
+    },
+    "chess": {
+      "word": "Chess",
+      "hint": "Strategy"
+    },
+    "chicken": {
+      "word": "Chicken",
+      "hint": "Farm"
+    },
+    "chocolate": {
+      "word": "Chocolate",
+      "hint": "Cocoa"
+    },
+    "church": {
+      "word": "Church",
+      "hint": "Temple"
+    },
+    "circus": {
+      "word": "Circus",
+      "hint": "Clown"
+    },
+    "clock": {
+      "word": "Clock",
+      "hint": "Time"
+    },
+    "coat": {
+      "word": "Coat",
+      "hint": "Winter"
+    },
+    "compass": {
+      "word": "Compass",
+      "hint": "North"
+    },
+    "computer": {
+      "word": "Computer",
+      "hint": "Processor"
+    },
+    "concert": {
+      "word": "Concert",
+      "hint": "Stage"
+    },
+    "cookie": {
+      "word": "Cookie",
+      "hint": "Chips"
+    },
+    "cricket": {
+      "word": "Cricket",
+      "hint": "Wicket"
+    },
+    "crocodile": {
+      "word": "Crocodile",
+      "hint": "Swamp"
+    },
+    "croissant": {
+      "word": "Croissant",
+      "hint": "Butter"
+    },
+    "curry": {
+      "word": "Curry",
+      "hint": "Spices"
+    },
+    "curtain": {
+      "word": "Curtain",
+      "hint": "Window"
+    },
+    "cycling": {
+      "word": "Cycling",
+      "hint": "Pedals"
+    },
+    "deer": {
+      "word": "Deer",
+      "hint": "Antlers"
+    },
+    "dentist": {
+      "word": "Dentist",
+      "hint": "Teeth"
+    },
+    "detective": {
+      "word": "Detective",
+      "hint": "Clues"
+    },
+    "dice": {
+      "word": "Dice",
+      "hint": "Random"
+    },
+    "diving": {
+      "word": "Diving",
+      "hint": "Springboard"
+    },
+    "doctor": {
+      "word": "Doctor",
+      "hint": "Stethoscope"
+    },
+    "doll": {
+      "word": "Doll",
+      "hint": "Children"
+    },
+    "dolphin": {
+      "word": "Dolphin",
+      "hint": "Aquatic"
+    },
+    "donut": {
+      "word": "Donut",
+      "hint": "Glazed"
+    },
+    "dress": {
+      "word": "Dress",
+      "hint": "Elegant"
+    },
+    "drill": {
+      "word": "Drill",
+      "hint": "Drill"
+    },
+    "drone": {
+      "word": "Drone",
+      "hint": "Flying"
+    },
+    "eagle": {
+      "word": "Eagle",
+      "hint": "Majestic"
+    },
+    "eggs": {
+      "word": "Eggs",
+      "hint": "Yolk"
+    },
+    "electrician": {
+      "word": "Electrician",
+      "hint": "Wires"
+    },
+    "elephant": {
+      "word": "Elephant",
+      "hint": "Trunk"
+    },
+    "enchilada": {
+      "word": "Enchilada",
+      "hint": "Sauce"
+    },
+    "engineer": {
+      "word": "Engineer",
+      "hint": "Design"
+    },
+    "eraser": {
+      "word": "Eraser",
+      "hint": "Rubber"
+    },
+    "factory": {
+      "word": "Factory",
+      "hint": "Production"
+    },
+    "farm": {
+      "word": "Farm",
+      "hint": "Crops"
+    },
+    "farmer": {
+      "word": "Farmer",
+      "hint": "Crops"
+    },
+    "fencing": {
+      "word": "Fencing",
+      "hint": "Sword"
+    },
+    "ferry": {
+      "word": "Ferry",
+      "hint": "Cross"
+    },
+    "fire_station": {
+      "word": "Fire Station",
+      "hint": "Fire"
+    },
+    "firefighter": {
+      "word": "Firefighter",
+      "hint": "Hose"
+    },
+    "fireworks": {
+      "word": "Fireworks",
+      "hint": "Explosion"
+    },
+    "flamingo": {
+      "word": "Flamingo",
+      "hint": "Pink"
+    },
+    "flashlight": {
+      "word": "Flashlight",
+      "hint": "Light"
+    },
+    "flower": {
+      "word": "Flower",
+      "hint": "Petals"
+    },
+    "football": {
+      "word": "Football",
+      "hint": "Touchdown"
+    },
+    "forest": {
+      "word": "Forest",
+      "hint": "Trees"
+    },
+    "fox": {
+      "word": "Fox",
+      "hint": "Cunning"
+    },
+    "frisbee": {
+      "word": "Frisbee",
+      "hint": "Disc"
+    },
+    "gardener": {
+      "word": "Gardener",
+      "hint": "Plants"
+    },
+    "giraffe": {
+      "word": "Giraffe",
+      "hint": "Spots"
+    },
+    "globe": {
+      "word": "Globe",
+      "hint": "Continents"
+    },
+    "gloves": {
+      "word": "Gloves",
+      "hint": "Hands"
+    },
+    "golf": {
+      "word": "Golf",
+      "hint": "Hole"
+    },
+    "gorilla": {
+      "word": "Gorilla",
+      "hint": "Strong"
+    },
+    "guitar": {
+      "word": "Guitar",
+      "hint": "Strings"
+    },
+    "gymnastics": {
+      "word": "Gymnastics",
+      "hint": "Flexibility"
+    },
+    "hamburger": {
+      "word": "Hamburger",
+      "hint": "Grill"
+    },
+    "hammer": {
+      "word": "Hammer",
+      "hint": "Nail"
+    },
+    "hard_drive": {
+      "word": "Hard Drive",
+      "hint": "Storage"
+    },
+    "hat": {
+      "word": "Hat",
+      "hint": "Head"
+    },
+    "hawk": {
+      "word": "Hawk",
+      "hint": "Hunter"
+    },
+    "headphones": {
+      "word": "Headphones",
+      "hint": "Audio"
+    },
+    "helicopter": {
+      "word": "Helicopter",
+      "hint": "Rotor"
+    },
+    "hippo": {
+      "word": "Hippo",
+      "hint": "River"
+    },
+    "hockey": {
+      "word": "Hockey",
+      "hint": "Puck"
+    },
+    "hose": {
+      "word": "Hose",
+      "hint": "Water"
+    },
+    "hospital": {
+      "word": "Hospital",
+      "hint": "Emergency"
+    },
+    "hotdog": {
+      "word": "Hot Dog",
+      "hint": "Sausage"
+    },
+    "hotel": {
+      "word": "Hotel",
+      "hint": "Room"
+    },
+    "ice_cream": {
+      "word": "Ice Cream",
+      "hint": "Frozen"
+    },
+    "jacket": {
+      "word": "Jacket",
+      "hint": "Coat"
+    },
+    "jellyfish": {
+      "word": "Jellyfish",
+      "hint": "Jelly"
+    },
+    "journalist": {
+      "word": "Journalist",
+      "hint": "News"
+    },
+    "judge": {
+      "word": "Judge",
+      "hint": "Verdict"
+    },
+    "judo": {
+      "word": "Judo",
+      "hint": "Kimono"
+    },
+    "kangaroo": {
+      "word": "Kangaroo",
+      "hint": "Marsupial"
+    },
+    "karate": {
+      "word": "Karate",
+      "hint": "Belt"
+    },
+    "keyboard": {
+      "word": "Keyboard",
+      "hint": "Keys"
+    },
+    "kite": {
+      "word": "Kite",
+      "hint": "Wind"
+    },
+    "koala": {
+      "word": "Koala",
+      "hint": "Eucalyptus"
+    },
+    "ladder": {
+      "word": "Ladder",
+      "hint": "Height"
+    },
+    "lake": {
+      "word": "Lake",
+      "hint": "Calm"
+    },
+    "lamp": {
+      "word": "Lamp",
+      "hint": "Bulb"
+    },
+    "laptop": {
+      "word": "Laptop",
+      "hint": "Portable"
+    },
+    "lasagna": {
+      "word": "Lasagna",
+      "hint": "Layers"
+    },
+    "lawyer": {
+      "word": "Lawyer",
+      "hint": "Justice"
+    },
+    "leopard": {
+      "word": "Leopard",
+      "hint": "Agile"
+    },
+    "library": {
+      "word": "Library",
+      "hint": "Silence"
+    },
+    "lion": {
+      "word": "Lion",
+      "hint": "Mane"
+    },
+    "magic_show": {
+      "word": "Magic Show",
+      "hint": "Illusion"
+    },
+    "mall": {
+      "word": "Mall",
+      "hint": "Shopping"
+    },
+    "map": {
+      "word": "Map",
+      "hint": "Coordinates"
+    },
+    "marathon": {
+      "word": "Marathon",
+      "hint": "Endurance"
+    },
+    "mechanic": {
+      "word": "Mechanic",
+      "hint": "Engine"
+    },
+    "metro": {
+      "word": "Metro",
+      "hint": "Underground"
+    },
+    "microphone": {
+      "word": "Microphone",
+      "hint": "Amplify"
+    },
+    "mirror": {
+      "word": "Mirror",
+      "hint": "Reflection"
+    },
+    "modem": {
+      "word": "Modem",
+      "hint": "Connection"
+    },
+    "monitor": {
+      "word": "Monitor",
+      "hint": "Screen"
+    },
+    "monkey": {
+      "word": "Monkey",
+      "hint": "Bananas"
+    },
+    "moose": {
+      "word": "Moose",
+      "hint": "Forest"
+    },
+    "mosque": {
+      "word": "Mosque",
+      "hint": "Prayer"
+    },
+    "motorcycle": {
+      "word": "Motorcycle",
+      "hint": "Speed"
+    },
+    "mountain": {
+      "word": "Mountain",
+      "hint": "Peak"
+    },
+    "mouse": {
+      "word": "Mouse",
+      "hint": "Click"
+    },
+    "movie": {
+      "word": "Movie",
+      "hint": "Cinema"
+    },
+    "muffin": {
+      "word": "Muffin",
+      "hint": "Breakfast"
+    },
+    "museum": {
+      "word": "Museum",
+      "hint": "Exhibition"
+    },
+    "musician": {
+      "word": "Musician",
+      "hint": "Melody"
+    },
+    "nachos": {
+      "word": "Nachos",
+      "hint": "Cheese"
+    },
+    "noodles": {
+      "word": "Noodles",
+      "hint": "Asian"
+    },
+    "notebook": {
+      "word": "Notebook",
+      "hint": "Notes"
+    },
+    "nurse": {
+      "word": "Nurse",
+      "hint": "Care"
+    },
+    "octopus": {
+      "word": "Octopus",
+      "hint": "Tentacles"
+    },
+    "office": {
+      "word": "Office",
+      "hint": "Desk"
+    },
+    "omelette": {
+      "word": "Omelette",
+      "hint": "Beaten"
+    },
+    "owl": {
+      "word": "Owl",
+      "hint": "Nocturnal"
+    },
+    "paella": {
+      "word": "Paella",
+      "hint": "Saffron"
+    },
+    "painter": {
+      "word": "Painter",
+      "hint": "Brush"
+    },
+    "pancakes": {
+      "word": "Pancakes",
+      "hint": "Syrup"
+    },
+    "pants": {
+      "word": "Pants",
+      "hint": "Legs"
+    },
+    "parade": {
+      "word": "Parade",
+      "hint": "March"
+    },
+    "park": {
+      "word": "Park",
+      "hint": "Green"
+    },
+    "parrot": {
+      "word": "Parrot",
+      "hint": "Tropical"
+    },
+    "pasta": {
+      "word": "Pasta",
+      "hint": "Wheat"
+    },
+    "peacock": {
+      "word": "Peacock",
+      "hint": "Fan"
+    },
+    "pen": {
+      "word": "Pen",
+      "hint": "Ink"
+    },
+    "pencil": {
+      "word": "Pencil",
+      "hint": "Graphite"
+    },
+    "penguin": {
+      "word": "Penguin",
+      "hint": "Antarctica"
+    },
+    "pharmacist": {
+      "word": "Pharmacist",
+      "hint": "Medication"
+    },
+    "photographer": {
+      "word": "Photographer",
+      "hint": "Lens"
+    },
+    "picture_frame": {
+      "word": "Picture Frame",
+      "hint": "Memory"
+    },
+    "pie": {
+      "word": "Pie",
+      "hint": "Bake"
+    },
+    "pillow": {
+      "word": "Pillow",
+      "hint": "Soft"
+    },
+    "pilot": {
+      "word": "Pilot",
+      "hint": "Cockpit"
+    },
+    "pizza": {
+      "word": "Pizza",
+      "hint": "Oven"
+    },
+    "playground": {
+      "word": "Playground",
+      "hint": "Swing"
+    },
+    "plumber": {
+      "word": "Plumber",
+      "hint": "Pipes"
+    },
+    "police": {
+      "word": "Police",
+      "hint": "Order"
+    },
+    "police_station": {
+      "word": "Police Station",
+      "hint": "Order"
+    },
+    "popcorn": {
+      "word": "Popcorn",
+      "hint": "Corn"
+    },
+    "post_office": {
+      "word": "Post Office",
+      "hint": "Letters"
+    },
+    "printer": {
+      "word": "Printer",
+      "hint": "Paper"
+    },
+    "projector": {
+      "word": "Projector",
+      "hint": "Presentation"
+    },
+    "pudding": {
+      "word": "Pudding",
+      "hint": "Creamy"
+    },
+    "puzzle": {
+      "word": "Puzzle",
+      "hint": "Pieces"
+    },
+    "quesadilla": {
+      "word": "Quesadilla",
+      "hint": "Fold"
+    },
+    "rabbit": {
+      "word": "Rabbit",
+      "hint": "Ears"
+    },
+    "radio": {
+      "word": "Radio",
+      "hint": "Frequency"
+    },
+    "rake": {
+      "word": "Rake",
+      "hint": "Leaves"
+    },
+    "ramen": {
+      "word": "Ramen",
+      "hint": "Broth"
+    },
+    "ravioli": {
+      "word": "Ravioli",
+      "hint": "Filled"
+    },
+    "refrigerator": {
+      "word": "Refrigerator",
+      "hint": "Cold"
+    },
+    "remote": {
+      "word": "Remote Control",
+      "hint": "Buttons"
+    },
+    "restaurant": {
+      "word": "Restaurant",
+      "hint": "Menu"
+    },
+    "rhino": {
+      "word": "Rhino",
+      "hint": "Horn"
+    },
+    "river": {
+      "word": "River",
+      "hint": "Current"
+    },
+    "robot": {
+      "word": "Robot",
+      "hint": "Mechanical"
+    },
+    "rocket": {
+      "word": "Rocket",
+      "hint": "Space"
+    },
+    "rope": {
+      "word": "Rope",
+      "hint": "Knots"
+    },
+    "router": {
+      "word": "Router",
+      "hint": "Internet"
+    },
+    "rowing": {
+      "word": "Rowing",
+      "hint": "Boat"
+    },
+    "rugby": {
+      "word": "Rugby",
+      "hint": "Oval"
+    },
+    "ruler": {
+      "word": "Ruler",
+      "hint": "Measure"
+    },
+    "running": {
+      "word": "Running",
+      "hint": "Marathon"
+    },
+    "sailing": {
+      "word": "Sailing",
+      "hint": "Sail"
+    },
+    "salad": {
+      "word": "Salad",
+      "hint": "Lettuce"
+    },
+    "sandwich": {
+      "word": "Sandwich",
+      "hint": "Layers"
+    },
+    "saw": {
+      "word": "Saw",
+      "hint": "Cut"
+    },
+    "scanner": {
+      "word": "Scanner",
+      "hint": "Digital"
+    },
+    "scarf": {
+      "word": "Scarf",
+      "hint": "Neck"
+    },
+    "school": {
+      "word": "School",
+      "hint": "Classes"
+    },
+    "scientist": {
+      "word": "Scientist",
+      "hint": "Laboratory"
+    },
+    "scissors": {
+      "word": "Scissors",
+      "hint": "Cut"
+    },
+    "scooter": {
+      "word": "Scooter",
+      "hint": "Electric"
+    },
+    "screwdriver": {
+      "word": "Screwdriver",
+      "hint": "Screw"
+    },
+    "sculptor": {
+      "word": "Sculptor",
+      "hint": "Shape"
+    },
+    "seal": {
+      "word": "Seal",
+      "hint": "Ice"
+    },
+    "shark": {
+      "word": "Shark",
+      "hint": "Fin"
+    },
+    "ship": {
+      "word": "Ship",
+      "hint": "Port"
+    },
+    "shirt": {
+      "word": "Shirt",
+      "hint": "Buttons"
+    },
+    "shovel": {
+      "word": "Shovel",
+      "hint": "Dig"
+    },
+    "skateboarding": {
+      "word": "Skateboarding",
+      "hint": "Tricks"
+    },
+    "skiing": {
+      "word": "Skiing",
+      "hint": "Snow"
+    },
+    "skirt": {
+      "word": "Skirt",
+      "hint": "Feminine"
+    },
+    "smartphone": {
+      "word": "Smartphone",
+      "hint": "Screen"
+    },
+    "sneakers": {
+      "word": "Sneakers",
+      "hint": "Athletic"
+    },
+    "snowboarding": {
+      "word": "Snowboarding",
+      "hint": "Mountain"
+    },
+    "soccer": {
+      "word": "Soccer",
+      "hint": "Goal"
+    },
+    "socks": {
+      "word": "Socks",
+      "hint": "Feet"
+    },
+    "sofa": {
+      "word": "Sofa",
+      "hint": "Rest"
+    },
+    "soup": {
+      "word": "Soup",
+      "hint": "Hot"
+    },
+    "spaghetti": {
+      "word": "Spaghetti",
+      "hint": "Long"
+    },
+    "speaker": {
+      "word": "Speaker",
+      "hint": "Sound"
+    },
+    "sprinting": {
+      "word": "Sprinting",
+      "hint": "Explosive"
+    },
+    "squirrel": {
+      "word": "Squirrel",
+      "hint": "Acorns"
+    },
+    "stadium": {
+      "word": "Stadium",
+      "hint": "Stands"
+    },
+    "steak": {
+      "word": "Steak",
+      "hint": "Juicy"
+    },
+    "submarine": {
+      "word": "Submarine",
+      "hint": "Deep"
+    },
+    "sunglasses": {
+      "word": "Sunglasses",
+      "hint": "Protection"
+    },
+    "supermarket": {
+      "word": "Supermarket",
+      "hint": "Cart"
+    },
+    "surfing": {
+      "word": "Surfing",
+      "hint": "Waves"
+    },
+    "surgeon": {
+      "word": "Surgeon",
+      "hint": "Scalpel"
+    },
+    "sushi": {
+      "word": "Sushi",
+      "hint": "Wasabi"
+    },
+    "swan": {
+      "word": "Swan",
+      "hint": "Elegant"
+    },
+    "sweater": {
+      "word": "Sweater",
+      "hint": "Wool"
+    },
+    "swimming": {
+      "word": "Swimming",
+      "hint": "Pool"
+    },
+    "table": {
+      "word": "Table",
+      "hint": "Surface"
+    },
+    "tablet": {
+      "word": "Tablet",
+      "hint": "Touch"
+    },
+    "tacos": {
+      "word": "Tacos",
+      "hint": "Tortilla"
+    },
+    "taxi": {
+      "word": "Taxi",
+      "hint": "Fare"
+    },
+    "teacher": {
+      "word": "Teacher",
+      "hint": "Board"
+    },
+    "telescope": {
+      "word": "Telescope",
+      "hint": "Astronomy"
+    },
+    "television": {
+      "word": "Television",
+      "hint": "Channels"
+    },
+    "temple": {
+      "word": "Temple",
+      "hint": "Sacred"
+    },
+    "tennis": {
+      "word": "Tennis",
+      "hint": "Racket"
+    },
+    "theater": {
+      "word": "Theater",
+      "hint": "Drama"
+    },
+    "tie": {
+      "word": "Tie",
+      "hint": "Formal"
+    },
+    "tiger": {
+      "word": "Tiger",
+      "hint": "Feline"
+    },
+    "toucan": {
+      "word": "Toucan",
+      "hint": "Beak"
+    },
+    "toy": {
+      "word": "Toy",
+      "hint": "Play"
+    },
+    "train": {
+      "word": "Train",
+      "hint": "Tracks"
+    },
+    "tram": {
+      "word": "Tram",
+      "hint": "Urban"
+    },
+    "tree": {
+      "word": "Tree",
+      "hint": "Leaves"
+    },
+    "truck": {
+      "word": "Truck",
+      "hint": "Cargo"
+    },
+    "umbrella": {
+      "word": "Umbrella",
+      "hint": "Rain"
+    },
+    "university": {
+      "word": "University",
+      "hint": "Degree"
+    },
+    "usb": {
+      "word": "USB Drive",
+      "hint": "Port"
+    },
+    "vacuum": {
+      "word": "Vacuum",
+      "hint": "Suction"
+    },
+    "van": {
+      "word": "Van",
+      "hint": "Transport"
+    },
+    "vase": {
+      "word": "Vase",
+      "hint": "Flowers"
+    },
+    "veterinarian": {
+      "word": "Veterinarian",
+      "hint": "Pets"
+    },
+    "video_game": {
+      "word": "Video Game",
+      "hint": "Console"
+    },
+    "volleyball": {
+      "word": "Volleyball",
+      "hint": "Net"
+    },
+    "waffle": {
+      "word": "Waffle",
+      "hint": "Squares"
+    },
+    "watch": {
+      "word": "Watch",
+      "hint": "Hands"
+    },
+    "webcam": {
+      "word": "Webcam",
+      "hint": "Video"
+    },
+    "whale": {
+      "word": "Whale",
+      "hint": "Ocean"
+    },
+    "wolf": {
+      "word": "Wolf",
+      "hint": "Howl"
+    },
+    "wrench": {
+      "word": "Wrench",
+      "hint": "Tighten"
+    },
+    "wrestling": {
+      "word": "Wrestling",
+      "hint": "Strength"
+    },
+    "yacht": {
+      "word": "Yacht",
+      "hint": "Luxury"
+    },
+    "yo_yo": {
+      "word": "Yo-Yo",
+      "hint": "String"
+    },
+    "zebra": {
+      "word": "Zebra",
+      "hint": "Stripes"
+    },
+    "zoo": {
+      "word": "Zoo",
+      "hint": "Animals"
+    }
+  },
+  "ui": {
+    "game_title": "Impostor Game",
+    "game_subtitle": "Set up your game and find the impostor!",
+    "start_game": "Start Game",
+    "players": "Players",
+    "player_singular": "player",
+    "player_plural": "Players",
+    "add_player": "Add player",
+    "player_name_placeholder": "Player {{number}} name",
+    "remove_player": "Remove player {{number}}",
+    "your_role": "Your Role",
+    "you_are_impostor": "You are the Impostor!",
+    "you_are_normal": "You are a Normal Player",
+    "the_word_is": "The word is:",
+    "impostor_hint": "The hint is:",
+    "next_player": "Next Player",
+    "all_ready": "All Ready!",
+    "play_again": "Play Again",
+    "close": "Close",
+    "pass_to": "Pass to:",
+    "ready": "Ready!",
+    "all_players_need_names": "All players must have a name before starting",
+    "select_language": "Select language",
+    "words_used": "{{used}} of {{total}} words used",
+    "reset_word_history": "Reset word history",
+    "word_history_reset": "Word history has been reset!",
+    "game_config": "Game Configuration",
+    "game_config_subtitle": "Customize your gaming experience",
+    "show_hint": "Show hint to impostor",
+    "show_hint_description": "The impostor will see a hint related to the word",
+    "no_hint_message": "Try to guess the word without hints",
+    "categories": "Categories",
+    "select_all": "Select all",
+    "deselect_all": "Deselect all",
+    "all_categories_selected": "All categories active by default",
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "player_needs_name": "1 player needs a name",
+    "players_need_names": "players need names",
+    "duplicate_names": "There are duplicate names",
+    "minimum_players_required": "Minimum 3 players",
+    "choose_your_card": "Choose Your Card",
+    "select_card_to_reveal": "Select any card to reveal that player's role",
+    "players_revealed": "{{revealed}} of {{total}} players revealed",
+    "tap_to_reveal": "Tap to reveal",
+    "ready_to_reveal": "Ready to reveal your role?",
+    "flip_card": "Flip Card",
+    "starts_game": "starts the game",
+    "app_title": "Impostor",
+    "find_impostor": "Find the Impostor",
+    "game_setup": "Game Setup",
+    "impostors": "Impostors",
+    "hints": "Hints",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "selected": "selected",
+    "selected_plural": "selected",
+    "all_categories": "All categories",
+    "add_players_first": "Add players first",
+    "of": "of",
+    "ready_status": "ready",
+    "ready_status_plural": "ready",
+    "restart_game": "Restart Game",
+    "change_settings": "Change Settings",
+    "copyright": "© 2026 Karen Cubero",
+    "difficulty": "Difficulty",
+    "all_difficulties": "All",
+    "difficulty_low": "Low",
+    "difficulty_medium": "Medium",
+    "difficulty_high": "High"
+  }
+}
