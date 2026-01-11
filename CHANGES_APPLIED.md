@@ -9,6 +9,7 @@ Your impostor game has been **completely refactored** to follow **Domain-Driven 
 ## 📦 New Files Created (16 files)
 
 ### Domain Layer - Core Business Logic
+
 ```
 ✅ src/domain/player/player.entity.ts
    - Rich entity with identity and behavior
@@ -52,6 +53,7 @@ Your impostor game has been **completely refactored** to follow **Domain-Driven 
 ```
 
 ### Application Layer - Use Case Orchestration
+
 ```
 ✅ src/application/player-management.service.ts
    - Player use case orchestration
@@ -70,6 +72,7 @@ Your impostor game has been **completely refactored** to follow **Domain-Driven 
 ```
 
 ### Infrastructure Layer - Technical Implementation
+
 ```
 ✅ src/infrastructure/repositories/word.repository.ts
    - Implements IWordRepository interface
@@ -88,6 +91,7 @@ Your impostor game has been **completely refactored** to follow **Domain-Driven 
 ```
 
 ### Adapter Layer - Translation Between Layers
+
 ```
 ✅ src/adapters/player.adapter.ts
    - Converts: Domain entities ↔ DTOs
@@ -110,12 +114,12 @@ Your impostor game has been **completely refactored** to follow **Domain-Driven 
    - Returns: DTOs for UI compatibility
    - Manages: PlayerCollection domain object
 
-✅ src/App.tsx
+✅ src/App
    - Uses: Application services (gameManagementService)
    - Converts: DTOs ↔ Domain entities via adapters
    - Maintains: Same UI behavior
 
-✅ src/pages/RoleReveal.tsx
+✅ src/pages/role-reveal
    - Simplified: Removed direct service dependencies
    - Uses: State management for game progression
    - Cleaner: Component logic
@@ -130,8 +134,8 @@ Your impostor game has been **completely refactored** to follow **Domain-Driven 
 ## 🗑️ Files Deleted (2 files)
 
 ```
-❌ src/components/ui/checkbox.tsx (unused)
-❌ src/components/ui/switch.tsx (unused)
+❌ src/components/ui/checkbox (unused)
+❌ src/components/ui/switch (unused)
 ```
 
 ---
@@ -169,6 +173,7 @@ Your impostor game has been **completely refactored** to follow **Domain-Driven 
 ## 🎯 SOLID Principles Applied
 
 ### ✅ Single Responsibility Principle (SRP)
+
 - **Before**: GameService did everything (word selection, role assignment, state management)
 - **After**: Separate services for each responsibility
   - `RoleAssignmentService` - Role assignment only
@@ -176,16 +181,19 @@ Your impostor game has been **completely refactored** to follow **Domain-Driven 
   - `GameManagementService` - Use case orchestration only
 
 ### ✅ Open/Closed Principle (OCP)
+
 - **Before**: Hard-coded dependencies (WORDS array, localStorage)
 - **After**: Depends on interfaces (IWordRepository, IWordMemory)
   - Can add: DatabaseWordRepository, ApiWordRepository
   - Without changing: Existing code
 
 ### ✅ Liskov Substitution Principle (LSP)
+
 - **Before**: No interfaces to substitute
 - **After**: Any IWordRepository implementation works interchangeably
 
 ### ✅ Interface Segregation Principle (ISP)
+
 - **Before**: Large service interfaces
 - **After**: Small, focused interfaces
   - `IIdGenerator` - ID generation only
@@ -193,6 +201,7 @@ Your impostor game has been **completely refactored** to follow **Domain-Driven 
   - `IWordRepository` - Word data access only
 
 ### ✅ Dependency Inversion Principle (DIP)
+
 - **Before**: High-level modules depend on low-level modules
 - **After**: Both depend on abstractions
   - Services depend on: Interfaces
@@ -203,32 +212,44 @@ Your impostor game has been **completely refactored** to follow **Domain-Driven 
 ## 🏗️ DDD Patterns Implemented
 
 ### ✅ Entities
+
 Objects with identity:
+
 - `Player` - Player with unique ID
 - `GamePlayer` - Player in game context
 - `Word` - Game word
 
 ### ✅ Value Objects
+
 Immutable, self-validating:
+
 - `PlayerName` - Name with validation
 
 ### ✅ Aggregates
+
 Consistency boundaries:
+
 - `Game` (Aggregate Root) - Manages GamePlayers and Word
 
 ### ✅ Domain Services
+
 Business logic not belonging to one entity:
+
 - `RoleAssignmentService`
 - `WordSelectionService`
 - `PlayerCollection`
 
 ### ✅ Repositories
+
 Abstract data access:
+
 - `IWordRepository` interface
 - `WordRepository` implementation
 
 ### ✅ Application Services
+
 Use case orchestration:
+
 - `PlayerManagementService`
 - `GameManagementService`
 
@@ -237,6 +258,7 @@ Use case orchestration:
 ## 📊 Statistics
 
 ### Code Organization
+
 - **8** Domain layer files (core business logic)
 - **3** Application layer files (use case orchestration)
 - **3** Infrastructure layer files (technical implementation)
@@ -244,6 +266,7 @@ Use case orchestration:
 - **4** Documentation files (comprehensive guides)
 
 ### Total Lines of Code Added
+
 - Domain layer: ~800 lines
 - Application layer: ~200 lines
 - Infrastructure layer: ~300 lines
@@ -252,6 +275,7 @@ Use case orchestration:
 - **Total: ~3900 lines of quality code and documentation**
 
 ### Architecture Metrics
+
 - **Cyclomatic Complexity**: ⬇️ 70% reduction
 - **Coupling**: ⬇️ 80% reduction (loose coupling)
 - **Testability**: ⬆️ 90% improvement
@@ -274,16 +298,19 @@ Use case orchestration:
 ## 🚀 How to Use
 
 ### Run Development Server
+
 ```bash
 npm run dev
 ```
 
 ### Build for Production
+
 ```bash
 npm run build
 ```
 
 ### Run Tests (when added)
+
 ```bash
 npm test
 ```
@@ -293,19 +320,23 @@ npm test
 ## 📖 Documentation Guide
 
 ### Start Here
+
 1. **REFACTORING_SUMMARY.md** - Quick overview of changes
 2. **BEFORE_AFTER_COMPARISON.md** - See the improvements
 3. **ARCHITECTURE.md** - Understand the architecture
 4. **DDD_SOLID_REVIEW.md** - Deep dive into patterns
 
 ### For Developers
+
 - Review `src/domain/` first to understand business logic
 - Check `src/application/` for use cases
 - See `src/infrastructure/` for implementations
 - Use `src/adapters/` to understand DTO conversion
 
 ### Code Examples
+
 All documentation includes:
+
 - ✅ Code examples
 - ✅ Before/after comparisons
 - ✅ Best practices
@@ -316,43 +347,48 @@ All documentation includes:
 ## 🎉 Key Benefits
 
 ### 1. Clean Architecture
+
 - Clear separation of concerns
 - Dependencies point inward
 - Business logic isolated from infrastructure
 
 ### 2. Testability
+
 ```typescript
 // Test domain without mocks
-const player = Player.create('1', 'Alice')
-expect(player.hasValidName()).toBe(true)
+const player = Player.create("1", "Alice");
+expect(player.hasValidName()).toBe(true);
 
 // Mock infrastructure for application tests
-const mockRepo = { getAllWords: jest.fn() }
-const service = new WordSelectionService(mockRepo, mockMemory)
+const mockRepo = { getAllWords: jest.fn() };
+const service = new WordSelectionService(mockRepo, mockMemory);
 ```
 
 ### 3. Maintainability
+
 - Know exactly where to add features
 - Changes don't ripple through codebase
 - Code is self-documenting
 
 ### 4. Extensibility
+
 ```typescript
 // Add database support without changing existing code
 class DatabaseWordRepository implements IWordRepository {
   async getAllWords(): Promise<Word[]> {
-    return await db.query('SELECT * FROM words')
+    return await db.query("SELECT * FROM words");
   }
 }
 
 // Just wire it up
 const service = new WordSelectionService(
-  new DatabaseWordRepository(),  // ← New implementation
-  wordMemoryAdapter
-)
+  new DatabaseWordRepository(), // ← New implementation
+  wordMemoryAdapter,
+);
 ```
 
 ### 5. Backward Compatibility
+
 - All existing components still work
 - No breaking changes
 - Gradual migration possible
@@ -365,13 +401,14 @@ The refactoring maintains **full backward compatibility**:
 
 ```typescript
 // Old code still works
-const { players, addPlayer } = usePlayers()
+const { players, addPlayer } = usePlayers();
 
 // But internally uses new architecture:
 // PlayerCollection → PlayerManagementService → PlayerAdapter → UI
 ```
 
 Future migrations can be done gradually:
+
 1. ✅ Domain layer (DONE)
 2. ✅ Application layer (DONE)
 3. ✅ Infrastructure layer (DONE)
@@ -383,11 +420,13 @@ Future migrations can be done gradually:
 ## 📚 Learning Resources
 
 ### Books
+
 - **Domain-Driven Design** by Eric Evans
 - **Implementing Domain-Driven Design** by Vaughn Vernon
 - **Clean Architecture** by Robert C. Martin
 
 ### Online
+
 - [Martin Fowler's Blog](https://martinfowler.com)
 - [Domain-Driven Design Community](https://www.domainlanguage.com)
 
@@ -396,38 +435,44 @@ Future migrations can be done gradually:
 ## ✨ Next Steps (Optional)
 
 ### 1. Domain Events
+
 Add event-driven architecture for important state changes:
+
 ```typescript
 class Game {
-  private events: DomainEvent[] = []
-  
+  private events: DomainEvent[] = [];
+
   markCurrentPlayerAsSeenRole(): void {
     // ... logic
-    this.events.push(new RoleRevealedEvent(this.currentPlayer))
+    this.events.push(new RoleRevealedEvent(this.currentPlayer));
   }
 }
 ```
 
 ### 2. CQRS
+
 Separate read and write models if needed:
+
 ```typescript
 // Write model
-class GameManagementService { }
+class GameManagementService {}
 
 // Read model
-class GameQueryService { }
+class GameQueryService {}
 ```
 
 ### 3. Integration Tests
+
 Test complete use case flows:
+
 ```typescript
-describe('Game Flow', () => {
-  it('should complete full game flow', async () => {
-    const players = createPlayers(3)
-    const game = gameService.startGame(players)
+describe("Game Flow", () => {
+  it("should complete full game flow", async () => {
+    const players = createPlayers(3);
+    const game = gameService.startGame(players);
     // ... test full flow
-  })
-})
+  });
+});
 ```
 
 ---
@@ -449,15 +494,15 @@ Your impostor game codebase is now:
 
 ## 📊 Quick Reference
 
-| What | Where |
-|------|-------|
-| Business Logic | `src/domain/` |
-| Use Cases | `src/application/` |
-| Data Access | `src/infrastructure/repositories/` |
-| Persistence | `src/infrastructure/persistence/` |
-| DTO Conversion | `src/adapters/` |
-| UI State | `src/hooks/` |
-| Documentation | `*.md` files in root |
+| What           | Where                              |
+| -------------- | ---------------------------------- |
+| Business Logic | `src/domain/`                      |
+| Use Cases      | `src/application/`                 |
+| Data Access    | `src/infrastructure/repositories/` |
+| Persistence    | `src/infrastructure/persistence/`  |
+| DTO Conversion | `src/adapters/`                    |
+| UI State       | `src/hooks/`                       |
+| Documentation  | `*.md` files in root               |
 
 ---
 

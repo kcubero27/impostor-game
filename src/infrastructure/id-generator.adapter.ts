@@ -1,22 +1,12 @@
-import type { IIdGenerator } from '@/application/player-management.service'
+import type { IIdGenerator } from "@/domain/shared/id-generator.interface";
 
 /**
- * Infrastructure: IdGeneratorAdapter
- * Implements ID generation using Web Crypto API
+ * IdGeneratorAdapter
+ * 
+ * Infrastructure implementation of ID generation.
  */
 export class IdGeneratorAdapter implements IIdGenerator {
-  generate(prefix?: string): string {
-    const uuid = crypto.randomUUID()
-    return prefix ? `${prefix}-${uuid}` : uuid
-  }
-
-  generateShort(prefix?: string): string {
-    const array = new Uint8Array(8)
-    crypto.getRandomValues(array)
-    const shortId = Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('')
-    return prefix ? `${prefix}-${shortId}` : shortId
+  generate(prefix: string = "id"): string {
+    return `${prefix}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
   }
 }
-
-// Singleton instance
-export const idGeneratorAdapter = new IdGeneratorAdapter()

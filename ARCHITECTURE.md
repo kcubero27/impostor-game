@@ -67,10 +67,8 @@ Entities have identity and lifecycle:
 - **Player**: Represents a player with unique identity
   - Has behavior: `changeName()`, `hasValidName()`
   - Identity preserved through `id`
-  
 - **GamePlayer**: Player in game context with role
   - Extends player concept with game-specific behavior
-  
 - **Word**: Game word with translations and metadata
 
 ### 2. **Value Objects**
@@ -110,6 +108,7 @@ Abstract data access:
 ### 6. **Domain Events** (Future Enhancement)
 
 Could be added for:
+
 - PlayerNameChanged
 - RoleRevealed
 - GameCompleted
@@ -162,7 +161,7 @@ Could be added for:
 // ❌ Bad (before):
 class GameService {
   selectWord() {
-    const words = WORDS // Direct dependency on data
+    const words = WORDS; // Direct dependency on data
   }
 }
 
@@ -170,7 +169,7 @@ class GameService {
 class WordSelectionService {
   constructor(
     private readonly wordRepository: IWordRepository, // Abstraction
-    private readonly wordMemory: IWordMemory // Abstraction
+    private readonly wordMemory: IWordMemory, // Abstraction
   ) {}
 }
 ```
@@ -261,7 +260,7 @@ Adapters ensure existing components continue to work:
 
 ```typescript
 // Old code still works:
-const players: LegacyPlayer[] = usePlayers().players
+const players: LegacyPlayer[] = usePlayers().players;
 
 // But internally uses:
 // Domain entities → Application services → Adapters → UI
@@ -293,6 +292,7 @@ Rules enforced by the domain:
 This application represents a single bounded context: **Impostor Game**
 
 Future expansion could add contexts:
+
 - User Management (login, profiles)
 - Matchmaking (online multiplayer)
 - Statistics (game history, analytics)
@@ -301,32 +301,32 @@ Future expansion could add contexts:
 
 ```typescript
 // Domain Layer (Unit Tests - No Dependencies)
-describe('Player', () => {
-  it('should change name', () => {
-    const player = Player.create('id-1', 'Alice')
-    player.changeName('Bob')
-    expect(player.name).toBe('Bob')
-  })
-})
+describe("Player", () => {
+  it("should change name", () => {
+    const player = Player.create("id-1", "Alice");
+    player.changeName("Bob");
+    expect(player.name).toBe("Bob");
+  });
+});
 
 // Application Layer (Integration Tests - Mock Infrastructure)
-describe('PlayerManagementService', () => {
-  it('should create player with generated ID', () => {
-    const mockIdGenerator = { generate: jest.fn(() => 'test-id') }
-    const service = new PlayerManagementService(mockIdGenerator)
-    const player = service.createPlayer('Alice')
-    expect(player.id).toBe('test-id')
-  })
-})
+describe("PlayerManagementService", () => {
+  it("should create player with generated ID", () => {
+    const mockIdGenerator = { generate: jest.fn(() => "test-id") };
+    const service = new PlayerManagementService(mockIdGenerator);
+    const player = service.createPlayer("Alice");
+    expect(player.id).toBe("test-id");
+  });
+});
 
 // UI Layer (Component Tests - Mock Services)
-describe('usePlayers', () => {
-  it('should add player', () => {
-    const { result } = renderHook(() => usePlayers())
-    act(() => result.current.addPlayer())
-    expect(result.current.playerCount).toBe(3)
-  })
-})
+describe("usePlayers", () => {
+  it("should add player", () => {
+    const { result } = renderHook(() => usePlayers());
+    act(() => result.current.addPlayer());
+    expect(result.current.playerCount).toBe(3);
+  });
+});
 ```
 
 ## Future Enhancements

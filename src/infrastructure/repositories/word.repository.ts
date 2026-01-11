@@ -1,56 +1,72 @@
-import { Word, type Difficulty } from '@/domain/game/word.entity'
-import type { IWordRepository } from '@/domain/game/word-selection.domain-service'
-import { WORDS as WORDS_DATA } from '@/data/words'
+import { Word } from "@/domain/game/word.entity";
+import type { IWordRepository } from "@/domain/game/word-repository.interface";
+import { WORDS } from "@/data/words";
+import { type Word as WordData } from "@/data/types";
 
 /**
- * Infrastructure: WordRepository
- * Implements data access for words
+ * WordRepository
+ * 
+ * Infrastructure implementation of word data access.
+ * Converts data layer Word types to domain Word entities.
  */
 export class WordRepository implements IWordRepository {
-  private readonly words: Word[]
+  private readonly words: Word[];
 
   constructor() {
-    // Convert data to domain entities
-    this.words = WORDS_DATA.map(w =>
+    this.words = WORDS.map((wordData: WordData) =>
       Word.create(
-        w.id,
-        w.wordKey,
-        w.hintKey,
-        w.categoryIds,
-        w.difficulty as Difficulty
-      )
-    )
+        wordData.id,
+        wordData.wordKey,
+        wordData.hintKey,
+        wordData.categoryIds,
+        wordData.difficulty,
+      ),
+    );
   }
 
   getAllWords(): Word[] {
-    return [...this.words]
+    return [...this.words];
   }
 
   getAvailableWords(usedWordIds: Set<string>): Word[] {
-    return this.words.filter(word => !usedWordIds.has(word.id))
+    return this.words.filter((word) => !usedWordIds.has(word.getId()));
   }
 
-  getWordById(id: string): Word | undefined {
-    return this.words.find(word => word.id === id)
-  }
-
-  getWordsByCategory(categoryId: string): Word[] {
-    return this.words.filter(word => word.belongsToCategory(categoryId))
-  }
-
-  getWordsByCategories(categoryIds: string[]): Word[] {
-    if (categoryIds.length === 0) {
-      return [...this.words]
+  getWordsByCategories(
+    selectedCategoryIds: string[],
+    usedWordIds: Set<string>,
+  ): Word[] {
+    // If no categories selected, return all available words
+    if (selectedCategoryIds.length === 0) {
+      return this.getAvailableWords(usedWordIds);
     }
-    return this.words.filter(word =>
-      word.categoryIds.some(catId => categoryIds.includes(catId))
-    )
+
+    return this.words.filter(
+      (word) =>
+        !usedWordIds.has(word.getId()) &&
+        word.belongsToAnyCategory(selectedCategoryIds),
+    );
   }
 
-  getWordsByDifficulty(difficulty: Difficulty): Word[] {
-    return this.words.filter(word => word.hasDifficulty(difficulty))
+  getWordsByCategoriesAndDifficulty(
+    selectedCategoryIds: string[],
+    usedWordIds: Set<string>,
+    difficulty: number | null,
+  ): Word[] {
+    // If no categories selected, return all available words
+    if (selectedCategoryIds.length === 0) {
+      return this.words.filter(
+        (word) =>
+          !usedWordIds.has(word.getId()) &&
+          (difficulty === null || word.getDifficulty() === difficulty),
+      );
+    }
+
+    return this.words.filter(
+      (word) =>
+        !usedWordIds.has(word.getId()) &&
+        word.belongsToAnyCategory(selectedCategoryIds) &&
+        (difficulty === null || word.getDifficulty() === difficulty),
+    );
   }
 }
-
-// Singleton instance
-export const wordRepository = new WordRepository()

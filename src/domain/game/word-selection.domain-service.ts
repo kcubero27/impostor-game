@@ -1,101 +1,91 @@
-import { Word } from './word.entity'
+import { Word } from "./word.entity";
+import type { IWordRepository } from "./word-repository.interface";
+import type { IWordMemory } from "./word-memory.interface";
 
 /**
- * Interface for word repository
- * Domain service depends on abstraction, not implementation (DIP)
- */
-export interface IWordRepository {
-  getAllWords(): Word[]
-  getAvailableWords(usedWordIds: Set<string>): Word[]
-  getWordsByCategories(categoryIds: string[]): Word[]
-}
-
-/**
- * Interface for word memory
- */
-export interface IWordMemory {
-  hasBeenUsed(wordId: string): boolean
-  markAsUsed(wordId: string): void
-  shouldReset(totalWords: number): boolean
-  reset(): void
-}
-
-/**
- * Domain Service: WordSelectionService
- * Responsible for selecting words based on domain rules
+ * WordSelectionService
+ * 
+ * Domain service responsible for selecting words for games.
+ * This is a pure domain service that depends on abstractions (DIP).
+ * 
+ * Business Rules:
+ * - Selects words from available pool (not yet used)
+ * - Filters by selected categories
+ * - Tracks used words to avoid repetition
+ * - Resets memory when all words are used
  */
 export class WordSelectionService {
-  private readonly wordRepository: IWordRepository
-  private readonly wordMemory: IWordMemory
-
-  constructor(wordRepository: IWordRepository, wordMemory: IWordMemory) {
-    this.wordRepository = wordRepository
-    this.wordMemory = wordMemory
-  }
+  constructor(
+    private readonly wordRepository: IWordRepository,
+    private readonly wordMemory: IWordMemory,
+  ) {}
 
   /**
-   * Select a random word that hasn't been used recently
-   * @param categoryIds Optional array of category IDs to filter by (empty means all categories)
+   * Selects a random word for the game
+   * 
+   * @param selectedCategoryIds - Array of selected category IDs (empty = all categories)
+   * @param difficulty - Difficulty level (1-3) or null for all difficulties
+   * @returns Selected word
+   * @throws Error if no words are available
    */
-  selectWord(categoryIds: string[] = []): Word {
-    // Get words filtered by categories if specified
-    let allWords = this.wordRepository.getAllWords()
+  selectWord(selectedCategoryIds: string[] = [], difficulty: number | null = null): Word {
+    const usedWordIds = this.getUsedWordIds();
+    const availableWords = this.wordRepository.getWordsByCategoriesAndDifficulty(
+      selectedCategoryIds,
+      usedWordIds,
+      difficulty,
+    );
 
-    if (categoryIds.length > 0) {
-      allWords = this.wordRepository.getWordsByCategories(categoryIds)
+    if (availableWords.length === 0) {
+      // Check if we should reset memory
+      const allWords = this.wordRepository.getAllWords();
+      if (this.wordMemory.shouldReset(allWords.length)) {
+        this.wordMemory.reset();
+        // Try again after reset
+        const resetAvailableWords = this.wordRepository.getWordsByCategoriesAndDifficulty(
+          selectedCategoryIds,
+          new Set<string>(),
+          difficulty,
+        );
+        if (resetAvailableWords.length === 0) {
+          throw new Error("No words available in selected categories");
+        }
+        const selectedWord = this.selectRandomWord(resetAvailableWords);
+        this.wordMemory.markAsUsed(selectedWord.getId());
+        return selectedWord;
+      }
+      throw new Error("No words available in selected categories");
     }
 
-    if (allWords.length === 0) {
-      throw new Error('No words available in repository for the selected categories')
-    }
-
-    // Check if we should reset the history
-    if (this.wordMemory.shouldReset(allWords.length)) {
-      this.wordMemory.reset()
-    }
-
-    // Get words that haven't been used
-    const usedWordIds = this.getUsedWordIds(allWords)
-    const availableWords = this.wordRepository.getAvailableWords(usedWordIds)
-
-    // Filter available words by categories if specified
-    let filteredAvailableWords = availableWords
-    if (categoryIds.length > 0) {
-      filteredAvailableWords = availableWords.filter(word =>
-        word.categoryIds.some(catId => categoryIds.includes(catId))
-      )
-    }
-
-    // If no words are available, use all words (filtered by categories)
-    const wordsToChooseFrom = filteredAvailableWords.length > 0 ? filteredAvailableWords : allWords
-
-    // Select a random word
-    const selectedWord = this.selectRandomWord(wordsToChooseFrom)
-
-    // Mark as used
-    this.wordMemory.markAsUsed(selectedWord.id)
-
-    return selectedWord
+    const selectedWord = this.selectRandomWord(availableWords);
+    this.wordMemory.markAsUsed(selectedWord.getId());
+    return selectedWord;
   }
 
   /**
-   * Select a random word from a list
+   * Gets the set of used word IDs
+   */
+  private getUsedWordIds(): Set<string> {
+    const allWords = this.wordRepository.getAllWords();
+    const usedIds = new Set<string>();
+    
+    allWords.forEach((word) => {
+      if (this.wordMemory.hasBeenUsed(word.getId())) {
+        usedIds.add(word.getId());
+      }
+    });
+
+    return usedIds;
+  }
+
+  /**
+   * Selects a random word from the available words
    */
   private selectRandomWord(words: Word[]): Word {
-    const randomIndex = Math.floor(Math.random() * words.length)
-    return words[randomIndex]
-  }
-
-  /**
-   * Get set of used word IDs
-   */
-  private getUsedWordIds(allWords: Word[]): Set<string> {
-    const usedIds = new Set<string>()
-    for (const word of allWords) {
-      if (this.wordMemory.hasBeenUsed(word.id)) {
-        usedIds.add(word.id)
-      }
+    if (words.length === 0) {
+      throw new Error("Cannot select from empty word list");
     }
-    return usedIds
+    const randomIndex = Math.floor(Math.random() * words.length);
+    return words[randomIndex];
   }
 }

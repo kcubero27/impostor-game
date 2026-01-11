@@ -1,51 +1,82 @@
 /**
- * Value Object: PlayerName
- * Encapsulates player name validation and rules
- * Immutable and self-validating
+ * PlayerName Value Object
+ * 
+ * Encapsulates player name validation logic.
+ * Immutable value object that validates on creation.
  */
 export class PlayerName {
-  private readonly _value: string
+  private static readonly MIN_LENGTH = 1;
+  private static readonly MAX_LENGTH = 50;
 
-  private constructor(value: string) {
-    this._value = value
+  private constructor(private readonly value: string) {
+    if (!value || value.trim().length === 0) {
+      throw new Error("Player name cannot be empty");
+    }
+
+    const trimmed = value.trim();
+    if (trimmed.length < PlayerName.MIN_LENGTH) {
+      throw new Error(
+        `Player name must be at least ${PlayerName.MIN_LENGTH} character`,
+      );
+    }
+
+    if (trimmed.length > PlayerName.MAX_LENGTH) {
+      throw new Error(
+        `Player name cannot exceed ${PlayerName.MAX_LENGTH} characters`,
+      );
+    }
+
+    this.value = trimmed;
   }
 
+  /**
+   * Factory method to create a PlayerName
+   * Validates the name on creation
+   */
   static create(name: string): PlayerName {
-    const trimmed = name.trim()
+    return new PlayerName(name);
+  }
 
-    if (trimmed.length === 0) {
-      throw new Error('Player name cannot be empty')
+  /**
+   * Creates a PlayerName from an optional string
+   * Returns null if the name is empty or invalid
+   */
+  static createOptional(name: string | undefined): PlayerName | null {
+    if (!name || name.trim().length === 0) {
+      return null;
     }
-
-    if (trimmed.length > 50) {
-      throw new Error('Player name cannot exceed 50 characters')
+    try {
+      return new PlayerName(name);
+    } catch {
+      return null;
     }
-
-    return new PlayerName(trimmed)
   }
 
-  static createOptional(name: string): PlayerName | null {
-    const trimmed = name.trim()
-    return trimmed.length === 0 ? null : new PlayerName(trimmed)
+  /**
+   * Gets the string value
+   */
+  getValue(): string {
+    return this.value;
   }
 
-  get value(): string {
-    return this._value
+  /**
+   * Checks if the name is valid (non-empty)
+   */
+  isValid(): boolean {
+    return this.value.trim().length >= PlayerName.MIN_LENGTH;
   }
 
-  get normalized(): string {
-    return this._value.toLowerCase()
-  }
-
+  /**
+   * Checks equality with another PlayerName
+   */
   equals(other: PlayerName): boolean {
-    return this.normalized === other.normalized
+    return this.value.toLowerCase() === other.value.toLowerCase();
   }
 
-  isEmpty(): boolean {
-    return this._value.length === 0
-  }
-
+  /**
+   * Returns string representation
+   */
   toString(): string {
-    return this._value
+    return this.value;
   }
 }

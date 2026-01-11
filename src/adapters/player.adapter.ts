@@ -1,37 +1,48 @@
+import { Player } from "@/domain/player/player.entity";
+
 /**
- * Adapter Layer: Converts between domain entities and legacy types
- * Allows gradual migration from old types to new domain model
+ * Player DTO for UI layer
  */
+export type PlayerDto = {
+  id: string;
+  name: string;
+};
 
-import { Player as DomainPlayer } from '@/domain/player/player.entity'
-import { type Player as LegacyPlayer } from '@/types/player.types'
-
+/**
+ * PlayerAdapter
+ * 
+ * Converts between Domain entities and DTOs.
+ * Adapter layer responsibility.
+ */
 export class PlayerAdapter {
   /**
-   * Convert domain player to legacy type for UI compatibility
+   * Converts a Player entity to a DTO
    */
-  static toDto(player: DomainPlayer): LegacyPlayer {
-    return player.toPlainObject()
+  static toDto(player: Player): PlayerDto {
+    return {
+      id: player.getId(),
+      name: player.getName(),
+    };
   }
 
   /**
-   * Convert legacy player to domain entity
+   * Converts an array of Player entities to DTOs
    */
-  static toDomain(dto: LegacyPlayer): DomainPlayer {
-    return DomainPlayer.fromPersistence(dto.id, dto.name)
+  static toDtoArray(players: Player[]): PlayerDto[] {
+    return players.map((player) => PlayerAdapter.toDto(player));
   }
 
   /**
-   * Convert array of domain players to DTOs
+   * Converts a DTO to a Player entity
    */
-  static toDtoArray(players: DomainPlayer[]): LegacyPlayer[] {
-    return players.map(p => this.toDto(p))
+  static toDomain(dto: PlayerDto): Player {
+    return Player.create(dto.id, dto.name);
   }
 
   /**
-   * Convert array of DTOs to domain players
+   * Converts an array of DTOs to Player entities
    */
-  static toDomainArray(dtos: LegacyPlayer[]): DomainPlayer[] {
-    return dtos.map(dto => this.toDomain(dto))
+  static toDomainArray(dtos: PlayerDto[]): Player[] {
+    return dtos.map((dto) => PlayerAdapter.toDomain(dto));
   }
 }

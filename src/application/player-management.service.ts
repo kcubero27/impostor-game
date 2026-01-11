@@ -1,87 +1,84 @@
-import { Player } from '@/domain/player/player.entity'
-import { PlayerCollection } from '@/domain/player/player-collection'
+import { Player } from "@/domain/player/player.entity";
+import { PlayerCollection } from "@/domain/player/player-collection";
+import type { IIdGenerator } from "@/domain/shared/id-generator.interface";
 
 /**
- * Interface for ID generation
- * Application service depends on abstraction (DIP)
- */
-export interface IIdGenerator {
-  generate(prefix?: string): string
-}
-
-/**
- * Application Service: PlayerManagementService
- * Orchestrates player-related use cases
- * Thin layer that coordinates domain objects
+ * PlayerManagementService
+ * 
+ * Application service that orchestrates player management use cases.
+ * Depends on domain entities and services.
  */
 export class PlayerManagementService {
-  private readonly idGenerator: IIdGenerator
-  private readonly minPlayers: number
+  readonly idGenerator: IIdGenerator;
 
-  constructor(idGenerator: IIdGenerator, minPlayers: number = 2) {
-    this.idGenerator = idGenerator
-    this.minPlayers = minPlayers
+  constructor(idGenerator: IIdGenerator) {
+    this.idGenerator = idGenerator;
   }
 
   /**
-   * Create a new player
+   * Creates a new player with a generated ID
    */
-  createPlayer(name: string = ''): Player {
-    const id = this.idGenerator.generate('player')
-    return Player.create(id, name)
+  createPlayer(name: string = ""): Player {
+    const id = this.idGenerator.generate("player");
+    return Player.create(id, name);
   }
 
   /**
-   * Update a player's name in a collection
+   * Adds a new player to the collection
+   */
+  addPlayer(players: Player[]): Player[] {
+    const newPlayer = this.createPlayer();
+    return [...players, newPlayer];
+  }
+
+  /**
+   * Removes a player from the collection
+   * Ensures minimum players requirement
+   */
+  removePlayer(players: Player[], playerId: string): Player[] {
+    if (!PlayerCollection.canRemovePlayer(players)) {
+      throw new Error(
+        "Cannot remove player. Minimum 3 players required.",
+      );
+    }
+    return players.filter((p) => p.getId() !== playerId);
+  }
+
+  /**
+   * Updates a player's name
    */
   updatePlayerName(
-    collection: PlayerCollection,
+    players: Player[],
     playerId: string,
-    newName: string
-  ): PlayerCollection {
-    return collection.update(playerId, player => {
-      player.changeName(newName)
-    })
+    newName: string,
+  ): Player[] {
+    return players.map((player) => {
+      if (player.getId() === playerId) {
+        const updatedPlayer = Player.create(player.getId(), newName);
+        return updatedPlayer;
+      }
+      return player;
+    });
   }
 
   /**
-   * Remove a player from a collection
+   * Gets the count of ready players (players with valid names)
    */
-  removePlayer(collection: PlayerCollection, playerId: string): PlayerCollection {
-    return collection.remove(playerId, this.minPlayers)
+  getReadyPlayersCount(players: Player[]): number {
+    return PlayerCollection.getReadyPlayersCount(players);
   }
 
   /**
-   * Check if a player can be removed
+   * Validates the player collection
    */
-  canRemovePlayer(collection: PlayerCollection): boolean {
-    return collection.canRemovePlayer(this.minPlayers)
+  validatePlayers(players: Player[]): string[] {
+    return PlayerCollection.validate(players);
   }
 
   /**
-   * Validate if collection is ready for game
+   * Checks if players are ready to start a game
    */
-  validateForGame(collection: PlayerCollection): {
-    isValid: boolean
-    errors: string[]
-  } {
-    const errors: string[] = []
-
-    if (collection.count < this.minPlayers) {
-      errors.push(`At least ${this.minPlayers} players required`)
-    }
-
-    if (!collection.allPlayersHaveValidNames()) {
-      errors.push('All players must have valid names')
-    }
-
-    if (collection.hasDuplicateNames()) {
-      errors.push('Player names must be unique')
-    }
-
-    return {
-      isValid: errors.length === 0,
-      errors,
-    }
+  arePlayersReady(players: Player[]): boolean {
+    return PlayerCollection.isReady(players);
   }
 }

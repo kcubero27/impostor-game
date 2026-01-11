@@ -1,49 +1,64 @@
-import { Player } from '../player/player.entity'
-import { GamePlayer, PlayerRole } from './game-player.entity'
+import { Player } from "@/domain/player/player.entity";
+import { GamePlayer } from "./game-player.entity";
+import { MIN_PLAYERS, isValidImpostorCount, getMaxImpostorsForPlayerCount } from "./game-rules";
 
 /**
- * Domain Service: RoleAssignmentService
- * Responsible for assigning roles to players
- * Pure domain logic - no infrastructure dependencies
+ * RoleAssignmentService
+ * 
+ * Domain service responsible for assigning roles to players.
+ * This is a pure domain service with no infrastructure dependencies.
+ * 
+ * Rules:
+ * - Randomly selects which players become impostors
+ * - Ensures the specified number of impostors is assigned
+ * - Validates that the impostor count is valid for the player count
  */
 export class RoleAssignmentService {
   /**
-   * Assign roles to players - one random impostor, rest are normal
+   * Assigns roles to players
+   * 
+   * @param players - Array of players to assign roles to
+   * @param impostorCount - Number of impostors to assign (must be valid for player count)
+   * @returns Array of GamePlayers with assigned roles
+   * @throws Error if impostor count is invalid or insufficient players
    */
-  assignRoles(players: Player[]): GamePlayer[] {
-    if (players.length === 0) {
-      return []
+  assignRoles(players: Player[], impostorCount: number): GamePlayer[] {
+    if (players.length < MIN_PLAYERS) {
+      throw new Error(`Cannot assign roles to less than ${MIN_PLAYERS} players`);
     }
 
-    if (players.length < 2) {
-      throw new Error('Cannot assign roles to less than 2 players')
+    if (!isValidImpostorCount(impostorCount, players.length)) {
+      const maxAllowed = getMaxImpostorsForPlayerCount(players.length);
+      throw new Error(
+        `Invalid impostor count: ${impostorCount}. Maximum allowed for ${players.length} players is ${maxAllowed}`,
+      );
     }
 
-    // Select a random player to be the impostor
-    const impostorIndex = Math.floor(Math.random() * players.length)
+    // Create a copy of the players array to avoid mutating the original
+    const shuffledPlayers = [...players];
+    
+    // Fisher-Yates shuffle algorithm for random selection
+    this.shuffleArray(shuffledPlayers);
 
-    return players.map((player, index) => {
-      const role = index === impostorIndex ? PlayerRole.IMPOSTOR : PlayerRole.NORMAL
-      return GamePlayer.fromPlayer(player, role)
-    })
+    // Assign impostor roles to the first N players
+    const gamePlayers: GamePlayer[] = shuffledPlayers.map((player, index) => {
+      if (index < impostorCount) {
+        return GamePlayer.createImpostor(player);
+      }
+      return GamePlayer.createNormal(player);
+    });
+
+    return gamePlayers;
   }
 
   /**
-   * Assign a specific player as impostor
+   * Fisher-Yates shuffle algorithm
+   * Randomly shuffles an array in place
    */
-  assignImpostor(players: Player[], impostorId: string): GamePlayer[] {
-    if (players.length === 0) {
-      return []
+  private shuffleArray<T>(array: T[]): void {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
-
-    const impostorExists = players.some(p => p.id === impostorId)
-    if (!impostorExists) {
-      throw new Error('Impostor player not found in players list')
-    }
-
-    return players.map(player => {
-      const role = player.id === impostorId ? PlayerRole.IMPOSTOR : PlayerRole.NORMAL
-      return GamePlayer.fromPlayer(player, role)
-    })
   }
 }

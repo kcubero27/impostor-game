@@ -66,6 +66,7 @@ Switch languages anytime using the language toggle in the top-right corner!
 ## 📋 Categories
 
 Words are organized across 12 categories (300 total):
+
 - 🐾 Animals (40 words)
 - 🍕 Food (40 words)
 - ⚽ Sports (30 words)
@@ -97,11 +98,13 @@ Words are organized across 12 categories (300 total):
 ## 🎯 Game Strategy Tips
 
 **For Normal Players:**
+
 - Subtly reference the word without saying it directly
 - Ask questions that only someone who knows the word would understand
 - Watch for players who seem confused or vague
 
 **For the Impostor:**
+
 - Listen carefully to others before speaking
 - Make generic statements that could apply to many things
 - Blend in without being too specific or too vague

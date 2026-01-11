@@ -1,3 +1,2 @@
-export { CATEGORIES } from './categories'
-export { WORDS } from './words'
-
+export { CATEGORIES } from "./categories.ts";
+export { WORDS } from "./words.ts";

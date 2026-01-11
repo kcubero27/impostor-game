@@ -1,84 +1,92 @@
-import { Player } from '../player/player.entity'
-
-export const PlayerRole = {
-  IMPOSTOR: 'impostor' as const,
-  NORMAL: 'normal' as const,
-}
-
-export type PlayerRole = typeof PlayerRole[keyof typeof PlayerRole]
+import { Player } from "@/domain/player/player.entity";
 
 /**
- * Domain Entity: GamePlayer
- * Represents a player in the context of an active game
+ * Player Role
+ * 
+ * Represents the role a player has in the game.
+ */
+export type PlayerRole = "impostor" | "normal";
+
+/**
+ * GamePlayer Entity
+ * 
+ * Represents a player in the context of a game.
+ * Extends the base Player with game-specific properties like role.
  */
 export class GamePlayer {
-  private readonly _basePlayer: Player
-  private readonly _role: PlayerRole
-  private _hasSeenRole: boolean
+  private constructor(
+    private readonly _player: Player,
+    private readonly _role: PlayerRole,
+    private _hasSeenRole: boolean = false,
+  ) {}
 
-  private constructor(basePlayer: Player, role: PlayerRole, hasSeenRole: boolean) {
-    this._basePlayer = basePlayer
-    this._role = role
-    this._hasSeenRole = hasSeenRole
-  }
-
-  static createImpostor(player: Player): GamePlayer {
-    return new GamePlayer(player, 'impostor', false)
-  }
-
+  /**
+   * Factory method to create a normal player
+   */
   static createNormal(player: Player): GamePlayer {
-    return new GamePlayer(player, 'normal', false)
-  }
-
-  static fromPlayer(player: Player, role: PlayerRole): GamePlayer {
-    return new GamePlayer(player, role, false)
-  }
-
-  get id(): string {
-    return this._basePlayer.id
-  }
-
-  get name(): string {
-    return this._basePlayer.name
-  }
-
-  get role(): PlayerRole {
-    return this._role
-  }
-
-  get hasSeenRole(): boolean {
-    return this._hasSeenRole
-  }
-
-  get isImpostor(): boolean {
-    return this._role === 'impostor'
-  }
-
-  get basePlayer(): Player {
-    return this._basePlayer
+    return new GamePlayer(player, "normal", false);
   }
 
   /**
-   * Mark that this player has seen their role
+   * Factory method to create an impostor
    */
-  markAsSeenRole(): void {
-    this._hasSeenRole = true
+  static createImpostor(player: Player): GamePlayer {
+    return new GamePlayer(player, "impostor", false);
   }
 
   /**
-   * Convert to plain object
+   * Gets the underlying player entity
    */
-  toPlainObject(): {
-    id: string
-    name: string
-    role: string
-    hasSeenRole: boolean
-  } {
-    return {
-      id: this.id,
-      name: this.name,
-      role: this._role,
-      hasSeenRole: this._hasSeenRole,
-    }
+  getPlayer(): Player {
+    return this._player;
+  }
+
+  /**
+   * Gets the player ID
+   */
+  getId(): string {
+    return this._player.getId();
+  }
+
+  /**
+   * Gets the player name
+   */
+  getName(): string {
+    return this._player.getName();
+  }
+
+  /**
+   * Gets the player's role
+   */
+  getRole(): PlayerRole {
+    return this._role;
+  }
+
+  /**
+   * Checks if this player is an impostor
+   */
+  isImpostor(): boolean {
+    return this._role === "impostor";
+  }
+
+  /**
+   * Checks if this player is normal (not an impostor)
+   */
+  isNormal(): boolean {
+    return this._role === "normal";
+  }
+
+  /**
+   * Checks if the player has seen their role
+   */
+  hasSeenRole(): boolean {
+    return this._hasSeenRole;
+  }
+
+  /**
+   * Marks the player as having seen their role
+   */
+  markRoleAsSeen(): GamePlayer {
+    return new GamePlayer(this._player, this._role, true);
   }
 }

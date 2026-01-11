@@ -40,13 +40,13 @@ Crea un nuevo archivo en `src/i18n/locales/` con el código del idioma (por ejem
 Importa y exporta las nuevas traducciones:
 
 ```typescript
-import esTranslations from './es.json'
-import enTranslations from './en.json'  // Nuevo
+import esTranslations from "./es.json";
+import enTranslations from "./en.json"; // Nuevo
 
-export const es = esTranslations
-export const en = enTranslations  // Nuevo
+export const es = esTranslations;
+export const en = enTranslations; // Nuevo
 
-export type TranslationResource = typeof es
+export type TranslationResource = typeof es;
 ```
 
 ### 3. Actualizar `config.ts`
@@ -54,41 +54,43 @@ export type TranslationResource = typeof es
 Agrega el nuevo idioma a la configuración:
 
 ```typescript
-import { es, en } from './locales'  // Importa el nuevo idioma
+import { es, en } from "./locales"; // Importa el nuevo idioma
 
-i18next
-  .use(initReactI18next)
-  .init({
-    resources: {
-      es: {
-        translation: es,
-      },
-      en: {  // Agrega el nuevo idioma
-        translation: en,
-      },
+i18next.use(initReactI18next).init({
+  resources: {
+    es: {
+      translation: es,
     },
-    lng: typeof window !== 'undefined' ? localStorage.getItem('language') || 'es' : 'es',
-    fallbackLng: 'es',
-    // ... resto de la configuración
-  })
+    en: {
+      // Agrega el nuevo idioma
+      translation: en,
+    },
+  },
+  lng:
+    typeof window !== "undefined"
+      ? localStorage.getItem("language") || "es"
+      : "es",
+  fallbackLng: "es",
+  // ... resto de la configuración
+});
 
 // Agregar listener para guardar preferencia de idioma
-i18next.on('languageChanged', (lng) => {
-  if (typeof window !== 'undefined') {
-    localStorage.setItem('language', lng)
+i18next.on("languageChanged", (lng) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("language", lng);
   }
-})
+});
 ```
 
 ### 4. Actualizar el selector de idioma
 
-En `components/ui/language-switcher.tsx`, agrega el nuevo idioma al array `LANGUAGES`:
+En `components/ui/language-switcher`, agrega el nuevo idioma al array `LANGUAGES`:
 
 ```typescript
 const LANGUAGES = [
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },  // Nuevo
-] as const
+  { code: "es", name: "Español", flag: "🇪🇸" },
+  { code: "en", name: "English", flag: "🇬🇧" }, // Nuevo
+] as const;
 ```
 
 ### 5. Actualizar el tipo de Language
@@ -96,7 +98,7 @@ const LANGUAGES = [
 En `types/language.types.ts`, agrega el nuevo código de idioma:
 
 ```typescript
-export type Language = 'es' | 'en'  // Agrega el nuevo código
+export type Language = "es" | "en"; // Agrega el nuevo código
 ```
 
 ## Uso de Traducciones en Componentes
@@ -106,7 +108,7 @@ import { useTranslation } from '@/i18n'
 
 function MyComponent() {
   const { t } = useTranslation()
-  
+
   return (
     <div>
       <h1>{t('ui.game_title')}</h1>
@@ -127,7 +129,7 @@ Para usar variables en las traducciones:
 ```
 
 ```typescript
-t('ui.player_name_placeholder', { number: 1 })
+t("ui.player_name_placeholder", { number: 1 });
 // Resultado: "Nombre del jugador 1"
 ```
 

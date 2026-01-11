@@ -1,98 +1,78 @@
-import { PlayerName } from './player-name.value-object'
+import { PlayerName } from "./player-name.value-object";
 
 /**
- * Domain Entity: Player
- * Represents a player in the game with identity and behavior
+ * Player Entity
+ * 
+ * Represents a player with unique identity.
+ * Has behavior for managing player name.
  */
 export class Player {
-  private readonly _id: string
-  private _name: string
-
-  private constructor(id: string, name: string) {
-    this._id = id
-    this._name = name
-  }
-
-  /**
-   * Factory method to create a new Player
-   */
-  static create(id: string, name: string = ''): Player {
+  private constructor(
+    private readonly id: string,
+    private _name: PlayerName | null,
+  ) {
     if (!id || id.trim().length === 0) {
-      throw new Error('Player ID cannot be empty')
-    }
-
-    return new Player(id, name)
-  }
-
-  /**
-   * Reconstitute a player from persistence
-   */
-  static fromPersistence(id: string, name: string): Player {
-    return new Player(id, name)
-  }
-
-  get id(): string {
-    return this._id
-  }
-
-  get name(): string {
-    return this._name
-  }
-
-  /**
-   * Change the player's name
-   */
-  changeName(newName: string): void {
-    this._name = newName
-  }
-
-  /**
-   * Validate if the player has a valid name
-   */
-  hasValidName(): boolean {
-    try {
-      PlayerName.create(this._name)
-      return true
-    } catch {
-      return false
+      throw new Error("Player ID cannot be empty");
     }
   }
 
   /**
-   * Get the player name as a value object
+   * Factory method to create a Player
+   */
+  static create(id: string, name: string = ""): Player {
+    const playerName = name.trim().length > 0 
+      ? PlayerName.create(name) 
+      : null;
+    return new Player(id, playerName);
+  }
+
+  /**
+   * Gets the player ID
+   */
+  getId(): string {
+    return this.id;
+  }
+
+  /**
+   * Gets the player name value (or empty string if not set)
+   */
+  getName(): string {
+    return this._name?.getValue() ?? "";
+  }
+
+  /**
+   * Gets the PlayerName value object (or null if not set)
    */
   getPlayerName(): PlayerName | null {
-    return PlayerName.createOptional(this._name)
+    return this._name;
   }
 
   /**
-   * Check if name matches another player's name (case-insensitive)
+   * Changes the player's name
+   * Validates the name through PlayerName value object
+   */
+  changeName(newName: string): void {
+    if (newName.trim().length === 0) {
+      this._name = null;
+      return;
+    }
+    this._name = PlayerName.create(newName);
+  }
+
+  /**
+   * Checks if the player has a valid name
+   */
+  hasValidName(): boolean {
+    return this._name !== null && this._name.isValid();
+  }
+
+  /**
+   * Checks if this player has the same name as another player
    */
   hasSameNameAs(other: Player): boolean {
-    const thisName = this.getPlayerName()
-    const otherName = other.getPlayerName()
-
-    if (!thisName || !otherName) {
-      return false
+    if (!this._name || !other._name) {
+      return false;
     }
-
-    return thisName.equals(otherName)
-  }
-
-  /**
-   * Convert to plain object for serialization
-   */
-  toPlainObject(): { id: string; name: string } {
-    return {
-      id: this._id,
-      name: this._name,
-    }
-  }
-
-  /**
-   * Entity equality based on ID
-   */
-  equals(other: Player): boolean {
-    return this._id === other._id
+    return this._name.equals(other._name);
   }
 }

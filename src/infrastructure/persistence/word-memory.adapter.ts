@@ -1,71 +1,64 @@
-import type { IWordMemory } from '@/domain/game/word-selection.domain-service'
-
-const STORAGE_KEY = 'impostor-game-used-words'
-const RESET_THRESHOLD = 0.8 // Reset when 80% of words have been used
+import type { IWordMemory } from "@/domain/game/word-memory.interface";
 
 /**
- * Infrastructure: WordMemoryAdapter
- * Implements word memory using localStorage
+ * WordMemoryAdapter
+ * 
+ * Infrastructure implementation using localStorage for persistence.
+ * Tracks which words have been used across game sessions.
  */
 export class WordMemoryAdapter implements IWordMemory {
-  private usedWordIds: Set<string>
-
-  constructor() {
-    this.usedWordIds = this.loadFromStorage()
-  }
+  private static readonly STORAGE_KEY = "impostor-game-used-words";
 
   hasBeenUsed(wordId: string): boolean {
-    return this.usedWordIds.has(wordId)
+    const usedWords = this.getUsedWords();
+    return usedWords.has(wordId);
   }
 
   markAsUsed(wordId: string): void {
-    this.usedWordIds.add(wordId)
-    this.saveToStorage()
+    const usedWords = this.getUsedWords();
+    usedWords.add(wordId);
+    this.saveUsedWords(usedWords);
   }
 
   shouldReset(totalWords: number): boolean {
-    if (totalWords === 0) return false
-    const usagePercentage = this.usedWordIds.size / totalWords
-    return usagePercentage >= RESET_THRESHOLD
+    const usedWords = this.getUsedWords();
+    return usedWords.size >= totalWords;
   }
 
   reset(): void {
-    this.usedWordIds.clear()
-    this.saveToStorage()
-  }
-
-  getUsageStats(totalWords: number) {
-    return {
-      usedCount: this.usedWordIds.size,
-      totalCount: totalWords,
-      remainingCount: totalWords - this.usedWordIds.size,
-      usagePercentage: totalWords === 0 ? 0 : this.usedWordIds.size / totalWords,
-      shouldReset: this.shouldReset(totalWords),
+    if (typeof window !== "undefined" && window.localStorage) {
+      localStorage.removeItem(WordMemoryAdapter.STORAGE_KEY);
     }
   }
 
-  private loadFromStorage(): Set<string> {
+  private getUsedWords(): Set<string> {
+    if (typeof window === "undefined" || !window.localStorage) {
+      return new Set<string>();
+    }
+
     try {
-      const stored = localStorage.getItem(STORAGE_KEY)
-      if (stored) {
-        const parsed = JSON.parse(stored)
-        return new Set(Array.isArray(parsed) ? parsed : [])
+      const stored = localStorage.getItem(WordMemoryAdapter.STORAGE_KEY);
+      if (!stored) {
+        return new Set<string>();
       }
-    } catch (error) {
-      console.warn('Failed to load word history from storage:', error)
+      const wordIds = JSON.parse(stored) as string[];
+      return new Set(wordIds);
+    } catch {
+      return new Set<string>();
     }
-    return new Set()
   }
 
-  private saveToStorage(): void {
-    try {
-      const array = Array.from(this.usedWordIds)
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(array))
-    } catch (error) {
-      console.warn('Failed to save word history to storage:', error)
+  private saveUsedWords(usedWords: Set<string>): void {
+    if (typeof window !== "undefined" && window.localStorage) {
+      try {
+        const wordIds = Array.from(usedWords);
+        localStorage.setItem(
+          WordMemoryAdapter.STORAGE_KEY,
+          JSON.stringify(wordIds),
+        );
+      } catch {
+        // Silently fail if localStorage is not available
+      }
     }
   }
 }
-
-// Singleton instance
-export const wordMemoryAdapter = new WordMemoryAdapter()
