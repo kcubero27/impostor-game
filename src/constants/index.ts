@@ -1,28 +1,17 @@
-// Re-export domain constants for UI layer backward compatibility
-import {
-  MIN_PLAYERS,
-  MIN_IMPOSTORS,
-  MAX_IMPOSTORS,
-  MAX_IMPOSTOR_RATIO,
-  getMaxImpostorsForPlayerCount,
-  isValidImpostorCount,
-} from "@/domain/game/game-rules";
+import { GameConfiguration } from "@/domain/game/game-configuration.value-object";
+import { RoleAssignmentService } from "@/domain/game/role-assignment.domain-service";
+import { Game } from "@/domain/game/game.aggregate";
 
-export const PLAYER_CONSTANTS = {
-  MIN_PLAYERS,
-  INITIAL_PLAYERS_COUNT: 2,
-} as const;
+// Create a singleton instance for UI access to domain service methods
+const roleAssignmentService = new RoleAssignmentService();
 
-/**
- * Impostor Game Constants
- *
- * Rules for impostor assignment based on player count.
- * These are re-exported from the domain layer to maintain backward compatibility.
- */
 export const IMPOSTOR_CONSTANTS = {
-  MIN_IMPOSTORS,
-  MAX_IMPOSTORS,
-  MAX_IMPOSTOR_RATIO,
-  getMaxImpostorsForPlayerCount,
-  isValidImpostorCount,
+  MIN_IMPOSTORS: GameConfiguration.MIN_IMPOSTORS,
+  MAX_IMPOSTORS: GameConfiguration.MAX_IMPOSTORS,
+  MAX_IMPOSTOR_RATIO: GameConfiguration.MAX_IMPOSTOR_RATIO,
+  getMaxImpostorsForPlayerCount: (playerCount: number) =>
+    roleAssignmentService.getMaxImpostorsForPlayerCount(playerCount),
+  isValidImpostorCount: (impostorCount: number, playerCount: number) =>
+    roleAssignmentService.isValidImpostorCount(impostorCount, playerCount),
+  canStartGame: (playerCount: number) => Game.canStart(playerCount),
 } as const;

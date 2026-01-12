@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CATEGORIES } from "@/data/categories";
 import { useTranslation } from "@/i18n";
-import { categoryManagementService } from "@/application/services";
+import { CategorySelection } from "@/domain/category/category-selection";
 
 type CategoriesSetupProps = {
   selectedCategories: string[];
@@ -20,7 +20,7 @@ export const CategoriesSetup = ({
   const availableCategoryIds = CATEGORIES.map((cat) => cat.id);
 
   const toggleCategory = (categoryId: string) => {
-    const updated = categoryManagementService.toggleCategory(
+    const updated = CategorySelection.toggleCategory(
       categoryId,
       selectedCategories
     );
@@ -28,18 +28,17 @@ export const CategoriesSetup = ({
   };
 
   const selectAll = () => {
-    const updated = categoryManagementService.selectAll(availableCategoryIds);
+    const updated = CategorySelection.selectAll(availableCategoryIds);
     onCategoriesChange(updated);
   };
 
   const deselectAll = () => {
-    const updated = categoryManagementService.deselectAll();
+    const updated = CategorySelection.deselectAll();
     onCategoriesChange(updated);
   };
 
   const allSelected = selectedCategories.length === availableCategoryIds.length;
   const totalCount = availableCategoryIds.length;
-  // When no categories are selected, show all as selected (e.g., 12/12)
   const selectedCount =
     selectedCategories.length === 0 ? totalCount : selectedCategories.length;
 
@@ -66,7 +65,7 @@ export const CategoriesSetup = ({
 
       <div className="flex-1 overflow-y-auto">
         {CATEGORIES.map((category, index) => {
-          const isSelected = categoryManagementService.isCategorySelected(
+          const isSelected = CategorySelection.isCategorySelected(
             category.id,
             selectedCategories
           );

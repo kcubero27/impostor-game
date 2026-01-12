@@ -1,11 +1,5 @@
 import type { IWordMemory } from "@/domain/game/word-memory.interface";
 
-/**
- * WordMemoryAdapter
- *
- * Infrastructure implementation using localStorage for persistence.
- * Tracks which words have been used across game sessions.
- */
 export class WordMemoryAdapter implements IWordMemory {
   private static readonly STORAGE_KEY = "impostor-game-used-words";
 
@@ -57,7 +51,7 @@ export class WordMemoryAdapter implements IWordMemory {
           JSON.stringify(wordIds)
         );
       } catch {
-        // Silently fail if localStorage is not available
+        // Ignore localStorage errors (e.g., quota exceeded)
       }
     }
   }

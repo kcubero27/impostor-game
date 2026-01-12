@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { Player } from "@/domain/player/player.entity";
 import { playerManagementService } from "@/application/services";
-import { categoryManagementService } from "@/application/services";
+import { CategorySelection } from "@/domain/category/category-selection";
 import { IMPOSTOR_CONSTANTS } from "@/constants";
 import { useMemo } from "react";
 import { useTranslation } from "@/i18n";
@@ -51,9 +51,8 @@ export const GameSetup = ({
   const readyPlayersCount =
     playerManagementService.getReadyPlayersCount(players);
   const selectedCategoriesCount =
-    categoryManagementService.getSelectedCount(selectedCategories);
+    CategorySelection.getSelectedCount(selectedCategories);
 
-  // Calculate valid impostor options based on player count
   const maxImpostors = useMemo(() => {
     return IMPOSTOR_CONSTANTS.getMaxImpostorsForPlayerCount(readyPlayersCount);
   }, [readyPlayersCount]);
@@ -66,14 +65,12 @@ export const GameSetup = ({
     return options;
   }, [maxImpostors]);
 
-  // Ensure current impostor count is valid
   const currentImpostorCount = useMemo(() => {
     if (
       IMPOSTOR_CONSTANTS.isValidImpostorCount(impostorCount, readyPlayersCount)
     ) {
       return impostorCount;
     }
-    // If invalid, default to the minimum
     const validCount = Math.min(IMPOSTOR_CONSTANTS.MIN_IMPOSTORS, maxImpostors);
     if (validCount !== impostorCount) {
       onImpostorCountChange(validCount);
@@ -90,13 +87,11 @@ export const GameSetup = ({
 
   const { t } = useTranslation();
 
-  // Check if we can start the game (at least 2 ready players required)
-  const canStartGame = readyPlayersCount >= 2;
+  const canStartGame = IMPOSTOR_CONSTANTS.canStartGame(readyPlayersCount);
 
   return (
     <div className="container mx-auto flex flex-col h-full">
       <div className="flex-1">
-        {/* Players Card */}
         <SetupCard
           icon={<Users className="h-4 w-4 text-white" />}
           iconBg="bg-blue-500"

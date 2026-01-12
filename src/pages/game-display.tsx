@@ -35,7 +35,7 @@ export const GameDisplay = ({
   const handleCardClick = (playerId: string) => {
     const player = players.find((p) => p.getId() === playerId);
     if (!player || player.hasSeenRole()) {
-      return; // Don't allow clicking on already revealed cards
+      return;
     }
     setSelectedPlayerId(playerId);
     setFlippedPlayerId(null);
@@ -44,7 +44,6 @@ export const GameDisplay = ({
   const handleFlipCard = () => {
     if (!selectedPlayerId) return;
 
-    // Mark player as having seen their role
     const updatedGame = game.markPlayerAsSeenRole(selectedPlayerId);
     setFlippedPlayerId(selectedPlayerId);
     onGameChange(updatedGame);
@@ -55,7 +54,6 @@ export const GameDisplay = ({
     setFlippedPlayerId(null);
   };
 
-  // If a card is selected, show the reveal modal
   if (selectedPlayer) {
     const isFlipped = flippedPlayerId === selectedPlayer.getId();
     const isImpostor = selectedPlayer.isImpostor();
@@ -154,7 +152,6 @@ export const GameDisplay = ({
 
   const allCardsRevealed = revealedCount === players.length;
 
-  // Show the grid of player cards
   return (
     <div className="flex flex-col h-full">
       <div className="container mx-auto w-full flex-1 flex flex-col gap-6">

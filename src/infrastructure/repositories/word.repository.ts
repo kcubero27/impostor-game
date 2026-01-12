@@ -3,12 +3,6 @@ import type { IWordRepository } from "@/domain/game/word-repository.interface";
 import { WORDS } from "@/data/words";
 import { type Word as WordData } from "@/data/types";
 
-/**
- * WordRepository
- *
- * Infrastructure implementation of word data access.
- * Converts data layer Word types to domain Word entities.
- */
 export class WordRepository implements IWordRepository {
   private readonly words: Word[];
 
@@ -36,7 +30,6 @@ export class WordRepository implements IWordRepository {
     selectedCategoryIds: string[],
     usedWordIds: Set<string>
   ): Word[] {
-    // If no categories selected, return all available words
     if (selectedCategoryIds.length === 0) {
       return this.getAvailableWords(usedWordIds);
     }
@@ -53,7 +46,6 @@ export class WordRepository implements IWordRepository {
     usedWordIds: Set<string>,
     difficulty: number | null
   ): Word[] {
-    // If no categories selected, return all available words
     if (selectedCategoryIds.length === 0) {
       return this.words.filter(
         (word) =>

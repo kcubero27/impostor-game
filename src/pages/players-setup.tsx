@@ -29,7 +29,6 @@ export const PlayersSetup = ({
   const inputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({});
 
   const addPlayer = () => {
-    // Get default name for the new player based on current count
     const nextIndex = players.length;
     const defaultName = t("ui.player_name_placeholder", {
       number: nextIndex + 1,
@@ -40,17 +39,22 @@ export const PlayersSetup = ({
     const newPlayer = playerManagementService.createPlayer(capitalizedName);
     const updatedPlayers = [...players, newPlayer];
     onPlayersChange(updatedPlayers);
-    // Focus the new player's input
+
+    // Initialize input value for new player
+    setRawInputValues((prev) => ({
+      ...prev,
+      [newPlayer.getId()]: capitalizedName,
+    }));
+
     setNewPlayerId(newPlayer.getId());
   };
 
   const removePlayer = (id: string) => {
     const updatedPlayers = playerManagementService.removePlayer(players, id);
     onPlayersChange(updatedPlayers);
-    // Clean up local state for removed player
     setRawInputValues((prev) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { [id]: _, ...rest } = prev;
+      const rest = { ...prev };
+      delete rest[id];
       return rest;
     });
     setTouchedInputs((prev) => {
@@ -71,7 +75,6 @@ export const PlayersSetup = ({
       name
     );
     onPlayersChange(updatedPlayers);
-    // Mark input as touched when user types
     if (!touchedInputs.has(id)) {
       setTouchedInputs((prev) => new Set(prev).add(id));
     }
@@ -86,30 +89,8 @@ export const PlayersSetup = ({
   const isReady = allPlayersHaveNames && allNamesAreUnique;
 
   const hasDuplicateName = (playerId: string, playerName: string): boolean => {
-    const trimmedName = playerName.trim();
-    if (!trimmedName) return false;
-
-    const normalizedName = trimmedName.toLowerCase();
-    return players.some(
-      (p) =>
-        p.getId() !== playerId &&
-        p.hasValidName() &&
-        p.getName().toLowerCase() === normalizedName
-    );
+    return PlayerCollection.hasDuplicateName(players, playerId, playerName);
   };
-
-  useEffect(() => {
-    const playerDtos = PlayerAdapter.toDtoArray(players);
-    setRawInputValues((prev) => {
-      const updated: { [key: string]: string } = {};
-      playerDtos.forEach((player) => {
-        if (!(player.id in prev)) {
-          updated[player.id] = player.name;
-        }
-      });
-      return { ...prev, ...updated };
-    });
-  }, [players]);
 
   useEffect(() => {
     if (newPlayerId && inputRefs.current[newPlayerId]) {

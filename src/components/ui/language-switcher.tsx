@@ -8,7 +8,6 @@ import {
   DropdownMenuTrigger,
 } from "./dropdown-menu";
 
-// Languages available
 const LANGUAGES = [
   { code: "es", name: "Español", flag: "🇪🇸" },
   { code: "ca", name: "Català", flag: "🏴" },

@@ -17,14 +17,10 @@ export const GameStart = ({
 }: GameStartProps) => {
   const { t } = useTranslation();
 
-  // Compute starting player deterministically based on game properties
-  // This avoids calling Math.random() during render and setState in effects
   const startingPlayer = useMemo<GamePlayer | null>(() => {
     const players = game.getPlayers();
     if (players.length === 0) return null;
 
-    // Use a deterministic "random" selection based on player IDs
-    // This creates a consistent selection per game without using Math.random()
     const playerIds = players.map((p) => p.getId()).sort();
     const hash = playerIds
       .join("")
@@ -37,7 +33,7 @@ export const GameStart = ({
   }, [game]);
 
   if (!startingPlayer) {
-    return null; // Or a loading state
+    return null;
   }
 
   return (

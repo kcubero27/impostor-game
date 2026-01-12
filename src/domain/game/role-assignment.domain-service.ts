@@ -1,52 +1,66 @@
 import { Player } from "@/domain/player/player.entity";
 import { GamePlayer } from "./game-player.entity";
-import {
-  MIN_PLAYERS,
-  isValidImpostorCount,
-  getMaxImpostorsForPlayerCount,
-} from "./game-rules";
+import { GameConfiguration } from "./game-configuration.value-object";
 
 /**
- * RoleAssignmentService
- *
- * Domain service responsible for assigning roles to players.
- * This is a pure domain service with no infrastructure dependencies.
- *
- * Rules:
- * - Randomly selects which players become impostors
- * - Ensures the specified number of impostors is assigned
- * - Validates that the impostor count is valid for the player count
+ * Domain service responsible for role assignment logic.
+ * Encapsulates the rules and validation for assigning impostor and normal roles to players.
  */
 export class RoleAssignmentService {
   /**
-   * Assigns roles to players
-   *
-   * @param players - Array of players to assign roles to
-   * @param impostorCount - Number of impostors to assign (must be valid for player count)
-   * @returns Array of GamePlayers with assigned roles
-   * @throws Error if impostor count is invalid or insufficient players
+   * Gets the maximum number of impostors allowed for a given player count.
+   * Applies business rules: max 50% ratio, capped at MAX_IMPOSTORS, minimum MIN_IMPOSTORS.
+   */
+  getMaxImpostorsForPlayerCount(playerCount: number): number {
+    if (playerCount < GameConfiguration.MIN_PLAYERS) {
+      return GameConfiguration.MIN_IMPOSTORS;
+    }
+
+    const maxByRatio = Math.floor(
+      playerCount * GameConfiguration.MAX_IMPOSTOR_RATIO
+    );
+    const maxAllowed = Math.min(maxByRatio, GameConfiguration.MAX_IMPOSTORS);
+
+    return Math.max(maxAllowed, GameConfiguration.MIN_IMPOSTORS);
+  }
+
+  /**
+   * Validates if an impostor count is valid for a given player count.
+   * Ensures the count is within the allowed range and respects business rules.
+   */
+  isValidImpostorCount(impostorCount: number, playerCount: number): boolean {
+    if (impostorCount < GameConfiguration.MIN_IMPOSTORS) {
+      return false;
+    }
+    if (impostorCount > GameConfiguration.MAX_IMPOSTORS) {
+      return false;
+    }
+    const maxAllowed = this.getMaxImpostorsForPlayerCount(playerCount);
+    return impostorCount <= maxAllowed;
+  }
+
+  /**
+   * Assigns roles to players based on the specified impostor count.
+   * Validates input and randomly assigns roles while maintaining business invariants.
    */
   assignRoles(players: Player[], impostorCount: number): GamePlayer[] {
-    if (players.length < MIN_PLAYERS) {
+    if (players.length < GameConfiguration.MIN_PLAYERS) {
       throw new Error(
-        `Cannot assign roles to less than ${MIN_PLAYERS} players`
+        `Cannot assign roles to less than ${GameConfiguration.MIN_PLAYERS} players`
       );
     }
 
-    if (!isValidImpostorCount(impostorCount, players.length)) {
-      const maxAllowed = getMaxImpostorsForPlayerCount(players.length);
+    if (!this.isValidImpostorCount(impostorCount, players.length)) {
+      const maxAllowed = this.getMaxImpostorsForPlayerCount(players.length);
       throw new Error(
         `Invalid impostor count: ${impostorCount}. Maximum allowed for ${players.length} players is ${maxAllowed}`
       );
     }
 
-    // Create a copy of the players array to avoid mutating the original
     const shuffledPlayers = [...players];
 
-    // Fisher-Yates shuffle algorithm for random selection
     this.shuffleArray(shuffledPlayers);
 
-    // Assign impostor roles to the first N players
     const gamePlayers: GamePlayer[] = shuffledPlayers.map((player, index) => {
       if (index < impostorCount) {
         return GamePlayer.createImpostor(player);
@@ -57,10 +71,6 @@ export class RoleAssignmentService {
     return gamePlayers;
   }
 
-  /**
-   * Fisher-Yates shuffle algorithm
-   * Randomly shuffles an array in place
-   */
   private shuffleArray<T>(array: T[]): void {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

@@ -1,9 +1,3 @@
-/**
- * Word Entity
- *
- * Represents a word in the game with its translations and metadata.
- * This is a domain entity that encapsulates word-related business logic.
- */
 export class Word {
   private readonly _id: string;
   private readonly _wordKey: string;
@@ -40,9 +34,6 @@ export class Word {
     this._difficulty = difficulty;
   }
 
-  /**
-   * Factory method to create a Word entity
-   */
   static create(
     id: string,
     wordKey: string,
@@ -53,51 +44,22 @@ export class Word {
     return new Word(id, wordKey, hintKey, categoryIds, difficulty);
   }
 
-  /**
-   * Gets the word ID
-   */
   getId(): string {
     return this._id;
   }
 
-  /**
-   * Gets the word translation key
-   */
   getWordKey(): string {
     return this._wordKey;
   }
 
-  /**
-   * Gets the hint translation key
-   */
   getHintKey(): string {
     return this._hintKey;
   }
 
-  /**
-   * Gets the category IDs this word belongs to
-   */
-  getCategoryIds(): readonly string[] {
-    return [...this._categoryIds];
-  }
-
-  /**
-   * Gets the difficulty level (1-3)
-   */
   getDifficulty(): number {
     return this._difficulty;
   }
 
-  /**
-   * Checks if this word belongs to a specific category
-   */
-  belongsToCategory(categoryId: string): boolean {
-    return this._categoryIds.includes(categoryId);
-  }
-
-  /**
-   * Checks if this word belongs to any of the given categories
-   */
   belongsToAnyCategory(categoryIds: string[]): boolean {
     return categoryIds.some((id) => this._categoryIds.includes(id));
   }

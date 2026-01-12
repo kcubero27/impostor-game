@@ -1,7 +1,6 @@
 import { type Word } from "./types";
 
 export const WORDS: readonly Word[] = [
-  // Animals (15 words)
   {
     id: "w1",
     wordKey: "words.elephant.word",
@@ -108,7 +107,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 2,
   },
 
-  // Food (15 words)
   {
     id: "w16",
     wordKey: "words.pizza.word",
@@ -215,7 +213,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 1,
   },
 
-  // Sports (10 words)
   {
     id: "w31",
     wordKey: "words.soccer.word",
@@ -287,7 +284,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 1,
   },
 
-  // Professions (10 words)
   {
     id: "w41",
     wordKey: "words.doctor.word",
@@ -359,7 +355,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 2,
   },
 
-  // Objects (10 words)
   {
     id: "w51",
     wordKey: "words.umbrella.word",
@@ -431,7 +426,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 1,
   },
 
-  // Places (10 words)
   {
     id: "w61",
     wordKey: "words.beach.word",
@@ -503,7 +497,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 1,
   },
 
-  // Technology (8 words)
   {
     id: "w71",
     wordKey: "words.smartphone.word",
@@ -561,7 +554,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 1,
   },
 
-  // Transportation (7 words)
   {
     id: "w79",
     wordKey: "words.bicycle.word",
@@ -612,7 +604,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 2,
   },
 
-  // Entertainment (5 words)
   {
     id: "w86",
     wordKey: "words.movie.word",
@@ -649,7 +640,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 1,
   },
 
-  // Clothing (5 words)
   {
     id: "w91",
     wordKey: "words.hat.word",
@@ -686,7 +676,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 1,
   },
 
-  // Household (5 words)
   {
     id: "w96",
     wordKey: "words.refrigerator.word",
@@ -723,9 +712,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 2,
   },
 
-  // ============ ADDITIONAL 200 WORDS (101-300) ============
-
-  // More Animals (25 words: 101-125)
   {
     id: "w101",
     wordKey: "words.tiger.word",
@@ -902,7 +888,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 2,
   },
 
-  // More Food (25 words: 126-150)
   {
     id: "w126",
     wordKey: "words.sandwich.word",
@@ -1079,7 +1064,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 1,
   },
 
-  // More Sports (20 words: 151-170)
   {
     id: "w151",
     wordKey: "words.volleyball.word",
@@ -1221,7 +1205,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 2,
   },
 
-  // More Professions (20 words: 171-190)
   {
     id: "w171",
     wordKey: "words.nurse.word",
@@ -1363,7 +1346,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 1,
   },
 
-  // More Objects (20 words: 191-210)
   {
     id: "w191",
     wordKey: "words.book.word",
@@ -1505,7 +1487,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 1,
   },
 
-  // More Places (20 words: 211-230)
   {
     id: "w211",
     wordKey: "words.school.word",
@@ -1647,7 +1628,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 2,
   },
 
-  // More Technology (17 words: 231-247)
   {
     id: "w231",
     wordKey: "words.laptop.word",
@@ -1768,7 +1748,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 2,
   },
 
-  // More Transportation (13 words: 248-260)
   {
     id: "w248",
     wordKey: "words.car.word",
@@ -1861,7 +1840,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 2,
   },
 
-  // More Entertainment (15 words: 261-275)
   {
     id: "w261",
     wordKey: "words.video_game.word",
@@ -1968,7 +1946,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 1,
   },
 
-  // More Clothing (10 words: 276-285)
   {
     id: "w276",
     wordKey: "words.shirt.word",
@@ -2040,7 +2017,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 1,
   },
 
-  // More Household (10 words: 286-295)
   {
     id: "w286",
     wordKey: "words.sofa.word",
@@ -2112,7 +2088,6 @@ export const WORDS: readonly Word[] = [
     difficulty: 2,
   },
 
-  // Nature (5 words: 296-300)
   {
     id: "w296",
     wordKey: "words.tree.word",

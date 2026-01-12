@@ -6,42 +6,43 @@ import { CategoriesSetup } from "@/pages/categories-setup";
 import { GameDisplay } from "@/pages/game-display";
 import { GameStart } from "@/pages/game-start";
 import { Layout } from "@/components/layout";
-import { useState, useEffect } from "react";
-import { Player } from "@/domain/player/player.entity";
-import { Game } from "@/domain/game/game.aggregate";
-import {
-  playerManagementService,
-  gameManagementService,
-} from "@/application/services";
-import { IMPOSTOR_CONSTANTS } from "@/constants";
+import { useEffect } from "react";
+import { gameManagementService } from "@/application/services";
 import { useTranslation, i18n } from "@/i18n";
-
-// Helper function to get default player name
-const getDefaultPlayerName = (index: number): string => {
-  const translation = i18n.t("ui.player_name_placeholder", {
-    number: index + 1,
-  });
-  // Remove "Nombre del " or "Name of " prefix if present
-  const name = translation.replace(/^(Nombre del |Name of )/i, "");
-  // Capitalize first letter
-  return name.charAt(0).toUpperCase() + name.slice(1);
-};
-
-const SCREEN = {
-  HOME: "home",
-  GAME_SETUP: "game-setup",
-  PLAYERS_SETUP: "players-setup",
-  CATEGORIES_SETUP: "categories-setup",
-  GAME: "game",
-  GAME_START: "game-start",
-} as const;
-
-type Screen = (typeof SCREEN)[keyof typeof SCREEN];
+import { useAppState } from "@/state/app-state.hook";
+import { SCREEN } from "@/state/app-state.types";
+import { Game } from "@/domain/game/game.aggregate";
 
 function App() {
   const { t } = useTranslation();
+  const {
+    state,
+    navigateToSetup,
+    navigateToHome,
+    navigateToPlayers,
+    navigateToCategories,
+    navigateToGameStart,
+    setPlayers,
+    setSelectedCategories,
+    setImpostorCount,
+    setHintsEnabled,
+    setDifficulty,
+    setGame,
+    startGame,
+    restartGame,
+    clearGame,
+  } = useAppState();
 
-  // Update document title when language changes
+  const {
+    screen,
+    players,
+    selectedCategories,
+    impostorCount,
+    hintsEnabled,
+    difficulty,
+    game,
+  } = state;
+
   useEffect(() => {
     const updateTitle = () => {
       document.title = t("ui.app_title");
@@ -55,48 +56,30 @@ function App() {
     };
   }, [t]);
 
-  const [screen, setScreen] = useState<Screen>(SCREEN.HOME);
-  const [players, setPlayers] = useState<Player[]>(() => {
-    // Initialize with 3 players using domain entities with default names
-    return [
-      playerManagementService.createPlayer(getDefaultPlayerName(0)),
-      playerManagementService.createPlayer(getDefaultPlayerName(1)),
-      playerManagementService.createPlayer(getDefaultPlayerName(2)),
-    ];
-  });
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [impostorCount, setImpostorCount] = useState<number>(
-    IMPOSTOR_CONSTANTS.MIN_IMPOSTORS
-  );
-  const [hintsEnabled, setHintsEnabled] = useState<boolean>(true);
-  const [difficulty, setDifficulty] = useState<number | null>(null); // null = all difficulties
-  const [game, setGame] = useState<Game | null>(null);
-
   const handleInitConfiguration = () => {
-    setScreen(SCREEN.GAME_SETUP);
+    navigateToSetup();
   };
 
   const handleBackToHome = () => {
-    setScreen(SCREEN.HOME);
+    navigateToHome();
   };
 
   const handleBackToSetup = () => {
-    setScreen(SCREEN.GAME_SETUP);
+    navigateToSetup();
   };
 
   const handleOpenPlayers = () => {
-    setScreen(SCREEN.PLAYERS_SETUP);
+    navigateToPlayers();
   };
 
   const handleOpenCategories = () => {
-    setScreen(SCREEN.CATEGORIES_SETUP);
+    navigateToCategories();
   };
 
   const handleStartGame = () => {
-    // Filter to get only ready players (players with valid names)
     const readyPlayers = players.filter((p) => p.hasValidName());
-    if (readyPlayers.length < 2) {
-      return; // Should not happen, but safety check
+    if (!Game.canStart(readyPlayers.length)) {
+      return;
     }
 
     const newGame = gameManagementService.startGame(
@@ -105,20 +88,18 @@ function App() {
       selectedCategories,
       difficulty
     );
-    setGame(newGame);
-    setScreen(SCREEN.GAME);
+    startGame(newGame);
   };
 
   const handleStartGameFromDisplay = () => {
     if (!game) return;
-    setScreen(SCREEN.GAME_START);
+    navigateToGameStart();
   };
 
   const handleRestartGame = () => {
-    // Filter to get only ready players (players with valid names)
     const readyPlayers = players.filter((p) => p.hasValidName());
     if (readyPlayers.length < 2) {
-      return; // Should not happen, but safety check
+      return;
     }
 
     const newGame = gameManagementService.startGame(
@@ -127,18 +108,15 @@ function App() {
       selectedCategories,
       difficulty
     );
-    setGame(newGame);
-    setScreen(SCREEN.GAME);
+    restartGame(newGame);
   };
 
   const handleBackToSetupFromGameStart = () => {
-    setGame(null);
-    setScreen(SCREEN.GAME_SETUP);
+    clearGame();
   };
 
   const handleBackToSetupFromGameDisplay = () => {
-    setGame(null);
-    setScreen(SCREEN.GAME_SETUP);
+    clearGame();
   };
 
   const getScreenTitle = () => {
@@ -152,7 +130,7 @@ function App() {
       case SCREEN.GAME:
         return t("ui.choose_your_card");
       case SCREEN.GAME_START:
-        return undefined; // Game start doesn't need a title
+        return undefined;
       default:
         return undefined;
     }
@@ -168,7 +146,6 @@ function App() {
       case SCREEN.GAME:
         return handleBackToSetupFromGameDisplay;
       case SCREEN.GAME_START:
-        return undefined; // Disable back button on game start screen
       default:
         return undefined;
     }
