@@ -54,107 +54,11 @@ export const GameDisplay = ({
     setFlippedPlayerId(null);
   };
 
-  if (selectedPlayer) {
-    const isFlipped = flippedPlayerId === selectedPlayer.getId();
-    const isImpostor = selectedPlayer.isImpostor();
-    const wordText = t(word.getWordKey());
-    const hintText = t(word.getHintKey());
-
-    return (
-      <div className="flex items-center justify-center h-full">
-        <div className="mx-auto max-w-sm space-y-6 w-full">
-          <div className="space-y-2 text-center">
-            <h2 className="text-2xl font-bold text-foreground">
-              {selectedPlayer.getName()}
-            </h2>
-          </div>
-
-          <div className="relative">
-            <Card
-              className={cn(
-                "min-w-xs backdrop-blur-sm transition-all duration-500",
-                isFlipped && "scale-105"
-              )}
-            >
-              <CardContent className="w-full p-6">
-                {!isFlipped ? (
-                  <div className="flex flex-col items-center justify-center space-y-4 transition-opacity duration-300">
-                    <div className="space-y-3 text-center">
-                      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-muted">
-                        <EyeOff className="h-8 w-8 text-muted-foreground" />
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        {t("ui.ready_to_reveal")}
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex flex-col items-center justify-center space-y-4 transition-opacity duration-300">
-                    <div className="space-y-3 text-center">
-                      {isImpostor ? (
-                        <>
-                          <h3 className="text-xl font-bold text-destructive">
-                            {t("ui.you_are_impostor")}
-                          </h3>
-                          {hintsEnabled ? (
-                            <div className="space-y-2">
-                              <p className="text-sm text-muted-foreground">
-                                {t("ui.impostor_hint")}
-                              </p>
-                              <p className="text-lg font-semibold text-card-foreground">
-                                {hintText}
-                              </p>
-                            </div>
-                          ) : (
-                            <p className="text-sm text-muted-foreground">
-                              {t("ui.no_hint_message")}
-                            </p>
-                          )}
-                        </>
-                      ) : (
-                        <>
-                          <h3 className="text-xl font-bold text-primary">
-                            {t("ui.you_are_normal")}
-                          </h3>
-                          <div className="space-y-2">
-                            <p className="text-sm text-muted-foreground">
-                              {t("ui.the_word_is")}
-                            </p>
-                            <p className="text-lg font-semibold text-card-foreground">
-                              {wordText}
-                            </p>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="mb-4 space-y-3">
-            {!isFlipped ? (
-              <Button className="w-full" onClick={handleFlipCard}>
-                <RotateCcw className="mr-2 h-5 w-5" />
-                {t("ui.flip_card")}
-              </Button>
-            ) : (
-              <Button className="w-full" onClick={handleCloseReveal}>
-                {t("ui.close")}
-              </Button>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   const allCardsRevealed = revealedCount === players.length;
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="container mx-auto w-full flex-1 flex flex-col gap-6">
+    <div className="flex flex-col h-full relative">
+      <div className="container mx-auto w-full flex-1 flex flex-col gap-6 overflow-y-auto">
         <div className="flex items-center justify-center gap-2 flex-wrap">
           <p className="hidden text-muted-foreground md:block">
             {t("ui.select_card_to_reveal")}
@@ -175,8 +79,8 @@ export const GameDisplay = ({
               <Card
                 key={player.getId()}
                 className={cn(
-                  "aspect-square transition-all duration-300",
-                  !isRevealed && "hover:scale-105 cursor-pointer",
+                  "aspect-square transition-all duration-200",
+                  !isRevealed && "hover:bg-primary/10 cursor-pointer",
                   isRevealed && "bg-muted opacity-75 cursor-not-allowed"
                 )}
                 onClick={() => !isRevealed && handleCardClick(player.getId())}
@@ -202,6 +106,95 @@ export const GameDisplay = ({
           </div>
         )}
       </div>
+
+      {selectedPlayer && (
+        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="mx-auto max-w-sm space-y-6 w-full">
+            <div className="space-y-2 text-center">
+              <h2 className="text-2xl font-bold text-foreground">
+                {selectedPlayer.getName()}
+              </h2>
+            </div>
+
+            <div className="relative">
+              <Card
+                className={cn(
+                  "min-w-xs backdrop-blur-sm transition-all duration-500",
+                  flippedPlayerId === selectedPlayer.getId() && "scale-105"
+                )}
+              >
+                <CardContent className="w-full p-6">
+                  {flippedPlayerId !== selectedPlayer.getId() ? (
+                    <div className="flex flex-col items-center justify-center space-y-4 transition-opacity duration-300">
+                      <div className="space-y-3 text-center">
+                        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                          <EyeOff className="h-8 w-8 text-muted-foreground" />
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          {t("ui.ready_to_reveal")}
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center space-y-4 transition-opacity duration-300">
+                      <div className="space-y-3 text-center">
+                        {selectedPlayer.isImpostor() ? (
+                          <>
+                            <h3 className="text-xl font-bold text-destructive">
+                              {t("ui.you_are_impostor")}
+                            </h3>
+                            {hintsEnabled ? (
+                              <div className="space-y-2">
+                                <p className="text-sm text-muted-foreground">
+                                  {t("ui.impostor_hint")}
+                                </p>
+                                <p className="text-lg font-semibold text-card-foreground">
+                                  {t(word.getHintKey())}
+                                </p>
+                              </div>
+                            ) : (
+                              <p className="text-sm text-muted-foreground">
+                                {t("ui.no_hint_message")}
+                              </p>
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            <h3 className="text-xl font-bold text-primary">
+                              {t("ui.you_are_normal")}
+                            </h3>
+                            <div className="space-y-2">
+                              <p className="text-sm text-muted-foreground">
+                                {t("ui.the_word_is")}
+                              </p>
+                              <p className="text-lg font-semibold text-card-foreground">
+                                {t(word.getWordKey())}
+                              </p>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="mb-4 space-y-3">
+              {flippedPlayerId !== selectedPlayer.getId() ? (
+                <Button className="w-full" onClick={handleFlipCard}>
+                  <RotateCcw className="mr-2 h-5 w-5" />
+                  {t("ui.flip_card")}
+                </Button>
+              ) : (
+                <Button className="w-full" onClick={handleCloseReveal}>
+                  {t("ui.close")}
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
