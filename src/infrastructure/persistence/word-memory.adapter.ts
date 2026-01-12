@@ -50,9 +50,8 @@ export class WordMemoryAdapter implements IWordMemory {
           WordMemoryAdapter.STORAGE_KEY,
           JSON.stringify(wordIds)
         );
-      } catch {
-        // Ignore localStorage errors (e.g., quota exceeded)
-      }
+        // eslint-disable-next-line
+      } catch {}
     }
   }
 }

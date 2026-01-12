@@ -20,10 +20,6 @@ export class Game {
     this._isComplete = isComplete;
   }
 
-  /**
-   * Checks if a game can be started with the given player count.
-   * Validates the minimum player requirement.
-   */
   static canStart(playerCount: number): boolean {
     return playerCount >= GameConfiguration.MIN_PLAYERS;
   }

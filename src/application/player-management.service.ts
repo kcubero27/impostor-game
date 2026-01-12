@@ -28,8 +28,6 @@ export class PlayerManagementService {
   ): Player[] {
     return players.map((player) => {
       if (player.getId() === playerId) {
-        // Player.create already validates the name through PlayerName value object
-        // This is the correct DDD approach for immutable collections
         return Player.create(player.getId(), newName);
       }
       return player;

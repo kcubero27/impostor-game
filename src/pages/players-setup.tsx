@@ -40,7 +40,6 @@ export const PlayersSetup = ({
     const updatedPlayers = [...players, newPlayer];
     onPlayersChange(updatedPlayers);
 
-    // Initialize input value for new player
     setRawInputValues((prev) => ({
       ...prev,
       [newPlayer.getId()]: capitalizedName,

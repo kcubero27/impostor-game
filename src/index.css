@@ -122,16 +122,13 @@
   }
 }
 
-/* Mobile viewport fixes for iOS Safari */
 @supports not (min-height: 100dvh) {
-  /* Fallback for browsers that don't support dvh */
   .min-h-dvh {
     min-height: 100vh;
     min-height: -webkit-fill-available;
   }
 }
 
-/* Prevent mobile scroll issues */
 html {
   height: -webkit-fill-available;
 }
@@ -139,11 +136,9 @@ html {
 body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
-  /* Prevent pull-to-refresh on mobile */
   overscroll-behavior-y: none;
 }
 
-/* Prevent iOS Safari address bar from causing layout shifts */
 #root {
   min-height: 100vh;
   min-height: -webkit-fill-available;
