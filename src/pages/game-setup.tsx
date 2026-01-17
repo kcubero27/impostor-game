@@ -190,7 +190,12 @@ export const GameSetup = ({
         />
       </div>
 
-      <Button className="w-full" onClick={onStartGame} disabled={!canStartGame}>
+      <Button
+        className="w-full"
+        size="lg"
+        onClick={onStartGame}
+        disabled={!canStartGame}
+      >
         <Play className="h-6 w-6" />
         {t("ui.start_game")}
       </Button>

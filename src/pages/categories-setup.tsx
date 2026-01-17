@@ -44,7 +44,7 @@ export const CategoriesSetup = ({
 
   return (
     <div className="container mx-auto flex flex-col h-full">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-2 flex-wrap">
         <span className="text-sm text-muted-foreground">
           {t("ui.all_categories_selected")}
         </span>
@@ -55,7 +55,6 @@ export const CategoriesSetup = ({
       <div className="flex gap-2 mt-2 mb-4">
         <Button
           variant="outline"
-          size="sm"
           onClick={allSelected ? deselectAll : selectAll}
           className="flex-1"
         >
@@ -81,7 +80,7 @@ export const CategoriesSetup = ({
                 >
                   <div className="flex items-center gap-2.5 flex-1">
                     <span className="text-lg">{category.emoji}</span>
-                    <label className="flex-1 text-sm pointer-events-none">
+                    <label className="flex-1 text-base pointer-events-none">
                       {t(category.nameKey)}
                     </label>
                   </div>

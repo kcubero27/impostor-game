@@ -10,7 +10,7 @@ export const HomePage = ({ onInitGame }: { onInitGame: () => void }) => {
       <div className="flex flex-col items-center justify-center flex-1 gap-4">
         <TypographyH1>{t("ui.find_impostor")}</TypographyH1>
 
-        <Button className="w-full max-w-lg" onClick={onInitGame}>
+        <Button size="lg" className="w-full" onClick={onInitGame}>
           {t("ui.start_game")}
         </Button>
       </div>

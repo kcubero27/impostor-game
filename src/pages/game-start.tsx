@@ -44,7 +44,7 @@ export const GameStart = ({
         </h1>
         <p className="text-lg text-muted-foreground">{t("ui.starts_game")}</p>
 
-        <div className="flex flex-col gap-4 pt-4">
+        <div className="grid grid-cols-2 gap-4">
           <Button onClick={onRestartGame} size="lg" className="w-full">
             {t("ui.restart_game")}
           </Button>

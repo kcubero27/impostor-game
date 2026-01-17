@@ -76,24 +76,28 @@ export const GameDisplay = ({
             const isRevealed = player.hasSeenRole();
 
             return (
-              <Card
+              <button
                 key={player.getId()}
+                type="button"
+                disabled={isRevealed}
+                onClick={() => !isRevealed && handleCardClick(player.getId())}
                 className={cn(
-                  "aspect-square transition-all duration-200",
-                  !isRevealed && "hover:bg-primary/10 cursor-pointer",
+                  "bg-card text-card-foreground flex flex-col justify-center items-center rounded-xl border shadow-sm aspect-square transition-all duration-200 relative",
+                  !isRevealed &&
+                    "hover:bg-primary/10 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                   isRevealed && "bg-muted opacity-75 cursor-not-allowed"
                 )}
-                onClick={() => !isRevealed && handleCardClick(player.getId())}
+                aria-label={`${player.getName()} - ${
+                  isRevealed ? t("ui.ready") : t("ui.tap_to_reveal")
+                }`}
               >
-                <CardContent className="flex flex-col justify-center items-center space-y-2 p-4 h-full text-center">
-                  <p className="text-lg font-semibold text-card-foreground">
-                    {player.getName()}
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {isRevealed ? t("ui.ready") : t("ui.tap_to_reveal")}
-                  </p>
-                </CardContent>
-              </Card>
+                <p className="text-lg font-semibold text-card-foreground">
+                  {player.getName()}
+                </p>
+                <p className="text-sm text-muted-foreground mt-2">
+                  {isRevealed ? t("ui.ready") : t("ui.tap_to_reveal")}
+                </p>
+              </button>
             );
           })}
         </div>
@@ -130,50 +134,54 @@ export const GameDisplay = ({
                         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-muted">
                           <EyeOff className="h-8 w-8 text-muted-foreground" />
                         </div>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-base text-muted-foreground">
                           {t("ui.ready_to_reveal")}
                         </p>
                       </div>
                     </div>
                   ) : (
-                    <div className="flex flex-col items-center justify-center space-y-4 transition-opacity duration-300">
-                      <div className="space-y-3 text-center">
-                        {selectedPlayer.isImpostor() ? (
-                          <>
-                            <h3 className="text-xl font-bold text-destructive">
-                              {t("ui.you_are_impostor")}
-                            </h3>
-                            {hintsEnabled ? (
-                              <div className="space-y-2">
-                                <p className="text-sm text-muted-foreground">
-                                  {t("ui.impostor_hint")}
-                                </p>
-                                <p className="text-lg font-semibold text-card-foreground">
-                                  {t(word.getHintKey())}
-                                </p>
-                              </div>
-                            ) : (
-                              <p className="text-sm text-muted-foreground">
-                                {t("ui.no_hint_message")}
+                    <div className="flex flex-col items-center justify-center transition-opacity duration-300 text-center space-y-3">
+                      {selectedPlayer.isImpostor() ? (
+                        <div className="space-y-4">
+                          {hintsEnabled && (
+                            <div>
+                              <p className="text-sm font-medium text-muted-foreground">
+                                {t("ui.word_label")}
                               </p>
-                            )}
-                          </>
-                        ) : (
-                          <>
-                            <h3 className="text-xl font-bold text-primary">
-                              {t("ui.you_are_normal")}
-                            </h3>
-                            <div className="space-y-2">
-                              <p className="text-sm text-muted-foreground">
-                                {t("ui.the_word_is")}
-                              </p>
-                              <p className="text-lg font-semibold text-card-foreground">
-                                {t(word.getWordKey())}
+                              <p className="text-3xl font-bold text-card-foreground">
+                                {t(word.getHintKey())}
                               </p>
                             </div>
-                          </>
-                        )}
-                      </div>
+                          )}
+                          <div>
+                            <p className="text-base font-medium text-muted-foreground">
+                              {t("ui.role_label")}
+                            </p>
+                            <p className="text-2xl font-bold text-destructive ">
+                              {t("ui.you_are_impostor")}
+                            </p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="space-y-4">
+                          <div>
+                            <p className="text-sm font-medium text-muted-foreground">
+                              {t("ui.word_label")}
+                            </p>
+                            <p className="text-3xl font-bold text-card-foreground">
+                              {t(word.getWordKey())}
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-base font-medium text-muted-foreground">
+                              {t("ui.role_label")}
+                            </p>
+                            <p className="text-2xl font-bold text-green-600 ">
+                              {t("ui.you_are_normal")}
+                            </p>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
                 </CardContent>
@@ -182,12 +190,16 @@ export const GameDisplay = ({
 
             <div className="mb-4 space-y-3">
               {flippedPlayerId !== selectedPlayer.getId() ? (
-                <Button className="w-full" onClick={handleFlipCard}>
+                <Button className="w-full" onClick={handleFlipCard} size="lg">
                   <RotateCcw className="mr-2 h-5 w-5" />
                   {t("ui.flip_card")}
                 </Button>
               ) : (
-                <Button className="w-full" onClick={handleCloseReveal}>
+                <Button
+                  className="w-full"
+                  onClick={handleCloseReveal}
+                  size="lg"
+                >
                   {t("ui.close")}
                 </Button>
               )}

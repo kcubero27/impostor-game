@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -102,7 +102,7 @@ export const PlayersSetup = ({
 
   return (
     <div className="container mx-auto flex flex-col h-full">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-2 flex-wrap">
         <span className="text-sm text-muted-foreground">
           {t("ui.minimum_players_required")}
         </span>
@@ -118,8 +118,7 @@ export const PlayersSetup = ({
       <div className="flex-1 overflow-y-auto mt-2">
         {playerDtos.map((player, index) => {
           const displayValue = rawInputValues[player.id] ?? player.name;
-          const hasDuplicate = hasDuplicateName(player.id, displayValue);
-          const showValidation = hasDuplicate;
+          const showValidation = hasDuplicateName(player.id, displayValue);
 
           return (
             <Card
@@ -151,7 +150,7 @@ export const PlayersSetup = ({
                       placeholder={t("ui.player_name_placeholder", {
                         number: index + 1,
                       })}
-                      className="flex-1 min-w-0 border-0 shadow-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 bg-transparent h-auto"
+                      className="text-base p-0 m-0 flex-1 min-w-0 border-0 shadow-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 bg-transparent h-auto"
                       aria-invalid={showValidation}
                     />
                   </div>

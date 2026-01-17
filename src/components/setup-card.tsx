@@ -43,9 +43,9 @@ export function SetupCard({
               {icon}
             </div>
             <div>
-              <div className="text-sm font-medium">{title}</div>
+              <div className="text-base font-medium">{title}</div>
               {subtitle && (
-                <TypographyMuted className="text-xs">
+                <TypographyMuted className="text-sm">
                   {subtitle}
                 </TypographyMuted>
               )}
